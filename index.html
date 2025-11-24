@@ -1,674 +1,1858 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AKT | Cybersecurity & AI Platform</title>
 
-=== FILE: package.json ===
-{
-  "name": "siber-site",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev --name init",
-    "seed": "node prisma/seed.js"
-  },
-  "dependencies": {
-    "next": "13.4.12",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.5.3",
-    "autoprefixer": "10.4.14",
-    "postcss": "8.4.21",
-    "prisma": "4.15.0",
-    "@prisma/client": "4.15.0",
-    "next-auth": "4.22.1",
-    "bcrypt": "5.1.0",
-    "jsonwebtoken": "9.0.2",
-    "multer": "1.4.5-lts.1",
-    "next-translate": "1.1.1",
-    "next-connect": "0.12.2",
-    "stripe": "12.11.0",
-    "cloudinary": "1.32.0",
-    "swr": "2.1.0",
-    "uuid": "9.0.0"
-  }
-}
+    <!-- Icons & Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-=== FILE: docker-compose.yml ===
-version: '3.8'
-services:
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: siberdb
-    volumes:
-      - db-data:/var/lib/postgresql/data
-    ports:
-      - '5432:5432'
+    <style>
+        :root {
+            --bg-light: #f5f7fb;
+            --bg-dark: #05070b;
+            --card-light: #ffffff;
+            --card-dark: #080b12;
+            --accent: #00ff41;
+            --accent-soft: rgba(0, 255, 65, 0.08);
+            --accent-2: #3b82f6;
+            --text-light: #0f172a;
+            --text-muted-light: #6b7280;
+            --text-dark: #e5e7eb;
+            --text-muted-dark: #9ca3af;
+            --border-light: #e5e7eb;
+            --border-dark: #111827;
+            --nav-height: 64px;
+        }
 
-  web:
-    build: .
-    command: sh -c "yarn dev"
-    volumes:
-      - ./:/app
-    ports:
-      - '3000:3000'
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/siberdb?schema=public
-      - NEXTAUTH_URL=http://localhost:3000
-    depends_on:
-      - db
+        * {
+            box-sizing: border-box;
+        }
 
-volumes:
-  db-data:
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
 
-=== FILE: .env.example ===
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/siberdb?schema=public
-NEXTAUTH_SECRET=changeme_long_secret
-NEXTAUTH_URL=http://localhost:3000
+        body.dark {
+            background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 70%, #020617 100%);
+            color: var(--text-dark);
+        }
 
-GITHUB_ID=
-GITHUB_SECRET=
+        body.dark::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.06) 0, transparent 55%),
+                radial-gradient(circle at 80% 0%, rgba(0, 255, 65, 0.06) 0, transparent 55%);
+            pointer-events: none;
+            z-index: -2;
+        }
 
-EMAIL_SERVER=smtp://user:pass@smtp.mailtrap.io:2525
-EMAIL_FROM=hello@example.com
+        .app-shell {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
+        .container {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
 
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            background: rgba(245, 247, 251, 0.9);
+            border-bottom: 1px solid var(--border-light);
+        }
+        body.dark .navbar {
+            background: rgba(3, 7, 18, 0.85);
+            border-bottom-color: rgba(15, 23, 42, 0.9);
+        }
 
-=== FILE: next.config.js ===
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  experimental: { appDir: false }
-}
-module.exports = nextConfig
+        .navbar-inner {
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-=== FILE: tailwind.config.js ===
-module.exports = {
-  content: ["./pages/**/*.{js,jsx}", "./components/**/*.{js,jsx}"],
-  darkMode: 'class',
-  theme: { extend: {} },
-  plugins: [],
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: "Share Tech Mono", monospace;
+        }
 
-=== FILE: postcss.config.js ===
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-}
+        .brand-mark {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 10%, #22c55e 0, #16a34a 40%, #0f766e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #020617;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow:
+                0 0 0 1px rgba(15, 23, 42, 0.65),
+                0 0 18px rgba(34, 197, 94, 0.35);
+        }
 
-=== FILE: styles/globals.css ===
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+        .brand-text-main {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
 
-html,
-body,
-#__next {
-  height: 100%;
-}
+        .brand-text-sub {
+            font-size: 0.65rem;
+            opacity: 0.75;
+        }
 
-body {
-  @apply bg-white text-gray-900;
-}
+        .nav-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
 
-.dark body {
-  @apply bg-gray-900 text-gray-100;
-}
+        .nav-link {
+            font-size: 0.8rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: transparent;
+            color: inherit;
+        }
+        .nav-link:hover {
+            border-color: rgba(148, 163, 184, 0.6);
+            background: rgba(148, 163, 184, 0.08);
+        }
 
-a {
-  @apply text-blue-600 dark:text-blue-400;
-}
+        .nav-primary-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            border-radius: 999px;
+            border: none;
+            padding: 0.45rem 0.95rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: linear-gradient(120deg, #22c55e, #3b82f6);
+            color: #020617;
+            box-shadow:
+                0 10px 35px rgba(34, 197, 94, 0.35),
+                0 0 0 1px rgba(15, 23, 42, 0.6);
+        }
 
-=== FILE: prisma/schema.prisma ===
-generator client {
-  provider = "prisma-client-js"
-}
+        .nav-primary-btn i {
+            font-size: 0.8rem;
+        }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+        .chip {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            background: rgba(15, 23, 42, 0.03);
+        }
 
-model User {
-  id            String      @id @default(uuid())
-  name          String?
-  email         String      @unique
-  emailVerified DateTime?
-  image         String?
-  role          Role        @default(USER)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  sessions      Session[]
-  accounts      Account[]
-  enrollments   Enrollment[]
-  courses       Course[]    @relation("AuthorCourses")
-}
+        body.dark .chip {
+            border-color: rgba(55, 65, 81, 0.9);
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--text-muted-dark);
+        }
 
-model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-  user              User    @relation(fields: [userId], references: [id])
-}
+        .theme-toggle,
+        .lang-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: rgba(15, 23, 42, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id])
-}
+        body.dark .theme-toggle,
+        body.dark .lang-toggle {
+            background: rgba(15, 23, 42, 0.85);
+            border-color: rgba(55, 65, 81, 0.9);
+            color: var(--text-muted-dark);
+        }
 
-model Course {
-  id          String   @id @default(uuid())
-  slug        String   @unique
-  title       String
-  description String
-  level       String
-  published   Boolean  @default(false)
-  authorId    String
-  author      User     @relation("AuthorCourses", fields: [authorId], references: [id])
-  lessons     Lesson[]
-  priceCents  Int?
-  createdAt   DateTime @default(now())
-}
+        /* MAIN LAYOUT */
+        .main {
+            flex: 1;
+            padding: 2.5rem 0 3.5rem;
+        }
 
-model Lesson {
-  id        String   @id @default(uuid())
-  title     String
-  content   String
-  order     Int
-  videoUrl  String?
-  courseId  String
-  course    Course   @relation(fields: [courseId], references: [id])
-  quizzes   Quiz[]
-  createdAt DateTime @default(now())
-}
+        .grid-main {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+            gap: 2rem;
+        }
 
-model Quiz {
-  id        String    @id @default(uuid())
-  title     String
-  lessonId  String?
-  lesson    Lesson?   @relation(fields: [lessonId], references: [id])
-  questions Question[]
-}
+        @media (max-width: 900px) {
+            .grid-main {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .navbar-inner {
+                gap: 0.75rem;
+            }
+        }
 
-model Question {
-  id       String @id @default(uuid())
-  text     String
-  options  Json
-  answer   Int
-  quizId   String
-  quiz     Quiz   @relation(fields: [quizId], references: [id])
-}
+        /* HERO LEFT */
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.8rem;
+        }
 
-model Enrollment {
-  id         String   @id @default(uuid())
-  userId     String
-  courseId   String
-  progress   Float    @default(0.0)
-  enrolledAt DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
-  course     Course   @relation(fields: [courseId], references: [id])
-}
+        body.dark .hero-eyebrow {
+            border-color: rgba(55, 65, 81, 0.9);
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--text-muted-dark);
+        }
 
-enum Role {
-  ADMIN
-  INSTRUCTOR
-  USER
-}
+        .hero-title {
+            font-size: clamp(2.1rem, 4vw, 2.7rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.6rem;
+        }
 
-=== FILE: prisma/seed.js ===
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+        .hero-highlight {
+            background: linear-gradient(90deg, #22c55e, #3b82f6);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-async function main() {
-  const admin = await prisma.user.upsert({
-    where: { email: 'admin@example.com' },
-    update: {},
-    create: {
-      email: 'admin@example.com',
-      name: 'Admin',
-      role: 'ADMIN',
-      emailVerified: new Date()
-    }
-  })
+        .hero-subtitle {
+            font-size: 0.9rem;
+            max-width: 34rem;
+            color: var(--text-muted-light);
+        }
 
-  const instructor = await prisma.user.upsert({
-    where: { email: 'instructor@example.com' },
-    update: {},
-    create: {
-      email: 'instructor@example.com',
-      name: 'Instructor',
-      role: 'INSTRUCTOR',
-      emailVerified: new Date()
-    }
-  })
+        body.dark .hero-subtitle {
+            color: var(--text-muted-dark);
+        }
 
-  const course = await prisma.course.create({
-    data: {
-      title: 'Introduction to Cybersecurity with AI',
-      slug: 'intro-cyber-ai',
-      description: 'Foundations of cybersecurity and intro to AI use-cases.',
-      level: 'Beginner',
-      published: true,
-      authorId: instructor.id,
-      priceCents: 0
-    }
-  })
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin: 1.25rem 0;
+        }
 
-  await prisma.lesson.createMany({
-    data: [
-      { title: 'Welcome', content: 'Welcome to the course.', order: 1, courseId: course.id },
-      { title: 'Basics', content: 'Cybersecurity basics.', order: 2, courseId: course.id }
-    ]
-  })
+        .pill {
+            font-size: 0.7rem;
+            padding: 0.22rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            background: rgba(15, 23, 42, 0.02);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
 
-  console.log('Seed completed')
-}
+        .pill i {
+            font-size: 0.7rem;
+        }
 
-main()
-  .catch(e => {
-    console.error(e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+        body.dark .pill {
+            border-color: rgba(55, 65, 81, 0.9);
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--text-muted-dark);
+        }
 
-=== FILE: lib/prisma.js ===
-import { PrismaClient } from '@prisma/client'
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin: 1.2rem 0 1.6rem;
+        }
 
-let prisma
+        .btn-primary {
+            border: none;
+            border-radius: 999px;
+            padding: 0.6rem 1.15rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(120deg, #22c55e, #3b82f6);
+            color: #020617;
+            box-shadow:
+                0 12px 40px rgba(34, 197, 94, 0.35),
+                0 0 0 1px rgba(15, 23, 42, 0.6);
+        }
 
-if (!global.prisma) {
-  global.prisma = new PrismaClient()
-}
+        .btn-secondary {
+            border-radius: 999px;
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid rgba(148, 163, 184, 0.9);
+            background: rgba(15, 23, 42, 0.02);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-prisma = global.prisma
+        body.dark .btn-secondary {
+            border-color: rgba(55, 65, 81, 0.9);
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--text-muted-dark);
+        }
 
-export default prisma
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            font-size: 0.75rem;
+            color: var(--text-muted-light);
+        }
 
-=== FILE: pages/_app.js ===
-import '../styles/globals.css'
-import { useEffect, useState } from 'react'
-import { SessionProvider } from 'next-auth/react'
+        body.dark .hero-meta {
+            color: var(--text-muted-dark);
+        }
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  const [theme, setTheme] = useState('light')
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
 
-  useEffect(() => {
-    const t = localStorage.getItem('theme') || 'light'
-    setTheme(t)
-    if (t === 'dark') document.documentElement.classList.add('dark')
-  }, [])
+        .hero-meta-label {
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.65rem;
+            opacity: 0.8;
+        }
 
-  const toggleTheme = () => {
-    const nt = theme === 'light' ? 'dark' : 'light'
-    setTheme(nt)
-    localStorage.setItem('theme', nt)
-    document.documentElement.classList.toggle('dark')
-  }
+        .hero-meta-value {
+            font-weight: 500;
+        }
 
-  return (
-    <SessionProvider session={session}>
-      <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-        <header className="p-4 border-b bg-white dark:bg-gray-900">
-          <div className="max-w-5xl mx-auto flex justify-between items-center">
-            <div className="font-bold tracking-wide">
-              AKT | Cybersecurity & AI
+        /* HERO RIGHT: CONSOLE CARD */
+        .hero-card {
+            position: relative;
+            border-radius: 1rem;
+            padding: 1.4rem 1.35rem;
+            background: var(--card-light);
+            border: 1px solid var(--border-light);
+            box-shadow:
+                0 18px 45px rgba(15, 23, 42, 0.16);
+        }
+
+        body.dark .hero-card {
+            background: radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.08) 0, #020617 55%);
+            border-color: rgba(15, 23, 42, 0.9);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.9),
+                0 0 0 1px rgba(15, 23, 42, 0.9);
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.9rem;
+            font-size: 0.75rem;
+            color: var(--text-muted-light);
+        }
+
+        body.dark .hero-card-header {
+            color: var(--text-muted-dark);
+        }
+
+        .hero-card-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.85);
+        }
+
+        .hero-card-tabs {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .hero-card-tab {
+            padding: 0.22rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .hero-card-tab.active {
+            border-color: rgba(148, 163, 184, 0.9);
+            background: rgba(148, 163, 184, 0.1);
+        }
+
+        body.dark .hero-card-tab.active {
+            border-color: rgba(55, 65, 81, 0.95);
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--text-muted-dark);
+        }
+
+        .terminal {
+            font-family: "Share Tech Mono", monospace;
+            font-size: 0.75rem;
+            border-radius: 0.75rem;
+            padding: 0.9rem;
+            background: #020617;
+            color: #e5e7eb;
+            border: 1px solid rgba(15, 23, 42, 0.9);
+            min-height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                180deg,
+                rgba(148, 163, 184, 0.06),
+                rgba(148, 163, 184, 0.06) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .terminal-line {
+            display: flex;
+            gap: 0.4rem;
+            align-items: flex-start;
+            margin-bottom: 0.3rem;
+        }
+
+        .terminal-prefix {
+            color: #22c55e;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 7px;
+            height: 12px;
+            background: #22c55e;
+            margin-left: 3px;
+            animation: cursorBlink 1s steps(2, start) infinite;
+        }
+
+        @keyframes cursorBlink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.65rem;
+        }
+
+        .badge-soft {
+            font-size: 0.7rem;
+            padding: 0.22rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.08);
+            color: #bbf7d0;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+        }
+
+        .badge-soft.blue {
+            background: rgba(59, 130, 246, 0.09);
+            color: #bfdbfe;
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        /* SECTION WRAPPER */
+        .section {
+            margin-top: 2.75rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .section-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted-light);
+            max-width: 28rem;
+        }
+
+        body.dark .section-subtitle {
+            color: var(--text-muted-dark);
+        }
+
+        /* TARGET AUDIENCE */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        @media (max-width: 720px) {
+            .grid-2 {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .card {
+            border-radius: 0.9rem;
+            padding: 1rem;
+            border: 1px solid var(--border-light);
+            background: var(--card-light);
+        }
+
+        body.dark .card {
+            background: #020617;
+            border-color: rgba(15, 23, 42, 0.9);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .card-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            background: rgba(37, 99, 235, 0.08);
+            color: #1d4ed8;
+        }
+
+        body.dark .card-icon {
+            background: rgba(37, 99, 235, 0.16);
+            color: #60a5fa;
+        }
+
+        .card-body {
+            font-size: 0.8rem;
+            color: var(--text-muted-light);
+        }
+
+        body.dark .card-body {
+            color: var(--text-muted-dark);
+        }
+
+        .list-dotted {
+            margin: 0.4rem 0 0;
+            padding-left: 1.1rem;
+            font-size: 0.78rem;
+        }
+
+        .list-dotted li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* MODULE GRID */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 980px) {
+            .module-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .module-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .module-card {
+            border-radius: 0.85rem;
+            padding: 0.85rem;
+            border: 1px solid var(--border-light);
+            background: var(--card-light);
+        }
+
+        body.dark .module-card {
+            background: #020617;
+            border-color: rgba(15, 23, 42, 0.9);
+        }
+
+        .module-tag-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.68rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .module-tag {
+            padding: 0.12rem 0.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.9);
+        }
+
+        .module-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .module-meta {
+            font-size: 0.7rem;
+            color: var(--text-muted-light);
+            margin-bottom: 0.4rem;
+        }
+
+        body.dark .module-meta {
+            color: var(--text-muted-dark);
+        }
+
+        /* PANELS */
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .panel-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .panel-card {
+            border-radius: 0.85rem;
+            padding: 0.85rem;
+            border: 1px dashed rgba(148, 163, 184, 0.9);
+            background: rgba(15, 23, 42, 0.02);
+        }
+
+        body.dark .panel-card {
+            border-color: rgba(55, 65, 81, 0.9);
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .panel-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .panel-body {
+            font-size: 0.78rem;
+            color: var(--text-muted-light);
+        }
+
+        body.dark .panel-body {
+            color: var(--text-muted-dark);
+        }
+
+        /* CONTENT + AUTH FORMS */
+        .grid-2-vertical {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 840px) {
+            .grid-2-vertical {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .content-card {
+            border-radius: 0.9rem;
+            padding: 1rem;
+            border: 1px solid var(--border-light);
+            background: var(--card-light);
+        }
+
+        body.dark .content-card {
+            background: #020617;
+            border-color: rgba(15, 23, 42, 0.9);
+        }
+
+        .content-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            font-size: 0.7rem;
+            margin-top: 0.4rem;
+        }
+
+        .content-list {
+            margin-top: 0.5rem;
+            padding-left: 1.1rem;
+            font-size: 0.78rem;
+        }
+
+        /* FORMS */
+        .auth-card {
+            border-radius: 0.9rem;
+            padding: 1rem;
+            border: 1px solid var(--border-light);
+            background: var(--card-light);
+        }
+
+        body.dark .auth-card {
+            background: #020617;
+            border-color: rgba(15, 23, 42, 0.9);
+        }
+
+        .tabs {
+            display: inline-flex;
+            border-radius: 999px;
+            padding: 0.15rem;
+            background: rgba(148, 163, 184, 0.12);
+            margin-bottom: 0.8rem;
+        }
+
+        .tab {
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+
+        .tab.active {
+            background: #ffffff;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+        }
+
+        body.dark .tab.active {
+            background: #020617;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.9);
+        }
+
+        .form-control {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .form-label {
+            font-size: 0.75rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            border-radius: 0.55rem;
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            padding: 0.44rem 0.6rem;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.96);
+            outline: none;
+        }
+
+        .form-textarea {
+            min-height: 64px;
+            resize: vertical;
+        }
+
+        body.dark .form-input,
+        body.dark .form-select,
+        body.dark .form-textarea {
+            background: #020617;
+            border-color: rgba(55, 65, 81, 0.9);
+            color: var(--text-dark);
+        }
+
+        .form-helper {
+            font-size: 0.7rem;
+            color: var(--text-muted-light);
+        }
+
+        body.dark .form-helper {
+            color: var(--text-muted-dark);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.4rem;
+            font-size: 0.72rem;
+        }
+
+        .link-inline {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .link-inline:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        .footer {
+            border-top: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 1.2rem 0;
+            font-size: 0.75rem;
+            color: var(--text-muted-light);
+        }
+
+        body.dark .footer {
+            border-top-color: rgba(15, 23, 42, 0.9);
+            color: var(--text-muted-dark);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.85;
+        }
+        .footer-links a:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="dark">
+<div class="app-shell">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-inner">
+                <div class="brand">
+                    <div class="brand-mark">AK</div>
+                    <div>
+                        <div class="brand-text-main">AHMET KAAN TANIR</div>
+                        <div class="brand-text-sub" data-i18n="brand_sub">
+                            Cybersecurity & AI Engineer
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <span class="chip" data-i18n="chip_status">
+                        Online · Elazığ / TR
+                    </span>
+                    <button class="nav-link" onclick="scrollToSection('modules')" data-i18n="nav_modules">
+                        Eğitim Modülleri
+                    </button>
+                    <button class="nav-link" onclick="scrollToSection('panels')" data-i18n="nav_panels">
+                        Kullanıcı Panelleri
+                    </button>
+                    <button class="nav-link" onclick="scrollToSection('auth')" data-i18n="nav_auth">
+                        Üyelik
+                    </button>
+                    <button class="lang-toggle" id="langToggle" title="TR / EN">
+                        TR
+                    </button>
+                    <button class="theme-toggle" id="themeToggle" title="Theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="nav-primary-btn" onclick="scrollToSection('auth')">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span data-i18n="nav_cta">Hemen Başla</span>
+                    </button>
+                </div>
             </div>
-            <div className="space-x-2 flex items-center">
-              <button
-                onClick={toggleTheme}
-                className="px-3 py-1 rounded border text-xs"
-              >
-                Theme
-              </button>
-            </div>
-          </div>
-        </header>
-        <main className="max-w-5xl mx-auto p-4">
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </SessionProvider>
-  )
-}
-
-export default MyApp
-
-=== FILE: pages/index.js ===
-import Link from 'next/link'
-
-export default function Home() {
-  return (
-    <div className="space-y-6">
-      <section className="space-y-2">
-        <h1 className="text-3xl font-bold">
-          Cybersecurity & AI Learning Platform
-        </h1>
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          For developers and individuals focusing on security engineering and artificial intelligence.
-        </p>
-      </section>
-      <section className="flex flex-wrap gap-3">
-        <Link href="/courses">
-          <a className="px-4 py-2 bg-blue-600 text-white rounded text-sm">
-            Browse Courses
-          </a>
-        </Link>
-        <Link href="/dashboard">
-          <a className="px-4 py-2 border rounded text-sm">
-            Dashboard
-          </a>
-        </Link>
-        <Link href="/admin">
-          <a className="px-4 py-2 border rounded text-sm">
-            Admin Panel
-          </a>
-        </Link>
-      </section>
-    </div>
-  )
-}
-
-=== FILE: pages/dashboard/index.js ===
-import { getSession } from 'next-auth/react'
-
-export default function Dashboard({ user }) {
-  if (!user) return <div className="text-sm">Please sign in.</div>
-  return (
-    <div className="space-y-2">
-      <h1 className="text-2xl font-semibold">Dashboard</h1>
-      <p className="text-sm">
-        Welcome, {user.name || user.email}
-      </p>
-    </div>
-  )
-}
-
-export async function getServerSideProps(ctx) {
-  const session = await getSession(ctx)
-  return { props: { user: session?.user || null } }
-}
-
-=== FILE: pages/courses/index.js ===
-import useSWR from 'swr'
-import Link from 'next/link'
-
-const fetcher = (url) => fetch(url).then((r) => r.json())
-
-export default function Courses() {
-  const { data, error } = useSWR('/api/courses', fetcher)
-
-  if (error) return <div className="text-sm">Error.</div>
-  if (!data) return <div className="text-sm">Loading...</div>
-
-  return (
-    <div>
-      <h1 className="text-2xl font-semibold mb-4">Courses</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.map((c) => (
-          <div key={c.id} className="p-4 border rounded space-y-2">
-            <h3 className="font-bold">{c.title}</h3>
-            <p className="text-xs text-gray-600 dark:text-gray-300">
-              {c.description}
-            </p>
-            <div className="flex justify-between items-center text-xs">
-              <span>{c.level}</span>
-              <Link href={`/courses/${c.slug}`}>
-                <a className="text-blue-600 dark:text-blue-400">Open</a>
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-=== FILE: pages/courses/[slug].js ===
-import prisma from '../../lib/prisma'
-
-export async function getServerSideProps({ params }) {
-  const course = await prisma.course.findUnique({
-    where: { slug: params.slug },
-    include: { lessons: { orderBy: { order: 'asc' } } },
-  })
-  if (!course) return { notFound: true }
-  return { props: { course } }
-}
-
-export default function CoursePage({ course }) {
-  return (
-    <div className="space-y-4">
-      <header className="space-y-2">
-        <h1 className="text-2xl font-bold">{course.title}</h1>
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          {course.description}
-        </p>
-      </header>
-      <section>
-        <h2 className="font-semibold mb-2 text-sm">Lessons</h2>
-        <ul className="border rounded divide-y">
-          {course.lessons.map((l) => (
-            <li key={l.id} className="px-3 py-2 text-sm">
-              {l.title}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-  )
-}
-
-=== FILE: pages/admin/index.js ===
-import { getSession } from 'next-auth/react'
-import prisma from '../../lib/prisma'
-
-export default function Admin({ user, courses }) {
-  if (!user || user.role !== 'ADMIN') return <div className="text-sm">Unauthorized.</div>
-  return (
-    <div className="space-y-4">
-      <h1 className="text-2xl font-semibold">Admin Panel</h1>
-      <section className="space-y-2">
-        <h2 className="font-semibold text-sm">Courses</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {courses.map((c) => (
-            <div key={c.id} className="p-4 border rounded space-y-1 text-sm">
-              <h3 className="font-bold">{c.title}</h3>
-              <p className="text-xs text-gray-600 dark:text-gray-300">
-                {c.description}
-              </p>
-              <p className="text-xs">Level: {c.level}</p>
-              <p className="text-xs">
-                Published: {c.published ? 'Yes' : 'No'}
-              </p>
-            </div>
-          ))}
         </div>
-      </section>
-    </div>
-  )
-}
+    </nav>
 
-export async function getServerSideProps(ctx) {
-  const session = await getSession(ctx)
-  const courses = await prisma.course.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 50,
-  })
-  return {
-    props: {
-      user: session?.user || null,
-      courses,
-    },
-  }
-}
+    <!-- MAIN -->
+    <main class="main">
+        <div class="container">
+            <div class="grid-main">
+                <!-- LEFT: HERO CONTENT -->
+                <section>
+                    <div class="hero-eyebrow">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span data-i18n="hero_eyebrow">
+                            Siber Güvenlik · Yapay Zeka · Eğitim
+                        </span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span data-i18n="hero_title_prefix">Modern</span>
+                        <span class="hero-highlight" data-i18n="hero_title_highlight">
+                            Cybersecurity & AI
+                        </span>
+                        <span data-i18n="hero_title_suffix">platformu.</span>
+                    </h1>
+                    <p class="hero-subtitle" data-i18n="hero_subtitle">
+                        Geliştiriciler ve bireyler için tasarlanmış eğitim modülleri, etkileşimli içerikler,
+                        pratik lab senaryoları ve üyelik tabanlı yönetim panelleri tek bir yerde.
+                    </p>
 
-=== FILE: pages/api/auth/[...nextauth].js ===
-import NextAuth from 'next-auth'
-import GithubProvider from 'next-auth/providers/github'
-import EmailProvider from 'next-auth/providers/email'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import prisma from '../../../lib/prisma'
+                    <div class="hero-pills">
+                        <span class="pill">
+                            <i class="fa-solid fa-bug-slash"></i>
+                            <span data-i18n="pill_1">Sızma Testi & Ağ Güvenliği</span>
+                        </span>
+                        <span class="pill">
+                            <i class="fa-solid fa-brain"></i>
+                            <span data-i18n="pill_2">Yapay Zeka ile Savunma</span>
+                        </span>
+                        <span class="pill">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <span data-i18n="pill_3">Modüler Eğitim Yapısı</span>
+                        </span>
+                        <span class="pill">
+                            <i class="fa-solid fa-users"></i>
+                            <span data-i18n="pill_4">Geliştirici & Bireysel Kullanıcı</span>
+                        </span>
+                    </div>
 
-export default NextAuth({
-  adapter: PrismaAdapter(prisma),
-  providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
-    EmailProvider({
-      server: process.env.EMAIL_SERVER,
-      from: process.env.EMAIL_FROM,
-    }),
-  ],
-  secret: process.env.NEXTAUTH_SECRET,
-  session: { strategy: 'database' },
-  callbacks: {
-    async session({ session, user }) {
-      if (user) {
-        session.user.role = user.role
-      }
-      return session
-    },
-  },
-})
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="scrollToSection('modules')">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span data-i18n="hero_primary_btn">Eğitim Modüllerini Gör</span>
+                        </button>
+                        <button class="btn-secondary" onclick="scrollToSection('auth')">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <span data-i18n="hero_secondary_btn">Üyelik Oluştur</span>
+                        </button>
+                    </div>
 
-=== FILE: pages/api/courses/index.js ===
-import prisma from '../../../lib/prisma'
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-label" data-i18n="meta_role_label">
+                                Rol
+                            </span>
+                            <span class="hero-meta-value" data-i18n="meta_role_value">
+                                Adli Bilişim Mühendisliği · Güvenlik Mühendisi
+                            </span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-label" data-i18n="meta_focus_label">
+                                Odak
+                            </span>
+                            <span class="hero-meta-value" data-i18n="meta_focus_value">
+                                Siber Güvenlik · Yapay Zeka · Eğitim
+                            </span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-label" data-i18n="meta_target_label">
+                                Hedef Kitle
+                            </span>
+                            <span class="hero-meta-value" data-i18n="meta_target_value">
+                                Geliştiriciler & Bireyler
+                            </span>
+                        </div>
+                    </div>
+                </section>
 
-export default async function handler(req, res) {
-  if (req.method === 'GET') {
-    const courses = await prisma.course.findMany({
-      include: { author: true },
-      orderBy: { createdAt: 'desc' },
-    })
-    return res.json(courses)
-  }
+                <!-- RIGHT: HERO CONSOLE / OVERVIEW CARD -->
+                <section>
+                    <div class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="hero-card-header-left">
+                                <span class="status-dot"></span>
+                                <span data-i18n="console_status">Platform Durumu: Aktif</span>
+                            </div>
+                            <div class="hero-card-tabs">
+                                <button class="hero-card-tab active" id="tabSecurity" onclick="switchConsole('security')">
+                                    <i class="fa-solid fa-shield"></i> Sec
+                                </button>
+                                <button class="hero-card-tab" id="tabAI" onclick="switchConsole('ai')">
+                                    <i class="fa-solid fa-brain"></i> AI
+                                </button>
+                                <button class="hero-card-tab" id="tabUsers" onclick="switchConsole('users')">
+                                    <i class="fa-solid fa-users"></i> UX
+                                </button>
+                            </div>
+                        </div>
 
-  if (req.method === 'POST') {
-    const { title, slug, description, level, authorId, priceCents } = req.body
-    const course = await prisma.course.create({
-      data: { title, slug, description, level, authorId, priceCents },
-    })
-    return res.status(201).json(course)
-  }
+                        <div class="terminal" id="terminal">
+                            <!-- Filled by JS -->
+                        </div>
 
-  res.setHeader('Allow', ['GET', 'POST'])
-  return res.status(405).end(`Method ${req.method} Not Allowed`)
-}
+                        <div class="badge-row">
+                            <span class="badge-soft">
+                                <i class="fa-solid fa-database"></i> PostgreSQL · Secure schema
+                            </span>
+                            <span class="badge-soft blue">
+                                <i class="fa-solid fa-lock"></i> Role-based access
+                            </span>
+                            <span class="badge-soft">
+                                <i class="fa-solid fa-code"></i> Modern frontend stack
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
-=== FILE: pages/api/upload.js ===
-import nextConnect from 'next-connect'
-import multer from 'multer'
-import { v2 as cloudinary } from 'cloudinary'
+            <!-- TARGET AUDIENCE SECTION -->
+            <section class="section" id="audience">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="audience_title">
+                        Hedef Kitle
+                    </h2>
+                    <p class="section-subtitle" data-i18n="audience_subtitle">
+                        Geliştiriciler için derinlemesine teknik içerikler, bireyler için anlaşılır senaryolar,
+                        adım adım eğitim modülleri ve tamamlayıcı kaynaklar.
+                    </p>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title" data-i18n="audience_dev_title">
+                                    Geliştiriciler
+                                </div>
+                                <div class="card-body" data-i18n="audience_dev_body">
+                                    Güvenlik odaklı yazılım geliştirme, ağ analizi ve otomasyon odaklı eğitim akışı.
+                                </div>
+                            </div>
+                            <div class="card-icon">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                        </div>
+                        <ul class="list-dotted">
+                            <li data-i18n="audience_dev_item1">
+                                Güvenli API tasarımı ve test senaryoları
+                            </li>
+                            <li data-i18n="audience_dev_item2">
+                                Ağ trafiği analizi, log yönetimi, SIEM odaklı temel kavramlar
+                            </li>
+                            <li data-i18n="audience_dev_item3">
+                                Yapay zeka ile anomali tespiti için temel pipeline örnekleri
+                            </li>
+                        </ul>
+                    </div>
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-})
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title" data-i18n="audience_ind_title">
+                                    Bireysel Kullanıcılar
+                                </div>
+                                <div class="card-body" data-i18n="audience_ind_body">
+                                    Kişisel veri güvenliği, sosyal mühendislik ve hesap koruma senaryoları.
+                                </div>
+                            </div>
+                            <div class="card-icon">
+                                <i class="fa-solid fa-user-lock"></i>
+                            </div>
+                        </div>
+                        <ul class="list-dotted">
+                            <li data-i18n="audience_ind_item1">
+                                Adım adım hesap güvenliği rehberleri
+                            </li>
+                            <li data-i18n="audience_ind_item2">
+                                Phishing ve sosyal mühendislik simülasyonları
+                            </li>
+                            <li data-i18n="audience_ind_item3">
+                                Temel şifreleme ve gizlilik bilinci
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-const upload = multer({ storage: multer.memoryStorage() })
+            <!-- EDUCATION MODULES SECTION -->
+            <section class="section" id="modules">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="modules_title">
+                        Eğitim Modülleri
+                    </h2>
+                    <p class="section-subtitle" data-i18n="modules_subtitle">
+                        Modüler yapı sayesinde siber güvenlik ve yapay zeka temalarını adım adım, seviyelere ayrılmış
+                        senaryolarla işleyebilirsin.
+                    </p>
+                </div>
+                <div class="module-grid">
+                    <div class="module-card">
+                        <div class="module-tag-row">
+                            <span class="module-tag" data-i18n="mod1_tag">
+                                Seviye · Başlangıç
+                            </span>
+                            <span class="module-meta">
+                                6 bölüm · 3 lab
+                            </span>
+                        </div>
+                        <div class="module-title" data-i18n="mod1_title">
+                            Temel Siber Güvenlik
+                        </div>
+                        <div class="module-meta" data-i18n="mod1_meta">
+                            Ağ temelleri, saldırı türleri, savunma konseptleri ve pratik örnekler.
+                        </div>
+                    </div>
 
-const apiRoute = nextConnect({
-  onError(error, req, res) {
-    res.status(501).json({ error: `Something went wrong: ${error.message}` })
-  },
-  onNoMatch(req, res) {
-    res.status(405).json({ error: `Method '${req.method}' Not Allowed` })
-  },
-})
+                    <div class="module-card">
+                        <div class="module-tag-row">
+                            <span class="module-tag" data-i18n="mod2_tag">
+                                Seviye · Orta
+                            </span>
+                            <span class="module-meta">
+                                8 bölüm · 4 lab
+                            </span>
+                        </div>
+                        <div class="module-title" data-i18n="mod2_title">
+                            Web Uygulama Güvenliği
+                        </div>
+                        <div class="module-meta" data-i18n="mod2_meta">
+                            OWASP, giriş noktaları, temel zafiyetler ve güvenli geliştirme pratikleri.
+                        </div>
+                    </div>
 
-apiRoute.use(upload.single('file'))
+                    <div class="module-card">
+                        <div class="module-tag-row">
+                            <span class="module-tag" data-i18n="mod3_tag">
+                                Seviye · Orta
+                            </span>
+                            <span class="module-meta">
+                                5 bölüm · 3 lab
+                            </span>
+                        </div>
+                        <div class="module-title" data-i18n="mod3_title">
+                            Yapay Zeka ile Güvenlik
+                        </div>
+                        <div class="module-meta" data-i18n="mod3_meta">
+                            Log analizi, anomali tespiti ve tehdit skorlama için AI temelli akışlar.
+                        </div>
+                    </div>
 
-apiRoute.post((req, res) => {
-  if (!req.file) return res.status(400).json({ error: 'No file' })
-  const stream = cloudinary.uploader.upload_stream(
-    { resource_type: 'auto', folder: 'siber-site' },
-    (err, result) => {
-      if (err) return res.status(500).json({ error: err.message })
-      return res.status(200).json({ url: result.secure_url })
+                    <div class="module-card">
+                        <div class="module-tag-row">
+                            <span class="module-tag" data-i18n="mod4_tag">
+                                Seviye · İleri
+                            </span>
+                            <span class="module-meta">
+                                4 bölüm · 2 senaryo
+                            </span>
+                        </div>
+                        <div class="module-title" data-i18n="mod4_title">
+                            Red Team & Blue Team
+                        </div>
+                        <div class="module-meta" data-i18n="mod4_meta">
+                            Saldırı ve savunma perspektifini bir arada işleyen senaryo tabanlı içerikler.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- USER PANELS SECTION -->
+            <section class="section" id="panels">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="panels_title">
+                        Kullanıcı Panelleri
+                    </h2>
+                    <p class="section-subtitle" data-i18n="panels_subtitle">
+                        Geliştirici, bireysel kullanıcı ve yönetici rolleri için ayrı paneller; ilerleme takibi, içerik
+                        yönetimi ve eğitim durumunu tek ekrandan görebilirsin.
+                    </p>
+                </div>
+
+                <div class="panel-grid">
+                    <div class="panel-card">
+                        <div class="panel-title" data-i18n="panel_user_title">
+                            Kullanıcı Paneli
+                        </div>
+                        <div class="panel-body" data-i18n="panel_user_body">
+                            Kişisel profil, aktif eğitim modülleri, sertifikalar ve ilerleme yüzdesi tek ekranda.
+                        </div>
+                        <ul class="list-dotted">
+                            <li data-i18n="panel_user_item1">
+                                Eğitim ilerleme çubuğu ve tamamlanma yüzdesi
+                            </li>
+                            <li data-i18n="panel_user_item2">
+                                Son erişilen içeriklere hızlı dönüş
+                            </li>
+                            <li data-i18n="panel_user_item3">
+                                Bildirim ve güvenlik uyarıları
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="panel-card">
+                        <div class="panel-title" data-i18n="panel_dev_title">
+                            Geliştirici Paneli
+                        </div>
+                        <div class="panel-body" data-i18n="panel_dev_body">
+                            Teknik içerikler, lab senaryoları ve kişisel notlar için tasarlanan görünüm.
+                        </div>
+                        <ul class="list-dotted">
+                            <li data-i18n="panel_dev_item1">
+                                Kod odaklı lab yapıları ve örnek projeler
+                            </li>
+                            <li data-i18n="panel_dev_item2">
+                                Güvenlik görevleri ve check-list mantığı
+                            </li>
+                            <li data-i18n="panel_dev_item3">
+                                Log analizi ve temel uyarı panelleri
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="panel-card">
+                        <div class="panel-title" data-i18n="panel_admin_title">
+                            Yönetici / İçerik Paneli
+                        </div>
+                        <div class="panel-body" data-i18n="panel_admin_body">
+                            Eğitim modülleri, kullanıcı rolleri ve içerik akışını yöneten panel.
+                        </div>
+                        <ul class="list-dotted">
+                            <li data-i18n="panel_admin_item1">
+                                Yeni eğitim modülü oluşturma / düzenleme
+                            </li>
+                            <li data-i18n="panel_admin_item2">
+                                Rol bazlı yetkilendirme ve güvenlik ayarları
+                            </li>
+                            <li data-i18n="panel_admin_item3">
+                                İstatistik ve temel metrikler
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTENT + AUTH FORMS -->
+            <section class="section">
+                <div class="grid-2-vertical">
+                    <!-- CONTENT MANAGEMENT / BLOG STYLE -->
+                    <div class="content-card">
+                        <div class="section-header" style="margin-bottom: 0.8rem;">
+                            <h2 class="section-title" data-i18n="content_title">
+                                İçerik Yönetimi & Eğitim Akışı
+                            </h2>
+                        </div>
+                        <p class="section-subtitle" data-i18n="content_subtitle">
+                            Basit ama esnek bir içerik modeli: modüller, dersler ve quiz yapılarıyla tüm eğitim
+                            akışı tek veri tabanı şemasında toplanır.
+                        </p>
+
+                        <div class="content-badge-row">
+                            <span class="badge-soft">
+                                <i class="fa-solid fa-database"></i> PostgreSQL schema
+                            </span>
+                            <span class="badge-soft blue">
+                                <i class="fa-solid fa-diagram-project"></i> Course · Lesson · Quiz modeli
+                            </span>
+                        </div>
+
+                        <ul class="content-list">
+                            <li data-i18n="content_item1">
+                                Her modül, farklı seviyelerde (başlangıç, orta, ileri) derslerden oluşur.
+                            </li>
+                            <li data-i18n="content_item2">
+                                Quiz yapısı; çoktan seçmeli soruları, doğru cevap indeksini ve seçenek listesini tutar.
+                            </li>
+                            <li data-i18n="content_item3">
+                                İlerleme yüzdeleri, kullanıcı-modül ilişkisi üzerinden hesaplanır.
+                            </li>
+                            <li data-i18n="content_item4">
+                                İki dil desteği için içerik alanları birden fazla dilde saklanabilir
+                                (örneğin: title_tr, title_en).
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- AUTH / MEMBERSHIP FORMS -->
+                    <div class="auth-card" id="auth">
+                        <div class="tabs">
+                            <button class="tab active" id="tabSignup" onclick="switchAuthTab('signup')">
+                                <span data-i18n="tab_signup">Kayıt Ol</span>
+                            </button>
+                            <button class="tab" id="tabSignin" onclick="switchAuthTab('signin')">
+                                <span data-i18n="tab_signin">Giriş Yap</span>
+                            </button>
+                        </div>
+
+                        <!-- SIGNUP FORM -->
+                        <form id="signupForm">
+                            <div class="form-control">
+                                <label class="form-label" for="signupName" data-i18n="signup_name_label">
+                                    İsim Soyisim
+                                </label>
+                                <input class="form-input" id="signupName" type="text" placeholder="Ahmet Kaan Tanır" />
+                            </div>
+                            <div class="form-control">
+                                <label class="form-label" for="signupEmail" data-i18n="signup_email_label">
+                                    E-posta
+                                </label>
+                                <input class="form-input" id="signupEmail" type="email" placeholder="ornek@mail.com" />
+                            </div>
+                            <div class="form-control">
+                                <label class="form-label" for="signupRole" data-i18n="signup_role_label">
+                                    Kullanıcı Tipi
+                                </label>
+                                <select class="form-select" id="signupRole">
+                                    <option value="dev" data-i18n="signup_role_dev">Geliştirici</option>
+                                    <option value="ind" data-i18n="signup_role_ind">Bireysel Kullanıcı</option>
+                                </select>
+                            </div>
+                            <div class="form-control">
+                                <label class="form-label" for="signupPassword" data-i18n="signup_password_label">
+                                    Şifre
+                                </label>
+                                <input class="form-input" id="signupPassword" type="password" />
+                                <div class="form-helper" data-i18n="signup_password_helper">
+                                    Şifren, en az 10 karakter ve harf/rakam kombinasyonu içermelidir.
+                                </div>
+                            </div>
+                            <div class="form-footer">
+                                <button type="button" class="btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.8rem;">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <span data-i18n="signup_submit">Hesap Oluştur</span>
+                                </button>
+                                <span data-i18n="signup_footer">
+                                    Zaten hesabın var mı? Sağdaki sekmeden giriş yap.
+                                </span>
+                            </div>
+                        </form>
+
+                        <!-- SIGNIN FORM -->
+                        <form id="signinForm" style="display: none;">
+                            <div class="form-control">
+                                <label class="form-label" for="signinEmail" data-i18n="signin_email_label">
+                                    E-posta
+                                </label>
+                                <input class="form-input" id="signinEmail" type="email" />
+                            </div>
+                            <div class="form-control">
+                                <label class="form-label" for="signinPassword" data-i18n="signin_password_label">
+                                    Şifre
+                                </label>
+                                <input class="form-input" id="signinPassword" type="password" />
+                                <div class="form-helper" data-i18n="signin_password_helper">
+                                    Hesabın yoksa üstteki "Kayıt Ol" sekmesinden başlayabilirsin.
+                                </div>
+                            </div>
+                            <div class="form-footer">
+                                <button type="button" class="btn-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.8rem;">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                    <span data-i18n="signin_submit">Giriş Yap</span>
+                                </button>
+                                <a href="#" class="link-inline" data-i18n="signin_forgot">
+                                    Şifremi unuttum
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section class="section" id="contact">
+                <div class="grid-2-vertical">
+                    <div class="content-card">
+                        <div class="section-header" style="margin-bottom: 0.8rem;">
+                            <h2 class="section-title" data-i18n="contact_title">
+                                İletişim & İş Birliği
+                            </h2>
+                        </div>
+                        <p class="section-subtitle" data-i18n="contact_subtitle">
+                            Eğitim içerikleri, siber güvenlik projeleri, yapay zeka temelli analizler ve etkinlik
+                            konuşmaları için iletişime geçebilirsin.
+                        </p>
+                        <div class="badge-row">
+                            <span class="badge-soft">
+                                <i class="fab fa-github"></i> github.com/ahmetkaantanir
+                            </span>
+                            <span class="badge-soft blue">
+                                <i class="fa-solid fa-envelope"></i> mail: yakında
+                            </span>
+                        </div>
+                    </div>
+                    <div class="auth-card">
+                        <form>
+                            <div class="form-control">
+                                <label class="form-label" for="contactName" data-i18n="contact_name_label">
+                                    İsim
+                                </label>
+                                <input class="form-input" id="contactName" type="text" />
+                            </div>
+                            <div class="form-control">
+                                <label class="form-label" for="contactTopic" data-i18n="contact_topic_label">
+                                    Konu
+                                </label>
+                                <select class="form-select" id="contactTopic">
+                                    <option data-i18n="contact_topic_opt1">
+                                        Eğitim Modülleri
+                                    </option>
+                                    <option data-i18n="contact_topic_opt2">
+                                        Proje / İş Birliği
+                                    </option>
+                                    <option data-i18n="contact_topic_opt3">
+                                        Diğer
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-control">
+                                <label class="form-label" for="contactMessage" data-i18n="contact_message_label">
+                                    Mesaj
+                                </label>
+                                <textarea class="form-textarea" id="contactMessage"></textarea>
+                            </div>
+                            <div class="form-footer">
+                                <button type="button" class="btn-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.8rem;">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span data-i18n="contact_submit">Mesaj Gönder</span>
+                                </button>
+                                <span class="form-helper" data-i18n="contact_helper">
+                                    Form şu an sadece tasarım amaçlıdır.
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span data-i18n="footer_left">
+                    © 2025 · Ahmet Kaan Tanır · Cybersecurity & AI Platform
+                </span>
+                <div class="footer-links">
+                    <a href="#modules" data-i18n="footer_link_modules">Eğitim Modülleri</a>
+                    <a href="#panels" data-i18n="footer_link_panels">Paneller</a>
+                    <a href="#contact" data-i18n="footer_link_contact">İletişim</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Smooth scroll
+    function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  )
-  stream.end(req.file.buffer)
-})
 
-export default apiRoute
+    // Theme toggle
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark");
+        });
+    }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
+    // Console content
+    const consoleData = {
+        security: [
+            { prefix: "root@platform", text: "init security_pipeline --profile=default" },
+            { prefix: "root@platform", text: "loading modules: firewall, ids, log-monitor..." },
+            { prefix: "root@platform", text: "status: all security services online" },
+            { prefix: "root@platform", text: "ready for red team / blue team scenarios" },
+        ],
+        ai: [
+            { prefix: "ai-core", text: "boot ai_agents --mode=defensive" },
+            { prefix: "ai-core", text: "log ingestion: enabled · anomaly detection: active" },
+            { prefix: "ai-core", text: "threat scoring model: v1.2 · precision=0.93" },
+            { prefix: "ai-core", text: "ready to correlate security events" },
+        ],
+        users: [
+            { prefix: "ux-engine", text: "loading dashboards: user, developer, admin..." },
+            { prefix: "ux-engine", text: "i18n: tr / en ready" },
+            { prefix: "ux-engine", text: "auth: email + role-based routes" },
+            { prefix: "ux-engine", text: "all panels responsive and optimized" },
+        ],
+    };
 
-=== FILE: pages/api/stripe/create-checkout-session.js ===
-import Stripe from 'stripe'
+    function renderConsole(type) {
+        const terminal = document.getElementById("terminal");
+        if (!terminal) return;
+        terminal.innerHTML = "";
+        const rows = consoleData[type] || [];
+        rows.forEach((row, index) => {
+            const lineDiv = document.createElement("div");
+            lineDiv.className = "terminal-line";
+            const prefixSpan = document.createElement("span");
+            prefixSpan.className = "terminal-prefix";
+            prefixSpan.textContent = row.prefix + "#";
+            const textSpan = document.createElement("span");
+            textSpan.textContent = " " + row.text;
+            lineDiv.appendChild(prefixSpan);
+            lineDiv.appendChild(textSpan);
+            setTimeout(() => {
+                terminal.appendChild(lineDiv);
+                terminal.scrollTop = terminal.scrollHeight;
+            }, 150 * index);
+        });
+        const cursorLine = document.createElement("div");
+        cursorLine.className = "terminal-line";
+        const cursorPrefix = document.createElement("span");
+        cursorPrefix.className = "terminal-prefix";
+        cursorPrefix.textContent = ">";
+        const cursorSpan = document.createElement("span");
+        cursorSpan.className = "terminal-cursor";
+        cursorLine.appendChild(cursorPrefix);
+        cursorLine.appendChild(cursorSpan);
+        setTimeout(() => {
+            terminal.appendChild(cursorLine);
+            terminal.scrollTop = terminal.scrollHeight;
+        }, 150 * rows.length + 80);
+    }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+    function switchConsole(type) {
+        ["tabSecurity", "tabAI", "tabUsers"].forEach((id) => {
+            const btn = document.getElementById(id);
+            if (!btn) return;
+            btn.classList.remove("active");
+        });
+        if (type === "security") document.getElementById("tabSecurity")?.classList.add("active");
+        if (type === "ai") document.getElementById("tabAI")?.classList.add("active");
+        if (type === "users") document.getElementById("tabUsers")?.classList.add("active");
+        renderConsole(type);
+    }
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).end('Method Not Allowed')
+    renderConsole("security");
 
-  const { priceCents, courseId } = req.body
+    // Auth tab switch
+    function switchAuthTab(which) {
+        const signupForm = document.getElementById("signupForm");
+        const signinForm = document.getElementById("signinForm");
+        const tabSignup = document.getElementById("tabSignup");
+        const tabSignin = document.getElementById("tabSignin");
+        if (which === "signup") {
+            signupForm.style.display = "block";
+            signinForm.style.display = "none";
+            tabSignup.classList.add("active");
+            tabSignin.classList.remove("active");
+        } else {
+            signupForm.style.display = "none";
+            signinForm.style.display = "block";
+            tabSignup.classList.remove("active");
+            tabSignin.classList.add("active");
+        }
+    }
 
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: { name: 'Course Purchase' },
-            unit_amount: priceCents,
-          },
-          quantity: 1,
+    // Language toggle (TR / EN)
+    const langToggle = document.getElementById("langToggle");
+    let currentLang = "tr";
+
+    const i18nMap = {
+        brand_sub: { tr: "Siber Güvenlik & Yapay Zeka", en: "Cybersecurity & AI Engineer" },
+        chip_status: { tr: "Online · Elazığ / TR", en: "Online · Elazığ / TR" },
+        nav_modules: { tr: "Eğitim Modülleri", en: "Modules" },
+        nav_panels: { tr: "Kullanıcı Panelleri", en: "User Panels" },
+        nav_auth: { tr: "Üyelik", en: "Membership" },
+        nav_cta: { tr: "Hemen Başla", en: "Start Now" },
+        hero_eyebrow: { tr: "Siber Güvenlik · Yapay Zeka · Eğitim", en: "Cybersecurity · AI · Education" },
+        hero_title_prefix: { tr: "Modern", en: "Modern" },
+        hero_title_highlight: { tr: "Cybersecurity & AI", en: "Cybersecurity & AI" },
+        hero_title_suffix: { tr: "platformu.", en: "platform." },
+        hero_subtitle: {
+            tr: "Geliştiriciler ve bireyler için tasarlanmış eğitim modülleri, etkileşimli içerikler, pratik lab senaryoları ve üyelik tabanlı yönetim panelleri tek bir yerde.",
+            en: "Training modules, interactive content, practical labs and membership-based dashboards designed for developers and individuals in one place."
         },
-      ],
-      mode: 'payment',
-      success_url: `${process.env.NEXTAUTH_URL}/dashboard?success=1`,
-      cancel_url: `${process.env.NEXTAUTH_URL}/courses/${courseId}`,
-    })
-    res.status(200).json({ id: session.id })
-  } catch (err) {
-    res.status(500).json({ error: err.message })
-  }
-}
+        pill_1: { tr: "Sızma Testi & Ağ Güvenliği", en: "Penetration Testing & Network Security" },
+        pill_2: { tr: "Yapay Zeka ile Savunma", en: "Defense with AI" },
+        pill_3: { tr: "Modüler Eğitim Yapısı", en: "Modular Learning Structure" },
+        pill_4: { tr: "Geliştirici & Bireysel Kullanıcı", en: "Developers & Individual Users" },
+        hero_primary_btn: { tr: "Eğitim Modüllerini Gör", en: "View Modules" },
+        hero_secondary_btn: { tr: "Üyelik Oluştur", en: "Create Account" },
+        meta_role_label: { tr: "Rol", en: "Role" },
+        meta_role_value: {
+            tr: "Adli Bilişim Mühendisliği · Güvenlik Mühendisi",
+            en: "Digital Forensics Engineering · Security Engineer"
+        },
+        meta_focus_label: { tr: "Odak", en: "Focus" },
+        meta_focus_value: { tr: "Siber Güvenlik · Yapay Zeka · Eğitim", en: "Cybersecurity · AI · Education" },
+        meta_target_label: { tr: "Hedef Kitle", en: "Target" },
+        meta_target_value: { tr: "Geliştiriciler & Bireyler", en: "Developers & Individuals" },
+        console_status: { tr: "Platform Durumu: Aktif", en: "Platform Status: Active" },
 
-=== FILE: README.md ===
-Setup:
+        audience_title: { tr: "Hedef Kitle", en: "Target Audience" },
+        audience_subtitle: {
+            tr: "Geliştiriciler için derinlemesine teknik içerikler, bireyler için anlaşılır senaryolar, adım adım eğitim modülleri ve tamamlayıcı kaynaklar.",
+            en: "In-depth technical content for developers, clear scenarios for individuals, step-by-step training modules."
+        },
+        audience_dev_title: { tr: "Geliştiriciler", en: "Developers" },
+        audience_dev_body: {
+            tr: "Güvenlik odaklı yazılım geliştirme, ağ analizi ve otomasyon odaklı eğitim akışı.",
+            en: "Security-focused software development, network analysis and automation oriented flow."
+        },
+        audience_dev_item1: {
+            tr: "Güvenli API tasarımı ve test senaryoları",
+            en: "Secure API design and test scenarios"
+        },
+        audience_dev_item2: {
+            tr: "Ağ trafiği analizi, log yönetimi, SIEM odaklı temel kavramlar",
+            en: "Network traffic analysis, log management and basic SIEM concepts"
+        },
+        audience_dev_item3: {
+            tr: "Yapay zeka ile anomali tespiti için temel pipeline örnekleri",
+            en: "Basic pipelines for anomaly detection with AI"
+        },
+        audience_ind_title: { tr: "Bireysel Kullanıcılar", en: "Individual Users" },
+        audience_ind_body: {
+            tr: "Kişisel veri güvenliği, sosyal mühendislik ve hesap koruma senaryoları.",
+            en: "Personal data security, social engineering and account protection scenarios."
+        },
+        audience_ind_item1: {
+            tr: "Adım adım hesap güvenliği rehberleri",
+            en: "Step-by-step account security guides"
+        },
+        audience_ind_item2: {
+            tr: "Phishing ve sosyal mühendislik simülasyonları",
+            en: "Phishing and social engineering simulations"
+        },
+        audience_ind_item3: {
+            tr: "Temel şifreleme ve gizlilik bilinci",
+            en: "Basic encryption and privacy awareness"
+        },
 
-1. Install dependencies:
-   - yarn
-2. Copy .env.example to .env and fill environment variables.
-3. Generate Prisma client:
-   - npx prisma generate
-4. Run migrations:
-   - npx prisma migrate dev --name init
-5. Seed database:
-   - node prisma/seed.js
-6. Start dev server:
-   - yarn dev
+        modules_title: { tr: "Eğitim Modülleri", en: "Learning Modules" },
+        modules_subtitle: {
+            tr: "Modüler yapı sayesinde siber güvenlik ve yapay zeka temalarını adım adım, seviyelere ayrılmış senaryolarla işleyebilirsin.",
+            en: "Modular structure to learn cybersecurity and AI topics step-by-step in different levels."
+        },
+        mod1_tag: { tr: "Seviye · Başlangıç", en: "Level · Beginner" },
+        mod1_title: { tr: "Temel Siber Güvenlik", en: "Fundamentals of Cybersecurity" },
+        mod1_meta: {
+            tr: "Ağ temelleri, saldırı türleri, savunma konseptleri ve pratik örnekler.",
+            en: "Network basics, attack types, defense concepts and practical examples."
+        },
+        mod2_tag: { tr: "Seviye · Orta", en: "Level · Intermediate" },
+        mod2_title: { tr: "Web Uygulama Güvenliği", en: "Web Application Security" },
+        mod2_meta: {
+            tr: "OWASP, giriş noktaları, temel zafiyetler ve güvenli geliştirme pratikleri.",
+            en: "OWASP, entry points, common vulnerabilities and secure coding practices."
+        },
+        mod3_tag: { tr: "Seviye · Orta", en: "Level · Intermediate" },
+        mod3_title: { tr: "Yapay Zeka ile Güvenlik", en: "Security with AI" },
+        mod3_meta: {
+            tr: "Log analizi, anomali tespiti ve tehdit skorlama için AI temelli akışlar.",
+            en: "AI-based flows for log analysis, anomaly detection and threat scoring."
+        },
+        mod4_tag: { tr: "Seviye · İleri", en: "Level · Advanced" },
+        mod4_title: { tr: "Red Team & Blue Team", en: "Red Team & Blue Team" },
+        mod4_meta: {
+            tr: "Saldırı ve savunma perspektifini bir arada işleyen senaryo tabanlı içerikler.",
+            en: "Scenario-based content combining offensive and defensive perspectives."
+        },
+
+        panels_title: { tr: "Kullanıcı Panelleri", en: "User Panels" },
+        panels_subtitle: {
+            tr: "Geliştirici, bireysel kullanıcı ve yönetici rolleri için ayrı paneller; ilerleme takibi, içerik yönetimi ve eğitim durumunu tek ekrandan görebilirsin.",
+            en: "Separate dashboards for developer, individual and admin roles to track progress and manage content."
+        },
+        panel_user_title: { tr: "Kullanıcı Paneli", en: "User Dashboard" },
+        panel_user_body: {
+            tr: "Kişisel profil, aktif eğitim modülleri, sertifikalar ve ilerleme yüzdesi tek ekranda.",
+            en: "Personal profile, active modules, certificates and progress in one dashboard."
+        },
+        panel_user_item1: {
+            tr: "Eğitim ilerleme çubuğu ve tamamlanma yüzdesi",
+            en: "Progress bar and completion percentage"
+        },
+        panel_user_item2: {
+            tr: "Son erişilen içeriklere hızlı dönüş",
+            en: "Quick access to last viewed content"
+        },
+        panel_user_item3: {
+            tr: "Bildirim ve güvenlik uyarıları",
+            en: "Notifications and security alerts"
+        },
+        panel_dev_title: { tr: "Geliştirici Paneli", en: "Developer Dashboard" },
+        panel_dev_body: {
+            tr: "Teknik içerikler, lab senaryoları ve kişisel notlar için tasarlanan görünüm.",
+            en: "View designed for technical content, lab scenarios and personal notes."
+        },
+        panel_dev_item1: {
+            tr: "Kod odaklı lab yapıları ve örnek projeler",
+            en: "Code-focused labs and sample projects"
+        },
+        panel_dev_item2: {
+            tr: "Güvenlik görevleri ve check-list mantığı",
+            en: "Security tasks with checklist style"
+        },
+        panel_dev_item3: {
+            tr: "Log analizi ve temel uyarı panelleri",
+            en: "Log analysis and basic alert dashboards"
+        },
+        panel_admin_title: { tr: "Yönetici / İçerik Paneli", en: "Admin / Content Panel" },
+        panel_admin_body: {
+            tr: "Eğitim modülleri, kullanıcı rolleri ve içerik akışını yöneten panel.",
+            en: "Dashboard for managing modules, roles and content flow."
+        },
+        panel_admin_item1: {
+            tr: "Yeni eğitim modülü oluşturma / düzenleme",
+            en: "Create / edit training modules"
+        },
+        panel_admin_item2: {
+            tr: "Rol bazlı yetkilendirme ve güvenlik ayarları",
+            en: "Role-based authorization and security settings"
+        },
+        panel_admin_item3: {
+            tr: "İstatistik ve temel metrikler",
+            en: "Statistics and key metrics"
+        },
+
+        content_title: { tr: "İçerik Yönetimi & Eğitim Akışı", en: "Content Management & Learning Flow" },
+        content_subtitle: {
+            tr: "Basit ama esnek bir içerik modeli: modüller, dersler ve quiz yapılarıyla tüm eğitim akışı tek veri tabanı şemasında toplanır.",
+            en: "Simple but flexible content model: modules, lessons and quiz structures in one schema."
+        },
+        content_item1: {
+            tr: "Her modül, farklı seviyelerde (başlangıç, orta, ileri) derslerden oluşur.",
+            en: "Each module consists of lessons in multiple levels (beginner, intermediate, advanced)."
+        },
+        content_item2: {
+            tr: "Quiz yapısı; çoktan seçmeli soruları, doğru cevap indeksini ve seçenek listesini tutar.",
+            en: "Quiz structure stores multiple choice questions, correct index and options."
+        },
+        content_item3: {
+            tr: "İlerleme yüzdeleri, kullanıcı-modül ilişkisi üzerinden hesaplanır.",
+            en: "Progress percentage is calculated through user-module relationship."
+        },
+        content_item4: {
+            tr: "İki dil desteği için içerik alanları birden fazla dilde saklanabilir (örneğin: title_tr, title_en).",
+            en: "For bilingual support, fields like title_tr and title_en can be stored."
+        },
+
+        tab_signup: { tr: "Kayıt Ol", en: "Sign Up" },
+        tab_signin: { tr: "Giriş Yap", en: "Sign In" },
+        signup_name_label: { tr: "İsim Soyisim", en: "Full Name" },
+        signup_email_label: { tr: "E-posta", en: "Email" },
+        signup_role_label: { tr: "Kullanıcı Tipi", en: "User Type" },
+        signup_role_dev: { tr: "Geliştirici", en: "Developer" },
+        signup_role_ind: { tr: "Bireysel Kullanıcı", en: "Individual" },
+        signup_password_label: { tr: "Şifre", en: "Password" },
+        signup_password_helper: {
+            tr: "Şifren, en az 10 karakter ve harf/rakam kombinasyonu içermelidir.",
+            en: "Password should be at least 10 characters with letters and digits."
+        },
+        signup_submit: { tr: "Hesap Oluştur", en: "Create Account" },
+        signup_footer: {
+            tr: "Zaten hesabın var mı? Sağdaki sekmeden giriş yap.",
+            en: "Already have an account? Use the Sign In tab."
+        },
+
+        signin_email_label: { tr: "E-posta", en: "Email" },
+        signin_password_label: { tr: "Şifre", en: "Password" },
+        signin_password_helper: {
+            tr: "Hesabın yoksa üstteki \"Kayıt Ol\" sekmesinden başlayabilirsin.",
+            en: "If you do not have an account, use the Sign Up tab above."
+        },
+        signin_submit: { tr: "Giriş Yap", en: "Sign In" },
+        signin_forgot: { tr: "Şifremi unuttum", en: "Forgot password" },
+
+        contact_title: { tr: "İletişim & İş Birliği", en: "Contact & Collaboration" },
+        contact_subtitle: {
+            tr: "Eğitim içerikleri, siber güvenlik projeleri, yapay zeka temelli analizler ve etkinlik konuşmaları için iletişime geçebilirsin.",
+            en: "You can get in touch for training content, security projects, AI-based analysis and events."
+        },
+        contact_name_label: { tr: "İsim", en: "Name" },
+        contact_topic_label: { tr: "Konu", en: "Topic" },
+        contact_topic_opt1: { tr: "Eğitim Modülleri", en: "Training Modules" },
+        contact_topic_opt2: { tr: "Proje / İş Birliği", en: "Project / Collaboration" },
+        contact_topic_opt3: { tr: "Diğer", en: "Other" },
+        contact_message_label: { tr: "Mesaj", en: "Message" },
+        contact_submit: { tr: "Mesaj Gönder", en: "Send Message" },
+        contact_helper: {
+            tr: "Form şu an sadece tasarım amaçlıdır.",
+            en: "Form is for design purposes only."
+        },
+
+        footer_left: {
+            tr: "© 2025 · Ahmet Kaan Tanır · Cybersecurity & AI Platform",
+            en: "© 2025 · Ahmet Kaan Tanır · Cybersecurity & AI Platform"
+        },
+        footer_link_modules: { tr: "Eğitim Modülleri", en: "Modules" },
+        footer_link_panels: { tr: "Paneller", en: "Panels" },
+        footer_link_contact: { tr: "İletişim", en: "Contact" },
+    };
+
+    function applyTranslations(lang) {
+        const elements = document.querySelectorAll("[data-i18n]");
+        elements.forEach((el) => {
+            const key = el.getAttribute("data-i18n");
+            const entry = i18nMap[key];
+            if (!entry) return;
+            el.textContent = entry[lang] || entry["tr"];
+        });
+    }
+
+    if (langToggle) {
+        langToggle.addEventListener("click", () => {
+            currentLang = currentLang === "tr" ? "en" : "tr";
+            langToggle.textContent = currentLang.toUpperCase();
+            applyTranslations(currentLang);
+        });
+    }
+
+    applyTranslations("tr");
+</script>
+</body>
+</html>
+
