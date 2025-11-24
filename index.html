@@ -1,235 +1,674 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmet Kaan Tanır | Security Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    
-    <style>
-        /* SİBER GÜVENLİK TEMASI - CSS AYARLARI */
-        :root {
-            --bg-color: #050505;
-            --terminal-bg: #0c0c0c;
-            --neon-green: #00ff41;
-            --neon-dim: #008F11;
-            --text-color: #e0e0e0;
-            --border-color: #333;
-        }
 
-        * { box-sizing: border-box; }
+=== FILE: package.json ===
+{
+  "name": "siber-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "next": "13.4.12",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.5.3",
+    "autoprefixer": "10.4.14",
+    "postcss": "8.4.21",
+    "prisma": "4.15.0",
+    "@prisma/client": "4.15.0",
+    "next-auth": "4.22.1",
+    "bcrypt": "5.1.0",
+    "jsonwebtoken": "9.0.2",
+    "multer": "1.4.5-lts.1",
+    "next-translate": "1.1.1",
+    "next-connect": "0.12.2",
+    "stripe": "12.11.0",
+    "cloudinary": "1.32.0",
+    "swr": "2.1.0",
+    "uuid": "9.0.0"
+  }
+}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Share Tech Mono', monospace; /* Hacker Fontu */
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+=== FILE: docker-compose.yml ===
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: siberdb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
 
-        /* Matrix Arkaplan Efekti (Sabit) */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.03) 0px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 2px);
-            pointer-events: none;
-            z-index: -1;
-        }
+  web:
+    build: .
+    command: sh -c "yarn dev"
+    volumes:
+      - ./:/app
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/siberdb?schema=public
+      - NEXTAUTH_URL=http://localhost:3000
+    depends_on:
+      - db
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            border: 1px solid var(--border-color);
-            background: var(--terminal-bg);
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-            padding: 40px;
-            position: relative;
-        }
+volumes:
+  db-data:
 
-        /* Üst Köşedeki Süslemeler */
-        .corner {
-            position: absolute;
-            width: 20px; height: 20px;
-            border: 2px solid var(--neon-green);
-            transition: all 0.3s;
-        }
-        .top-left { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-        .top-right { top: -1px; right: -1px; border-left: none; border-bottom: none; }
-        .bottom-left { bottom: -1px; left: -1px; border-right: none; border-top: none; }
-        .bottom-right { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+=== FILE: .env.example ===
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/siberdb?schema=public
+NEXTAUTH_SECRET=changeme_long_secret
+NEXTAUTH_URL=http://localhost:3000
 
-        h1, h2, h3 { color: var(--neon-green); text-transform: uppercase; margin-top: 0; }
-        
-        /* Header Bölümü */
-        .header {
-            border-bottom: 2px dashed var(--border-color);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            background: rgba(0, 255, 65, 0.1);
-            border: 1px solid var(--neon-green);
-            padding: 5px 15px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-        }
+GITHUB_ID=
+GITHUB_SECRET=
 
-        .glitch-name {
-            font-size: 2.5rem;
-            text-shadow: 2px 2px var(--neon-dim);
-            margin: 10px 0;
-        }
+EMAIL_SERVER=smtp://user:pass@smtp.mailtrap.io:2525
+EMAIL_FROM=hello@example.com
 
-        /* İçerik Kartları */
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 
-        .card {
-            border: 1px solid #222;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.02);
-            transition: 0.3s;
-        }
-        .card:hover {
-            border-color: var(--neon-green);
-            transform: translateY(-5px);
-        }
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
 
-        /* Yetenek Barları */
-        .skill-item { margin-bottom: 15px; }
-        .skill-info { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 5px; }
-        .bar-bg { background: #222; height: 8px; width: 100%; }
-        .bar-fill { height: 100%; background: var(--neon-green); width: 0%; transition: width 1.5s ease-out; box-shadow: 0 0 10px var(--neon-green); }
+=== FILE: next.config.js ===
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  experimental: { appDir: false }
+}
+module.exports = nextConfig
 
-        /* Footer */
-        footer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 50px;
-            border-top: 1px solid #222;
-            padding-top: 20px;
-        }
+=== FILE: tailwind.config.js ===
+module.exports = {
+  content: ["./pages/**/*.{js,jsx}", "./components/**/*.{js,jsx}"],
+  darkMode: 'class',
+  theme: { extend: {} },
+  plugins: [],
+}
 
-        /* Animasyonlar */
-        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; box-shadow: 0 0 15px rgba(0,255,65,0.3); } 100% { opacity: 0.7; } }
-        
-        /* Linkler */
-        a { color: var(--text-color); text-decoration: none; border-bottom: 1px dotted var(--neon-green); transition: 0.3s; }
-        a:hover { color: var(--neon-green); background: rgba(0,255,65,0.1); }
-    </style>
-</head>
-<body>
+=== FILE: postcss.config.js ===
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
 
-    <div class="container">
-        <div class="corner top-left"></div>
-        <div class="corner top-right"></div>
-        <div class="corner bottom-left"></div>
-        <div class="corner bottom-right"></div>
+=== FILE: styles/globals.css ===
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-        <div class="header">
-            <div class="status-badge">● SYSTEM ONLINE: ELAZIĞ/TR</div>
-            <h1 class="glitch-name">AHMET KAAN TANIR</h1>
-            <p>> Adli Bilişim Mühendisliği Öğrencisi & Siber Güvenlik Uzmanı</p>
-            <p style="color: #666; font-size: 0.9rem;">ID: Fırat Üniversitesi | Role: Öğrenci</p>
-        </div>
+html,
+body,
+#__next {
+  height: 100%;
+}
 
-        <div class="section">
-            <h2><i class="fas fa-terminal"></i> /home/ahmetkaan/hakkimda</h2>
-            <p>
-                Fırat Üniversitesi Adli Bilişim Mühendisliği bölümünde eğitimime devam ediyorum. 
-                Sistem güvenliği, dijital delil analizi ve Linux mimarisi üzerine uzmanlaşıyorum. 
-                Aynı zamanda üniversitemizin <strong>Yapay Zeka ve İnovasyon Kulübü</strong>'nde 
-                Etkinlik Koordinatörü olarak teknolojik organizasyonları yönetiyorum.
-            </p>
-        </div>
+body {
+  @apply bg-white text-gray-900;
+}
 
-        <div class="section">
-            <h2><i class="fas fa-code-branch"></i> /bin/skills (Yetenekler)</h2>
-            
-            <div class="skill-item">
-                <div class="skill-info"><span>Linux System Administration</span><span>[ROOT ACCESS]</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 90%"></div></div>
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+a {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+=== FILE: prisma/schema.prisma ===
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String      @id @default(uuid())
+  name          String?
+  email         String      @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role        @default(USER)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+  enrollments   Enrollment[]
+  courses       Course[]    @relation("AuthorCourses")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  title       String
+  description String
+  level       String
+  published   Boolean  @default(false)
+  authorId    String
+  author      User     @relation("AuthorCourses", fields: [authorId], references: [id])
+  lessons     Lesson[]
+  priceCents  Int?
+  createdAt   DateTime @default(now())
+}
+
+model Lesson {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  order     Int
+  videoUrl  String?
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id])
+  quizzes   Quiz[]
+  createdAt DateTime @default(now())
+}
+
+model Quiz {
+  id        String    @id @default(uuid())
+  title     String
+  lessonId  String?
+  lesson    Lesson?   @relation(fields: [lessonId], references: [id])
+  questions Question[]
+}
+
+model Question {
+  id       String @id @default(uuid())
+  text     String
+  options  Json
+  answer   Int
+  quizId   String
+  quiz     Quiz   @relation(fields: [quizId], references: [id])
+}
+
+model Enrollment {
+  id         String   @id @default(uuid())
+  userId     String
+  courseId   String
+  progress   Float    @default(0.0)
+  enrolledAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  course     Course   @relation(fields: [courseId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  INSTRUCTOR
+  USER
+}
+
+=== FILE: prisma/seed.js ===
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
+
+async function main() {
+  const admin = await prisma.user.upsert({
+    where: { email: 'admin@example.com' },
+    update: {},
+    create: {
+      email: 'admin@example.com',
+      name: 'Admin',
+      role: 'ADMIN',
+      emailVerified: new Date()
+    }
+  })
+
+  const instructor = await prisma.user.upsert({
+    where: { email: 'instructor@example.com' },
+    update: {},
+    create: {
+      email: 'instructor@example.com',
+      name: 'Instructor',
+      role: 'INSTRUCTOR',
+      emailVerified: new Date()
+    }
+  })
+
+  const course = await prisma.course.create({
+    data: {
+      title: 'Introduction to Cybersecurity with AI',
+      slug: 'intro-cyber-ai',
+      description: 'Foundations of cybersecurity and intro to AI use-cases.',
+      level: 'Beginner',
+      published: true,
+      authorId: instructor.id,
+      priceCents: 0
+    }
+  })
+
+  await prisma.lesson.createMany({
+    data: [
+      { title: 'Welcome', content: 'Welcome to the course.', order: 1, courseId: course.id },
+      { title: 'Basics', content: 'Cybersecurity basics.', order: 2, courseId: course.id }
+    ]
+  })
+
+  console.log('Seed completed')
+}
+
+main()
+  .catch(e => {
+    console.error(e)
+    process.exit(1)
+  })
+  .finally(async () => {
+    await prisma.$disconnect()
+  })
+
+=== FILE: lib/prisma.js ===
+import { PrismaClient } from '@prisma/client'
+
+let prisma
+
+if (!global.prisma) {
+  global.prisma = new PrismaClient()
+}
+
+prisma = global.prisma
+
+export default prisma
+
+=== FILE: pages/_app.js ===
+import '../styles/globals.css'
+import { useEffect, useState } from 'react'
+import { SessionProvider } from 'next-auth/react'
+
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    const t = localStorage.getItem('theme') || 'light'
+    setTheme(t)
+    if (t === 'dark') document.documentElement.classList.add('dark')
+  }, [])
+
+  const toggleTheme = () => {
+    const nt = theme === 'light' ? 'dark' : 'light'
+    setTheme(nt)
+    localStorage.setItem('theme', nt)
+    document.documentElement.classList.toggle('dark')
+  }
+
+  return (
+    <SessionProvider session={session}>
+      <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+        <header className="p-4 border-b bg-white dark:bg-gray-900">
+          <div className="max-w-5xl mx-auto flex justify-between items-center">
+            <div className="font-bold tracking-wide">
+              AKT | Cybersecurity & AI
             </div>
-
-            <div class="skill-item">
-                <div class="skill-info"><span>Network Analysis (Wireshark/TCP)</span><span>[ADVANCED]</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 85%"></div></div>
+            <div className="space-x-2 flex items-center">
+              <button
+                onClick={toggleTheme}
+                className="px-3 py-1 rounded border text-xs"
+              >
+                Theme
+              </button>
             </div>
+          </div>
+        </header>
+        <main className="max-w-5xl mx-auto p-4">
+          <Component {...pageProps} />
+        </main>
+      </div>
+    </SessionProvider>
+  )
+}
 
-            <div class="skill-item">
-                <div class="skill-info"><span>C++ & System Programming</span><span>[DEVELOPER]</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 75%"></div></div>
-            </div>
+export default MyApp
 
-            <div class="skill-item">
-                <div class="skill-info"><span>SQL & Database Architecture</span><span>[DESIGNER]</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 80%"></div></div>
-            </div>
-        </div>
+=== FILE: pages/index.js ===
+import Link from 'next/link'
 
-        <div class="section">
-            <h2><i class="fas fa-folder-open"></i> /var/www/projeler</h2>
-            <div class="info-grid">
-                
-                <div class="card">
-                    <h3>Kütüphane Otomasyonu</h3>
-                    <p style="font-size: 0.9rem; color: #aaa;">SQL ve C++ kullanılarak geliştirilmiş, veri tabanı mimarisine sahip kapsamlı yönetim sistemi.</p>
-                </div>
-
-                <div class="card">
-                    <h3>CV & Kariyer Yönetimi</h3>
-                    <p style="font-size: 0.9rem; color: #aaa;">T3 Vakfı başvuru süreçleri için hazırlanmış profesyonel dijital portfolyo çalışmaları.</p>
-                </div>
-
-                <div class="card">
-                    <h3>AI & Innovation Club</h3>
-                    <p style="font-size: 0.9rem; color: #aaa;">Kulüp içi etkinlik koordinasyonu ve teknoloji zirveleri organizasyonu.</p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="section" style="text-align: center; margin-top: 50px;">
-            <p>--- BAĞLANTI KUR ---</p>
-            <div style="font-size: 1.5rem; letter-spacing: 10px;">
-                <a href="https://github.com/ahmetkaantanir" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" onclick="alert('Mail adresi yakında eklenecek.')"><i class="fas fa-envelope"></i></a>
-                <a href="#" onclick="alert('Linkedin profili yakında eklenecek.')"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-
-        <footer>
-            <p>Designed by Ahmet Kaan Tanır | &copy; 2025</p>
-            <p>System Integrity: Verified</p>
-        </footer>
-
+export default function Home() {
+  return (
+    <div className="space-y-6">
+      <section className="space-y-2">
+        <h1 className="text-3xl font-bold">
+          Cybersecurity & AI Learning Platform
+        </h1>
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          For developers and individuals focusing on security engineering and artificial intelligence.
+        </p>
+      </section>
+      <section className="flex flex-wrap gap-3">
+        <Link href="/courses">
+          <a className="px-4 py-2 bg-blue-600 text-white rounded text-sm">
+            Browse Courses
+          </a>
+        </Link>
+        <Link href="/dashboard">
+          <a className="px-4 py-2 border rounded text-sm">
+            Dashboard
+          </a>
+        </Link>
+        <Link href="/admin">
+          <a className="px-4 py-2 border rounded text-sm">
+            Admin Panel
+          </a>
+        </Link>
+      </section>
     </div>
+  )
+}
 
-    <script>
-        // Sayfa yüklendiğinde yetenek barlarını doldur
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.bar-fill').forEach(bar => {
-                let w = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => { bar.style.width = w; }, 300);
-            });
-        });
-    </script>
-</body>
-</html>
+=== FILE: pages/dashboard/index.js ===
+import { getSession } from 'next-auth/react'
+
+export default function Dashboard({ user }) {
+  if (!user) return <div className="text-sm">Please sign in.</div>
+  return (
+    <div className="space-y-2">
+      <h1 className="text-2xl font-semibold">Dashboard</h1>
+      <p className="text-sm">
+        Welcome, {user.name || user.email}
+      </p>
+    </div>
+  )
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx)
+  return { props: { user: session?.user || null } }
+}
+
+=== FILE: pages/courses/index.js ===
+import useSWR from 'swr'
+import Link from 'next/link'
+
+const fetcher = (url) => fetch(url).then((r) => r.json())
+
+export default function Courses() {
+  const { data, error } = useSWR('/api/courses', fetcher)
+
+  if (error) return <div className="text-sm">Error.</div>
+  if (!data) return <div className="text-sm">Loading...</div>
+
+  return (
+    <div>
+      <h1 className="text-2xl font-semibold mb-4">Courses</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {data.map((c) => (
+          <div key={c.id} className="p-4 border rounded space-y-2">
+            <h3 className="font-bold">{c.title}</h3>
+            <p className="text-xs text-gray-600 dark:text-gray-300">
+              {c.description}
+            </p>
+            <div className="flex justify-between items-center text-xs">
+              <span>{c.level}</span>
+              <Link href={`/courses/${c.slug}`}>
+                <a className="text-blue-600 dark:text-blue-400">Open</a>
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+=== FILE: pages/courses/[slug].js ===
+import prisma from '../../lib/prisma'
+
+export async function getServerSideProps({ params }) {
+  const course = await prisma.course.findUnique({
+    where: { slug: params.slug },
+    include: { lessons: { orderBy: { order: 'asc' } } },
+  })
+  if (!course) return { notFound: true }
+  return { props: { course } }
+}
+
+export default function CoursePage({ course }) {
+  return (
+    <div className="space-y-4">
+      <header className="space-y-2">
+        <h1 className="text-2xl font-bold">{course.title}</h1>
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          {course.description}
+        </p>
+      </header>
+      <section>
+        <h2 className="font-semibold mb-2 text-sm">Lessons</h2>
+        <ul className="border rounded divide-y">
+          {course.lessons.map((l) => (
+            <li key={l.id} className="px-3 py-2 text-sm">
+              {l.title}
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  )
+}
+
+=== FILE: pages/admin/index.js ===
+import { getSession } from 'next-auth/react'
+import prisma from '../../lib/prisma'
+
+export default function Admin({ user, courses }) {
+  if (!user || user.role !== 'ADMIN') return <div className="text-sm">Unauthorized.</div>
+  return (
+    <div className="space-y-4">
+      <h1 className="text-2xl font-semibold">Admin Panel</h1>
+      <section className="space-y-2">
+        <h2 className="font-semibold text-sm">Courses</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {courses.map((c) => (
+            <div key={c.id} className="p-4 border rounded space-y-1 text-sm">
+              <h3 className="font-bold">{c.title}</h3>
+              <p className="text-xs text-gray-600 dark:text-gray-300">
+                {c.description}
+              </p>
+              <p className="text-xs">Level: {c.level}</p>
+              <p className="text-xs">
+                Published: {c.published ? 'Yes' : 'No'}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  )
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx)
+  const courses = await prisma.course.findMany({
+    orderBy: { createdAt: 'desc' },
+    take: 50,
+  })
+  return {
+    props: {
+      user: session?.user || null,
+      courses,
+    },
+  }
+}
+
+=== FILE: pages/api/auth/[...nextauth].js ===
+import NextAuth from 'next-auth'
+import GithubProvider from 'next-auth/providers/github'
+import EmailProvider from 'next-auth/providers/email'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import prisma from '../../../lib/prisma'
+
+export default NextAuth({
+  adapter: PrismaAdapter(prisma),
+  providers: [
+    GithubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+    EmailProvider({
+      server: process.env.EMAIL_SERVER,
+      from: process.env.EMAIL_FROM,
+    }),
+  ],
+  secret: process.env.NEXTAUTH_SECRET,
+  session: { strategy: 'database' },
+  callbacks: {
+    async session({ session, user }) {
+      if (user) {
+        session.user.role = user.role
+      }
+      return session
+    },
+  },
+})
+
+=== FILE: pages/api/courses/index.js ===
+import prisma from '../../../lib/prisma'
+
+export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    const courses = await prisma.course.findMany({
+      include: { author: true },
+      orderBy: { createdAt: 'desc' },
+    })
+    return res.json(courses)
+  }
+
+  if (req.method === 'POST') {
+    const { title, slug, description, level, authorId, priceCents } = req.body
+    const course = await prisma.course.create({
+      data: { title, slug, description, level, authorId, priceCents },
+    })
+    return res.status(201).json(course)
+  }
+
+  res.setHeader('Allow', ['GET', 'POST'])
+  return res.status(405).end(`Method ${req.method} Not Allowed`)
+}
+
+=== FILE: pages/api/upload.js ===
+import nextConnect from 'next-connect'
+import multer from 'multer'
+import { v2 as cloudinary } from 'cloudinary'
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+
+const upload = multer({ storage: multer.memoryStorage() })
+
+const apiRoute = nextConnect({
+  onError(error, req, res) {
+    res.status(501).json({ error: `Something went wrong: ${error.message}` })
+  },
+  onNoMatch(req, res) {
+    res.status(405).json({ error: `Method '${req.method}' Not Allowed` })
+  },
+})
+
+apiRoute.use(upload.single('file'))
+
+apiRoute.post((req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'No file' })
+  const stream = cloudinary.uploader.upload_stream(
+    { resource_type: 'auto', folder: 'siber-site' },
+    (err, result) => {
+      if (err) return res.status(500).json({ error: err.message })
+      return res.status(200).json({ url: result.secure_url })
+    }
+  )
+  stream.end(req.file.buffer)
+})
+
+export default apiRoute
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+
+=== FILE: pages/api/stripe/create-checkout-session.js ===
+import Stripe from 'stripe'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') return res.status(405).end('Method Not Allowed')
+
+  const { priceCents, courseId } = req.body
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: { name: 'Course Purchase' },
+            unit_amount: priceCents,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `${process.env.NEXTAUTH_URL}/dashboard?success=1`,
+      cancel_url: `${process.env.NEXTAUTH_URL}/courses/${courseId}`,
+    })
+    res.status(200).json({ id: session.id })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+}
+
+=== FILE: README.md ===
+Setup:
+
+1. Install dependencies:
+   - yarn
+2. Copy .env.example to .env and fill environment variables.
+3. Generate Prisma client:
+   - npx prisma generate
+4. Run migrations:
+   - npx prisma migrate dev --name init
+5. Seed database:
+   - node prisma/seed.js
+6. Start dev server:
+   - yarn dev
