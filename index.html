@@ -3,257 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmet Kaan Tanır | Cyber Security & Forensics</title>
+    <title>Ahmet Kaan Tanır | Security Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <style>
+        /* SİBER GÜVENLİK TEMASI - CSS AYARLARI */
         :root {
-            --bg: #050505;
-            --card: #101010;
-            --primary: #00ff41; /* Hacker Yeşili */
-            --secondary: #008F11;
-            --accent: #ff003c; /* Cyberpunk Kırmızısı */
-            --text: #e0e0e0;
+            --bg-color: #050505;
+            --terminal-bg: #0c0c0c;
+            --neon-green: #00ff41;
+            --neon-dim: #008F11;
+            --text-color: #e0e0e0;
+            --border-color: #333;
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'JetBrains Mono', monospace; /* Yazılımcı fontu */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Share Tech Mono', monospace; /* Hacker Fontu */
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* CRT Monitör Çizgileri Efekti */
-        body::before {
-            content: " ";
-            display: block;
+        /* Matrix Arkaplan Efekti (Sabit) */
+        body::after {
+            content: "";
             position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2;
-            background-size: 100% 2px, 3px 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.03) 0px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 2px);
             pointer-events: none;
+            z-index: -1;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 50px 20px;
+            border: 1px solid var(--border-color);
+            background: var(--terminal-bg);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            padding: 40px;
             position: relative;
-            z-index: 3;
         }
 
-        /* GLITCH (Bozulma) Efekti - İsim İçin */
-        .glitch-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 50px;
-        }
-
-        .glitch {
-            font-size: 4rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            position: relative;
-            text-shadow: 0.05em 0 0 var(--accent), -0.03em -0.04em 0 var(--primary),
-            0.025em 0.04em 0 var(--secondary);
-            animation: glitch 725ms infinite;
-        }
-
-        .glitch span {
+        /* Üst Köşedeki Süslemeler */
+        .corner {
             position: absolute;
-            top: 0; left: 0;
+            width: 20px; height: 20px;
+            border: 2px solid var(--neon-green);
+            transition: all 0.3s;
         }
+        .top-left { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .top-right { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+        .bottom-right { bottom: -1px; right: -1px; border-left: none; border-top: none; }
 
-        @keyframes glitch {
-            0% { text-shadow: 0.05em 0 0 var(--accent), -0.03em -0.04em 0 var(--primary), 0.025em 0.04em 0 var(--secondary); }
-            15% { text-shadow: 0.05em 0 0 var(--accent), -0.03em -0.04em 0 var(--primary), 0.025em 0.04em 0 var(--secondary); }
-            16% { text-shadow: -0.05em -0.025em 0 var(--accent), 0.025em 0.035em 0 var(--primary), -0.05em -0.05em 0 var(--secondary); }
-            49% { text-shadow: -0.05em -0.025em 0 var(--accent), 0.025em 0.035em 0 var(--primary), -0.05em -0.05em 0 var(--secondary); }
-            50% { text-shadow: 0.05em 0.035em 0 var(--accent), 0.03em 0 0 var(--primary), 0 -0.04em 0 var(--secondary); }
-            99% { text-shadow: 0.05em 0.035em 0 var(--accent), 0.03em 0 0 var(--primary), 0 -0.04em 0 var(--secondary); }
-            100% { text-shadow: -0.05em 0 0 var(--accent), -0.025em -0.04em 0 var(--primary), -0.04em -0.025em 0 var(--secondary); }
-        }
-
-        .subtitle {
+        h1, h2, h3 { color: var(--neon-green); text-transform: uppercase; margin-top: 0; }
+        
+        /* Header Bölümü */
+        .header {
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
             text-align: center;
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin-bottom: 60px;
-            letter-spacing: 2px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--neon-green);
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
         }
 
-        /* Kartlar */
+        .glitch-name {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px var(--neon-dim);
+            margin: 10px 0;
+        }
+
+        /* İçerik Kartları */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
         .card {
-            background: var(--card);
-            border: 1px solid #333;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            position: relative;
+            border: 1px solid #222;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
             transition: 0.3s;
         }
-
         .card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            border-color: var(--neon-green);
             transform: translateY(-5px);
         }
 
-        h2 {
-            border-bottom: 2px solid var(--primary);
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
+        /* Yetenek Barları */
+        .skill-item { margin-bottom: 15px; }
+        .skill-info { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 5px; }
+        .bar-bg { background: #222; height: 8px; width: 100%; }
+        .bar-fill { height: 100%; background: var(--neon-green); width: 0%; transition: width 1.5s ease-out; box-shadow: 0 0 10px var(--neon-green); }
 
-        /* YETENEK BARLARI (Skill Bars) */
-        .skill-box {
-            margin-bottom: 15px;
-        }
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-        .progress-bar {
-            width: 100%;
-            background: #222;
-            height: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .progress {
-            height: 100%;
-            background: var(--primary);
-            width: 0%; /* JS ile dolacak */
-            transition: width 1.5s ease-in-out;
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        /* SOSYAL MEDYA BUTONLARI */
-        .socials {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
             margin-top: 50px;
-        }
-        .social-btn {
-            color: var(--bg);
-            background: var(--text);
-            width: 40px; height: 40px;
-            display: flex;
-            align-items: center; justify-content: center;
-            border-radius: 50%;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-        .social-btn:hover {
-            background: var(--primary);
-            box-shadow: 0 0 20px var(--primary);
-            transform: scale(1.1);
+            border-top: 1px solid #222;
+            padding-top: 20px;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .glitch { font-size: 2.5rem; }
-        }
+        /* Animasyonlar */
+        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; box-shadow: 0 0 15px rgba(0,255,65,0.3); } 100% { opacity: 0.7; } }
+        
+        /* Linkler */
+        a { color: var(--text-color); text-decoration: none; border-bottom: 1px dotted var(--neon-green); transition: 0.3s; }
+        a:hover { color: var(--neon-green); background: rgba(0,255,65,0.1); }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="glitch-wrapper">
-            <div class="glitch" data-text="AHMET KAAN">AHMET KAAN</div>
-        </div>
-        <div class="subtitle">
-            > Fırat Üniv. Adli Bilişim & Siber Güvenlik Uzmanı_ <span id="cursor">|</span>
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+
+        <div class="header">
+            <div class="status-badge">● SYSTEM ONLINE: ELAZIĞ/TR</div>
+            <h1 class="glitch-name">AHMET KAAN TANIR</h1>
+            <p>> Adli Bilişim Mühendisliği Öğrencisi & Siber Güvenlik Uzmanı</p>
+            <p style="color: #666; font-size: 0.9rem;">ID: Fırat Üniversitesi | Role: Öğrenci</p>
         </div>
 
-        <div class="card">
-            <h2><i class="fas fa-user-secret"></i> KİMLİK_BİLGİSİ</h2>
-            <p style="line-height: 1.6;">
-                Merhaba, ben <strong>Ahmet Kaan Tanır</strong>. Fırat Üniversitesi Adli Bilişim Mühendisliği öğrencisiyim. 
-                Sistemlerin arka kapılarını bulmayı, Linux kernel'ı ile oynamayı ve güvenli ağ mimarileri tasarlamayı severim.
-                Ayrıca Yapay Zeka ve İnovasyon Kulübü'nde Etkinlik Koordinatörü olarak görev alıyorum.
+        <div class="section">
+            <h2><i class="fas fa-terminal"></i> /home/ahmetkaan/hakkimda</h2>
+            <p>
+                Fırat Üniversitesi Adli Bilişim Mühendisliği bölümünde eğitimime devam ediyorum. 
+                Sistem güvenliği, dijital delil analizi ve Linux mimarisi üzerine uzmanlaşıyorum. 
+                Aynı zamanda üniversitemizin <strong>Yapay Zeka ve İnovasyon Kulübü</strong>'nde 
+                Etkinlik Koordinatörü olarak teknolojik organizasyonları yönetiyorum.
             </p>
         </div>
 
-        <div class="card">
-            <h2><i class="fas fa-code"></i> SİSTEM_YETENEKLERİ</h2>
+        <div class="section">
+            <h2><i class="fas fa-code-branch"></i> /bin/skills (Yetenekler)</h2>
             
-            <div class="skill-box">
-                <div class="skill-name"><span>Linux / Bash Scripting</span><span>90%</span></div>
-                <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
+            <div class="skill-item">
+                <div class="skill-info"><span>Linux System Administration</span><span>[ROOT ACCESS]</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 90%"></div></div>
             </div>
 
-            <div class="skill-box">
-                <div class="skill-name"><span>Network Analysis (Wireshark)</span><span>85%</span></div>
-                <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+            <div class="skill-item">
+                <div class="skill-info"><span>Network Analysis (Wireshark/TCP)</span><span>[ADVANCED]</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 85%"></div></div>
             </div>
 
-            <div class="skill-box">
-                <div class="skill-name"><span>SQL & Database Design</span><span>75%</span></div>
-                <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
+            <div class="skill-item">
+                <div class="skill-info"><span>C++ & System Programming</span><span>[DEVELOPER]</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 75%"></div></div>
             </div>
 
-            <div class="skill-box">
-                <div class="skill-name"><span>C++ Programming</span><span>70%</span></div>
-                <div class="progress-bar"><div class="progress" style="width: 70%"></div></div>
+            <div class="skill-item">
+                <div class="skill-info"><span>SQL & Database Architecture</span><span>[DESIGNER]</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 80%"></div></div>
             </div>
         </div>
 
-        <div class="card">
-            <h2><i class="fas fa-folder-open"></i> GİZLİ_DOSYALAR (PROJELER)</h2>
-            <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 15px; border-left: 3px solid var(--accent); padding-left: 10px;">
-                    <strong style="color: var(--accent);">Lib-Auto System:</strong> 
-                    <br>C++ ve SQL kullanılarak geliştirilmiş kütüphane otomasyon sistemi.
-                </li>
-                <li style="margin-bottom: 15px; border-left: 3px solid var(--accent); padding-left: 10px;">
-                    <strong style="color: var(--accent);">Network Sniffer:</strong> 
-                    <br>Python ile yazılmış basit paket yakalama aracı.
-                </li>
-            </ul>
+        <div class="section">
+            <h2><i class="fas fa-folder-open"></i> /var/www/projeler</h2>
+            <div class="info-grid">
+                
+                <div class="card">
+                    <h3>Kütüphane Otomasyonu</h3>
+                    <p style="font-size: 0.9rem; color: #aaa;">SQL ve C++ kullanılarak geliştirilmiş, veri tabanı mimarisine sahip kapsamlı yönetim sistemi.</p>
+                </div>
+
+                <div class="card">
+                    <h3>CV & Kariyer Yönetimi</h3>
+                    <p style="font-size: 0.9rem; color: #aaa;">T3 Vakfı başvuru süreçleri için hazırlanmış profesyonel dijital portfolyo çalışmaları.</p>
+                </div>
+
+                <div class="card">
+                    <h3>AI & Innovation Club</h3>
+                    <p style="font-size: 0.9rem; color: #aaa;">Kulüp içi etkinlik koordinasyonu ve teknoloji zirveleri organizasyonu.</p>
+                </div>
+
+            </div>
         </div>
 
-        <div class="socials">
-            <a href="https://github.com/KULLANICI_ADIN" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/KULLANICI_ADIN" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:mail@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+        <div class="section" style="text-align: center; margin-top: 50px;">
+            <p>--- BAĞLANTI KUR ---</p>
+            <div style="font-size: 1.5rem; letter-spacing: 10px;">
+                <a href="https://github.com/ahmetkaantanir" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" onclick="alert('Mail adresi yakında eklenecek.')"><i class="fas fa-envelope"></i></a>
+                <a href="#" onclick="alert('Linkedin profili yakında eklenecek.')"><i class="fab fa-linkedin"></i></a>
+            </div>
         </div>
 
-        <p style="text-align: center; margin-top: 50px; font-size: 0.8rem; color: #555;">
-            SYSTEM STATUS: SECURE <br>
-            &copy; 2025 Ahmet Kaan Tanır
-        </p>
+        <footer>
+            <p>Designed by Ahmet Kaan Tanır | &copy; 2025</p>
+            <p>System Integrity: Verified</p>
+        </footer>
+
     </div>
 
     <script>
-        // İmleç Yanıp Sönme Efekti
-        setInterval(() => {
-            const cursor = document.getElementById('cursor');
-            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-        }, 500);
-
-        // Yetenek Barlarının Sayfa Yüklenince Dolması
-        window.onload = function() {
-            const bars = document.querySelectorAll('.progress');
-            bars.forEach(bar => {
-                let width = bar.style.width;
-                bar.style.width = '0'; // Önce sıfırla
-                setTimeout(() => {
-                    bar.style.width = width; // Sonra animasyonla doldur
-                }, 500);
+        // Sayfa yüklendiğinde yetenek barlarını doldur
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.bar-fill').forEach(bar => {
+                let w = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => { bar.style.width = w; }, 300);
             });
-        };
+        });
     </script>
 </body>
 </html>
