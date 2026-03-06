@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adli Bilişim | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="08-penetration-testing.html">Pentest</a><a href="09-adli-bilisim.html" class="active">Adli Bilişim</a><a href="10-malware-analizi.html">Malware</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>Adli Bilişim</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-blue">🔬</div>
+      <h1>9 — Adli Bilişim (Digital Forensics)</h1>
+    </div>
+    <p class="page-desc">Dijital delil toplama, disk analizi, log inceleme ve veri kurtarma süreçleri. Siber suçların aydınlatılmasında kritik bir alan.</p>
+  </div>
+
+  <p class="section-intro fade-in">Dijital adli bilişim, siber olayların soruşturulması ve delil toplanması sürecidir. Delil bütünlüğünü koruyarak olayın zaman çizelgesini oluşturmak esastır.</p>
+
+  <h3 class="section-title fade-in">🔍 Adli Bilişim Süreçleri</h3>
+
+  <div class="card-grid two-col fade-in">
+    <div class="card">
+      <div class="card-icon bg-cyan">💿</div>
+      <h3>Forensic Image Alma</h3>
+      <p class="card-desc">Orijinal diski bit-by-bit kopyalama işlemi. <strong>Write blocker</strong> kullanılarak orijinal kanıta dokunulmaz. Hash değerleri (MD5/SHA-256) karşılaştırılarak bütünlük doğrulanır. dd, FTK Imager, Guymager araçları kullanılır.</p>
+      <div class="code-block"><div class="code-label">Disk Image Örneği</div><pre><code># dd ile forensic image alma
+dd if=/dev/sda of=evidence.img bs=4096
+# Hash doğrulama
+md5sum /dev/sda
+md5sum evidence.img</code></pre></div>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-purple">🔎</div>
+      <h3>Disk Analizi</h3>
+      <p class="card-desc">Dosya sisteminin derinlemesine incelenmesi. Silinmiş dosyaların kurtarılması, dosya imza analizi (file carving), zaman damgası analizi (MACB timestamps), MFT analizi ve registry incelemesi yapılır.</p>
+      <div class="tag-list"><span class="tag tag-purple">File Carving</span><span class="tag tag-purple">Timeline</span><span class="tag tag-purple">MFT</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-green">📋</div>
+      <h3>Log Analizi</h3>
+      <p class="card-desc">Sistem, uygulama ve ağ loglarının incelenmesi. Windows Event Logs, Syslog, web server logları, firewall logları analiz edilir. Saldırı zaman çizelgesi oluşturulur.</p>
+      <div class="tag-list"><span class="tag tag-green">Event Logs</span><span class="tag tag-green">Syslog</span><span class="tag tag-green">Timeline</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-orange">💾</div>
+      <h3>Veri Kurtarma</h3>
+      <p class="card-desc">Silinmiş, bozulmuş veya şifrelenmiş verilerin geri getirilmesi. Dosya sistemi yapıları, slack space, unallocated space incelenir. Foremost, Scalpel, PhotoRec araçları kullanılır.</p>
+      <div class="tag-list"><span class="tag tag-orange">Recovery</span><span class="tag tag-orange">Slack Space</span><span class="tag tag-orange">Unallocated</span></div>
+    </div>
+  </div>
+
+  <h3 class="section-title fade-in">🛠️ Adli Bilişim Araçları</h3>
+
+  <div class="card-grid two-col fade-in">
+    <div class="tool-card">
+      <h4>🔬 Autopsy</h4>
+      <p>Açık kaynak dijital adli bilişim platformu. Sleuth Kit üzerine inşa edilmiştir. Disk imajlarını analiz eder, dosya kurtarma, anahtar kelime araması, web artifact analizi, e-posta analizi yapar. GUI tabanlıdır.</p>
+      <div class="tag-list"><span class="tag tag-cyan">Açık Kaynak</span><span class="tag tag-cyan">GUI</span><span class="tag tag-cyan">Modüler</span></div>
+    </div>
+    <div class="tool-card">
+      <h4>📸 FTK Imager</h4>
+      <p>AccessData tarafından geliştirilen forensic imaging aracı. Disk imajı oluşturma, RAM dump alma, dosya önizleme ve hash hesaplama işlemlerini ücretsiz olarak gerçekleştirir.</p>
+      <div class="tag-list"><span class="tag tag-blue">Ücretsiz</span><span class="tag tag-blue">Imaging</span><span class="tag tag-blue">RAM Dump</span></div>
+    </div>
+  </div>
+
+  <div class="info-box tip fade-in">
+    <h4>💡 Delil Zinciri (Chain of Custody)</h4>
+    <p>Dijital delillerin toplanma, taşınma, analiz ve saklanma süreçleri kayıt altına alınmalıdır. Delil zinciri kırılırsa, delil mahkemede geçersiz sayılabilir. Her adımda hash doğrulaması yapılmalıdır.</p>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="08-penetration-testing.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Penetration Testing</span></div></a>
+    <a href="10-malware-analizi.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">Malware Analizi</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

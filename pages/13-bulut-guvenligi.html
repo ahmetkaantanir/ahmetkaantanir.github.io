@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulut Güvenliği | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="12-kriptografi.html">Kriptografi</a><a href="13-bulut-guvenligi.html" class="active">Bulut</a><a href="14-mobil-guvenlik.html">Mobil</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>Bulut Güvenliği</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-blue">☁️</div>
+      <h1>13 — Bulut Güvenliği</h1>
+    </div>
+    <p class="page-desc">AWS, Azure ve Google Cloud platformlarında güvenlik prensipleri, yaygın riskler ve best practice'ler.</p>
+  </div>
+
+  <p class="section-intro fade-in">Bulut bilişim, organizasyonların altyapı yönetimini dönüştürdü. Ancak paylaşılan sorumluluk modeli nedeniyle güvenlik, sağlayıcı ve müşteri arasında bölüşülür.</p>
+
+  <h3 class="section-title fade-in">☁️ Büyük Bulut Platformları</h3>
+
+  <div class="card-grid three-col fade-in">
+    <div class="card">
+      <div class="card-icon bg-orange">🟠</div>
+      <h3>AWS (Amazon)</h3>
+      <p class="card-desc">En büyük bulut platformu. IAM, VPC, Security Groups, CloudTrail, GuardDuty, AWS Shield gibi güvenlik servisleri sunar. S3 bucket yanlış yapılandırması en yaygın güvenlik sorunudur.</p>
+      <div class="tag-list"><span class="tag tag-orange">IAM</span><span class="tag tag-orange">S3</span><span class="tag tag-orange">CloudTrail</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-blue">🔵</div>
+      <h3>Microsoft Azure</h3>
+      <p class="card-desc">Active Directory entegrasyonu güçlü. Azure AD, Network Security Groups, Azure Sentinel (SIEM), Key Vault gibi güvenlik hizmetleri sağlar. Hybrid cloud senaryolarında tercih edilir.</p>
+      <div class="tag-list"><span class="tag tag-blue">Azure AD</span><span class="tag tag-blue">Sentinel</span><span class="tag tag-blue">Key Vault</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-green">🟢</div>
+      <h3>Google Cloud (GCP)</h3>
+      <p class="card-desc">BeyondCorp (Zero Trust) yaklaşımının öncüsü. Cloud IAM, VPC Service Controls, Security Command Center, Cloud Armor WAF gibi güvenlik servisleri içerir.</p>
+      <div class="tag-list"><span class="tag tag-green">Zero Trust</span><span class="tag tag-green">Cloud IAM</span><span class="tag tag-green">Cloud Armor</span></div>
+    </div>
+  </div>
+
+  <h3 class="section-title fade-in">⚠️ Bulut Güvenlik Riskleri</h3>
+
+  <div class="styled-list fade-in">
+    <ul>
+      <li><strong>Yanlış Yapılandırma:</strong> Public olarak açık S3 bucket'lar, güvensiz API endpoint'leri, aşırı permissive IAM politikaları</li>
+      <li><strong>Yetersiz Erişim Kontrolü:</strong> Root hesap kullanımı, MFA eksikliği, minimum yetki prensibinin uygulanmaması</li>
+      <li><strong>Veri Sızıntısı:</strong> Şifrelenmemiş veriler, güvensiz veri transferi, yedeklerin korunmaması</li>
+      <li><strong>Görünürlük Eksikliği:</strong> Loglama ve izleme yapılmaması, anormal aktivite tespiti zorluğu</li>
+      <li><strong>Paylaşılan Sorumluluk:</strong> Sağlayıcı altyapıyı korur, müşteri veri ve yapılandırmadan sorumludur</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip fade-in">
+    <h4>💡 Bulut Güvenlik Best Practice'leri</h4>
+    <ul class="info-list">
+      <li>Minimum yetki prensibi (Least Privilege) uygulayın</li>
+      <li>MFA'yı tüm hesaplarda zorunlu kılın</li>
+      <li>Tüm verileri at-rest ve in-transit şifreleyin</li>
+      <li>CloudTrail/Audit Logs ile tüm aktiviteleri loglayın</li>
+      <li>Infrastructure as Code (IaC) ile güvenlik politikalarını kodlayın</li>
+      <li>Düzenli güvenlik denetimleri ve compliance kontrolleri yapın</li>
+    </ul>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="12-kriptografi.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Kriptografi</span></div></a>
+    <a href="14-mobil-guvenlik.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">Mobil Güvenlik</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

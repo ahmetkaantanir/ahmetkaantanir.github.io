@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTF &amp; Pratik | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="15-kablosuz-ag.html">Kablosuz Ağ</a><a href="16-ctf-pratik.html" class="active">CTF</a><a href="17-kariyer.html">Kariyer</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>CTF &amp; Pratik</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-green">🏁</div>
+      <h1>16 — CTF &amp; Pratik Platformlar</h1>
+    </div>
+    <p class="page-desc">Capture The Flag yarışmaları ve hands-on pratik yapabileceğiniz platformlar. Öğrendiklerinizi uygulamaya geçirin.</p>
+  </div>
+
+  <p class="section-intro fade-in">CTF (Capture The Flag) yarışmaları, siber güvenlik becerilerinizi gerçek senaryolarda test etmenin en etkili yoludur. Teori önemlidir ancak pratik olmadan yetersizdir.</p>
+
+  <h3 class="section-title fade-in">🏆 CTF Kategorileri</h3>
+
+  <div class="card-grid three-col fade-in">
+    <div class="card">
+      <div class="card-icon bg-cyan">🌐</div>
+      <h3>Web Exploitation</h3>
+      <p class="card-desc">SQL Injection, XSS, CSRF, SSRF, path traversal, authentication bypass gibi web güvenlik açıklarını istismar etme. En popüler CTF kategorisidir.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-purple">🔐</div>
+      <h3>Cryptography</h3>
+      <p class="card-desc">Şifreleme algoritmalarını analiz etme, zayıf uygulamaları kırma. RSA, AES, XOR, custom cipher analizi, frequency analysis gibi konuları kapsar.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-orange">⚙️</div>
+      <h3>Reverse Engineering</h3>
+      <p class="card-desc">Binary analiz, decompilation, anti-debugging bypass. C/C++ derlenmiş programları inceleyerek gizli flag'leri bulma.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-green">💥</div>
+      <h3>Binary Exploitation</h3>
+      <p class="card-desc">Buffer overflow, format string, ROP chains, heap exploitation. Bellek bozma açıklarını istismar ederek sistem kontrolü elde etme.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-blue">🔬</div>
+      <h3>Forensics</h3>
+      <p class="card-desc">Disk image analizi, paket yakalama analizi, steganografi, memory dump inceleme. Gizli verileri dijital kanıtlardan çıkarma.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-red">🔍</div>
+      <h3>OSINT</h3>
+      <p class="card-desc">Açık kaynak istihbarat toplama. Sosyal medya, web arşivleri, metadata analizi ile bilgi toplama. Google dorking, Shodan kullanımı.</p>
+    </div>
+  </div>
+
+  <h3 class="section-title fade-in">🎮 Pratik Platformlar</h3>
+
+  <div class="card-grid two-col fade-in">
+    <div class="platform-card">
+      <h4>🟩 Hack The Box</h4>
+      <p>Gerçekçi penetration testing lab ortamı. Aktif ve retired makineler içerir. Başlangıç seviyesinden ileri seviyeye kadar zorluk dereceleri vardır. Pro Labs ile kurumsal ortam simülasyonu sunar.</p>
+      <div class="tag-list"><span class="tag tag-green">Pentest</span><span class="tag tag-green">Lab</span><span class="tag tag-green">Makine</span></div>
+    </div>
+    <div class="platform-card">
+      <h4>🔴 TryHackMe</h4>
+      <p>Başlangıç dostu, adım adım öğretici platformu. Learning paths ile yapılandırılmış eğitim sunar. Tarayıcı tabanlı sanal makineler sayesinde kurulum gerektirmez. Ücretsiz içerik mevcuttur.</p>
+      <div class="tag-list"><span class="tag tag-cyan">Başlangıç</span><span class="tag tag-cyan">Guided</span><span class="tag tag-cyan">Ücretsiz</span></div>
+    </div>
+    <div class="platform-card">
+      <h4>🐐 OWASP WebGoat</h4>
+      <p>Web uygulama güvenliği eğitim platformu. Kasıtlı olarak güvenlik açığı içeren bir web uygulamasıdır. OWASP Top 10 açıklarını uygulamalı olarak öğretir.</p>
+      <div class="tag-list"><span class="tag tag-orange">Web</span><span class="tag tag-orange">OWASP</span><span class="tag tag-orange">Eğitim</span></div>
+    </div>
+    <div class="platform-card">
+      <h4>🏴 PicoCTF</h4>
+      <p>Carnegie Mellon Üniversitesi tarafından geliştirilen, öğrencilere yönelik CTF platformu. Tamamen ücretsiz. Yıl boyunca açık alıştırmalar ve yıllık yarışma düzenlenir.</p>
+      <div class="tag-list"><span class="tag tag-purple">Ücretsiz</span><span class="tag tag-purple">Öğrenci</span><span class="tag tag-purple">Yarışma</span></div>
+    </div>
+  </div>
+
+  <div class="info-box tip fade-in">
+    <h4>💡 Başlangıç Önerisi</h4>
+    <p>Yeni başlıyorsanız <strong>TryHackMe</strong>'den başlayın. Temelleri öğrendikten sonra <strong>Hack The Box</strong>'a geçin. Web güvenliğine odaklanmak istiyorsanız <strong>WebGoat</strong> ve <strong>PortSwigger Web Security Academy</strong> mükemmel kaynaklardır.</p>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="15-kablosuz-ag.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Kablosuz Ağ</span></div></a>
+    <a href="17-kariyer.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">Kariyer Yolları</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

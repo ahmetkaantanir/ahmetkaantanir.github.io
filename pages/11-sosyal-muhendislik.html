@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sosyal Mühendislik | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="10-malware-analizi.html">Malware</a><a href="11-sosyal-muhendislik.html" class="active">Sosyal Müh.</a><a href="12-kriptografi.html">Kriptografi</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>Sosyal Mühendislik</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-orange">🎭</div>
+      <h1>11 — Sosyal Mühendislik</h1>
+    </div>
+    <p class="page-desc">İnsan psikolojisini hedefleyen saldırı teknikleri. Phishing, pretexting, baiting ve korunma yöntemleri.</p>
+  </div>
+
+  <p class="section-intro fade-in">Sosyal mühendislik, teknik açıklar yerine insan psikolojisini istismar eden saldırı yöntemidir. En güçlü güvenlik sistemleri bile insan faktörü nedeniyle aşılabilir. Veri ihlallerinin %90'ından fazlasında sosyal mühendislik bileşeni bulunur.</p>
+
+  <h3 class="section-title fade-in">🎣 Saldırı Türleri</h3>
+
+  <div class="accordion fade-in">
+    <div class="accordion-item">
+      <div class="accordion-header"><h4>🎣 Phishing (Oltalama)</h4><span class="accordion-arrow">▼</span></div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        <p>Sahte e-posta, web sitesi veya mesaj yoluyla kullanıcıdan hassas bilgi toplama. Banka, sosyal medya veya kurumsal e-posta gibi görünen sahte mesajlar gönderilir. Link'ler sahte sitelere yönlendirir. En yaygın siber saldırı türüdür.</p>
+        <p><strong>Belirtiler:</strong> Acil eylem istekleri, yazım hataları, şüpheli gönderen adresleri, alışılmadık linkler.</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header"><h4>🎯 Spear Phishing</h4><span class="accordion-arrow">▼</span></div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        <p>Belirli bir kişi veya organizasyonu hedefleyen özelleştirilmiş phishing saldırısı. Hedef hakkında detaylı araştırma yapılır (LinkedIn, sosyal medya, kurumsal web sitesi). Kişiye özel, inandırıcı mesajlar hazırlanır. Başarı oranı genel phishing'den çok yüksektir.</p>
+        <p><strong>Whaling:</strong> Spear phishing'in üst düzey yöneticileri (CEO, CFO) hedefleyen versiyonudur.</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header"><h4>🎭 Pretexting</h4><span class="accordion-arrow">▼</span></div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        <p>Sahte bir kimlik veya senaryo oluşturarak güven kazanma ve bilgi toplama. Saldırgan kendini IT destek, banka çalışanı, polis memuru gibi tanıtır. Detaylı ve tutarlı bir hikaye oluşturulur. Telefon, e-posta veya yüz yüze gerçekleştirilebilir.</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header"><h4>🪤 Baiting (Yemleme)</h4><span class="accordion-arrow">▼</span></div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        <p>Fiziksel veya dijital tuzaklar kullanarak kurbanı cezbetme. Zararlı yazılım yüklü USB bellek bırakma, ücretsiz yazılım/film indirme linkleri, sahte ödül bildirimleri gibi yöntemler kullanılır. Merak ve açgözlülük duygularını istismar eder.</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header"><h4>🚪 Tailgating / Piggybacking</h4><span class="accordion-arrow">▼</span></div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        <p>Yetkili bir kişinin arkasından fiziksel güvenlik kontrollerini aşma. Kapı kartı gerektiren alanlara yetkili birinin arkasından geçme. "Ellerim dolu, kapıyı tutabilir misiniz?" gibi sosyal baskı uygulanır.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="info-box tip fade-in">
+    <h4>🛡️ Korunma Yöntemleri</h4>
+    <ul class="info-list">
+      <li>Güvenlik farkındalık eğitimleri düzenleyin</li>
+      <li>E-posta filtreleme ve anti-phishing araçları kullanın</li>
+      <li>Çok faktörlü kimlik doğrulama (MFA) aktifleştirin</li>
+      <li>Şüpheli mesajları doğrulamadan bağlantılara tıklamayın</li>
+      <li>Düzenli phishing simülasyonları yapın</li>
+    </ul>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="10-malware-analizi.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Malware Analizi</span></div></a>
+    <a href="12-kriptografi.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">Kriptografi</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

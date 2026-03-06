@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kriptografi | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="11-sosyal-muhendislik.html">Sosyal Müh.</a><a href="12-kriptografi.html" class="active">Kriptografi</a><a href="13-bulut-guvenligi.html">Bulut</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>Kriptografi</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-green">🔑</div>
+      <h1>12 — Kriptografi</h1>
+    </div>
+    <p class="page-desc">Şifreleme, hashing, simetrik/asimetrik algoritmalar. Verilerin gizliliğini ve bütünlüğünü sağlayan temel bilim.</p>
+  </div>
+
+  <h3 class="section-title fade-in">🔐 Şifreleme Türleri</h3>
+
+  <div class="card-grid two-col fade-in">
+    <div class="card">
+      <div class="card-icon bg-cyan">🔑</div>
+      <h3>Simetrik Şifreleme</h3>
+      <p class="card-desc">Aynı anahtar ile şifreleme ve deşifreleme yapılır. Hızlıdır, büyük veri bloklarında tercih edilir. Anahtar paylaşım problemi vardır — anahtar güvenli bir şekilde karşı tarafa ulaştırılmalıdır.</p>
+      <div class="styled-table"><table>
+        <thead><tr><th>Algoritma</th><th>Anahtar Boyutu</th><th>Durum</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AES</strong></td><td>128/192/256 bit</td><td>✅ Endüstri standardı</td></tr>
+          <tr><td><strong>DES</strong></td><td>56 bit</td><td>❌ Güvensiz, kullanılmamalı</td></tr>
+          <tr><td><strong>3DES</strong></td><td>168 bit</td><td>⚠️ Eski, AES tercih edilmeli</td></tr>
+          <tr><td><strong>ChaCha20</strong></td><td>256 bit</td><td>✅ Modern, hızlı</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-purple">🔐</div>
+      <h3>Asimetrik Şifreleme</h3>
+      <p class="card-desc">İki farklı anahtar kullanılır: açık anahtar (public key) şifreler, özel anahtar (private key) deşifre eder. Anahtar paylaşım problemini çözer. Dijital imza ve TLS/SSL bu sisteme dayanır.</p>
+      <div class="styled-table"><table>
+        <thead><tr><th>Algoritma</th><th>Kullanım</th><th>Güvenlik</th></tr></thead>
+        <tbody>
+          <tr><td><strong>RSA</strong></td><td>Şifreleme, dijital imza</td><td>✅ 2048+ bit</td></tr>
+          <tr><td><strong>ECC</strong></td><td>Şifreleme, TLS</td><td>✅ Daha kısa anahtar</td></tr>
+          <tr><td><strong>Diffie-Hellman</strong></td><td>Anahtar değişimi</td><td>✅ Anahtar anlaşması</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <h3 class="section-title fade-in">#️⃣ Hashing</h3>
+
+  <div class="card fade-in">
+    <p class="card-desc">Hash fonksiyonları, herhangi bir boyuttaki veriyi sabit uzunlukta bir değere dönüştürür. Tek yönlüdür — hash'ten orijinal veri geri elde edilemez. Veri bütünlüğü doğrulama, şifre saklama ve dijital imzalarda kullanılır.</p>
+
+    <div class="styled-table"><table>
+      <thead><tr><th>Algoritma</th><th>Çıktı Boyutu</th><th>Kullanım</th><th>Güvenlik</th></tr></thead>
+      <tbody>
+        <tr><td><strong>MD5</strong></td><td>128 bit</td><td>Dosya doğrulama</td><td>❌ Çatışma bulundu</td></tr>
+        <tr><td><strong>SHA-1</strong></td><td>160 bit</td><td>Eski sistemler</td><td>❌ Güvensiz</td></tr>
+        <tr><td><strong>SHA-256</strong></td><td>256 bit</td><td>Dijital imza, TLS</td><td>✅ Güvenli</td></tr>
+        <tr><td><strong>SHA-3</strong></td><td>Değişken</td><td>Yeni uygulamalar</td><td>✅ En yeni standart</td></tr>
+        <tr><td><strong>bcrypt</strong></td><td>184 bit</td><td>Şifre saklama</td><td>✅ Salt + iterasyon</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="code-block fade-in">
+    <div class="code-label">Python — Hash Hesaplama Örneği</div>
+    <pre><code>import hashlib
+
+metin = "Siber Güvenlik"
+encoded = metin.encode('utf-8')
+
+# MD5 (güvensiz, sadece dosya doğrulama için)
+md5_hash = hashlib.md5(encoded).hexdigest()
+print(f"MD5:    {md5_hash}")
+
+# SHA-256 (güvenli)
+sha256_hash = hashlib.sha256(encoded).hexdigest()
+print(f"SHA256: {sha256_hash}")
+
+# SHA-3 (en yeni standart)
+sha3_hash = hashlib.sha3_256(encoded).hexdigest()
+print(f"SHA3:   {sha3_hash}")</code></pre>
+  </div>
+
+  <div class="info-box warning fade-in">
+    <h4>⚠️ Önemli Kurallar</h4>
+    <ul class="info-list">
+      <li>Şifreleri hash'leyerek saklayın, asla düz metin olarak tutmayın</li>
+      <li>Salt kullanarak rainbow table saldırılarını engelleyin</li>
+      <li>MD5 ve SHA-1 şifre hash'leme için kullanmayın</li>
+      <li>Şifre hash'leme için bcrypt, scrypt veya Argon2 tercih edin</li>
+    </ul>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="11-sosyal-muhendislik.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Sosyal Mühendislik</span></div></a>
+    <a href="13-bulut-guvenligi.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">Bulut Güvenliği</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

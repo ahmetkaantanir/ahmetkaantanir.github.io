@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kablosuz Ağ Güvenliği | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="14-mobil-guvenlik.html">Mobil</a><a href="15-kablosuz-ag.html" class="active">Kablosuz Ağ</a><a href="16-ctf-pratik.html">CTF</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>Kablosuz Ağ Güvenliği</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-cyan">📶</div>
+      <h1>15 — Kablosuz Ağ Güvenliği</h1>
+    </div>
+    <p class="page-desc">Wi-Fi güvenlik protokolleri (WPA/WPA2/WPA3), kablosuz ağ saldırıları ve Aircrack-ng araç seti.</p>
+  </div>
+
+  <h3 class="section-title fade-in">🔐 Wi-Fi Güvenlik Protokolleri</h3>
+
+  <div class="styled-table fade-in">
+    <table>
+      <thead><tr><th>Protokol</th><th>Şifreleme</th><th>Güvenlik</th><th>Notlar</th></tr></thead>
+      <tbody>
+        <tr><td><strong>WEP</strong></td><td>RC4</td><td>❌ Kırılmış</td><td>Dakikalar içinde kırılabilir, asla kullanmayın</td></tr>
+        <tr><td><strong>WPA</strong></td><td>TKIP</td><td>⚠️ Zayıf</td><td>WEP'e göre iyileşme ama hala güvensiz</td></tr>
+        <tr><td><strong>WPA2</strong></td><td>AES-CCMP</td><td>✅ Güvenli</td><td>En yaygın kullanılan, KRACK açığına dikkat</td></tr>
+        <tr><td><strong>WPA3</strong></td><td>SAE</td><td>✅ En güvenli</td><td>Forward secrecy, brute force koruması</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="section-title fade-in">⚡ Kablosuz Ağ Saldırıları</h3>
+
+  <div class="card-grid two-col fade-in">
+    <div class="card">
+      <div class="card-icon bg-red">👊</div>
+      <h3>Handshake Yakalama</h3>
+      <p class="card-desc">WPA/WPA2 4-way handshake yakalanarak offline olarak kırılmaya çalışılır. Güçlü şifreler brute force'a dayanıklıdır. Wordlist ve hashcat/aircrack-ng ile denenir.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-orange">📡</div>
+      <h3>Evil Twin Attack</h3>
+      <p class="card-desc">Hedef ağın kopyasını oluşturarak kullanıcıları kandırma. Sahte access point kurulur, kullanıcılar otomatik bağlanır. Man-in-the-Middle saldırısı gerçekleştirilir.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-purple">💥</div>
+      <h3>Deauth Attack</h3>
+      <p class="card-desc">Deauthentication paketleri göndererek kullanıcıları ağdan düşürme. Handshake yakalama için kullanılır. IEEE 802.11w (Management Frame Protection) ile önlenebilir.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-blue">🔍</div>
+      <h3>WPS Saldırısı</h3>
+      <p class="card-desc">WPS PIN brute force ile ağ şifresini elde etme. Reaver ve Bully araçları kullanılır. WPS devre dışı bırakılmalıdır.</p>
+    </div>
+  </div>
+
+  <h3 class="section-title fade-in">🛠️ Aircrack-ng Araç Seti</h3>
+
+  <div class="code-block fade-in">
+    <div class="code-label">Aircrack-ng Kullanımı</div>
+    <pre><code># Monitor mode'a geçiş
+airmon-ng start wlan0
+
+# Ağları tarama
+airodump-ng wlan0mon
+
+# Belirli ağı izleme ve handshake yakalama
+airodump-ng -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon
+
+# Deauth paketi gönderme (handshake için)
+aireplay-ng -0 5 -a AA:BB:CC:DD:EE:FF wlan0mon
+
+# Handshake kırma (wordlist ile)
+aircrack-ng -w wordlist.txt capture-01.cap
+
+# Monitor mode'dan çıkış
+airmon-ng stop wlan0mon</code></pre>
+  </div>
+
+  <div class="info-box warning fade-in">
+    <h4>⚠️ Yasal Uyarı</h4>
+    <p>Kablosuz ağ testleri yalnızca kendi ağınızda veya yazılı izin alınmış ağlarda yapılmalıdır. İzinsiz ağlara erişim girişimi yasadışıdır ve ciddi cezai yaptırımlara yol açabilir.</p>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="14-mobil-guvenlik.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Mobil Güvenlik</span></div></a>
+    <a href="16-ctf-pratik.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">CTF &amp; Pratik</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

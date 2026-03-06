@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilgisayar Bilgisi | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="01-temel-kavramlar.html">Temel Kavramlar</a><a href="02-bilgisayar-bilgisi.html" class="active">Bilgisayar</a><a href="04-networking.html">Networking</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>Bilgisayar Bilgisi</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-blue">💻</div>
+      <h1>2 — Bilgisayar Bilgisi</h1>
+    </div>
+    <p class="page-desc">Donanım bileşenleri, BIOS/UEFI yapıları ve dosya sistemlerini anlayarak güvenlik temellerinizi güçlendirin.</p>
+  </div>
+
+  <h3 class="section-title fade-in">⚙️ Donanım Bileşenleri</h3>
+
+  <div class="card-grid three-col fade-in">
+    <div class="card">
+      <div class="card-icon bg-cyan">🧠</div>
+      <h3>CPU (İşlemci)</h3>
+      <p class="card-desc">Bilgisayarın beyni. Tüm hesaplamaları ve komut işlemeyi gerçekleştirir. x86, x64 ve ARM mimarileri güvenlik analizinde önemlidir. Buffer overflow saldırıları CPU'nun bellek yönetim mekanizmalarını hedef alır.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-purple">💾</div>
+      <h3>RAM (Bellek)</h3>
+      <p class="card-desc">Geçici veri depolama alanı. Çalışan programlar, şifreler ve hassas veriler RAM'de tutulur. Adli bilişimde RAM dump analizi kritik öneme sahiptir. Cold boot saldırıları RAM verilerini hedefler.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-green">💿</div>
+      <h3>Depolama (HDD/SSD)</h3>
+      <p class="card-desc">Kalıcı veri saklama birimleri. HDD manyetik diskler kullanır, SSD flash bellek kullanır. Disk şifreleme (BitLocker, LUKS) ve güvenli silme yöntemleri güvenlik açısından kritiktir.</p>
+    </div>
+  </div>
+
+  <h3 class="section-title fade-in">🔧 BIOS ve UEFI</h3>
+
+  <div class="styled-table fade-in">
+    <table>
+      <thead><tr><th>Özellik</th><th>BIOS</th><th>UEFI</th></tr></thead>
+      <tbody>
+        <tr><td>Mimari</td><td>16-bit</td><td>32/64-bit</td></tr>
+        <tr><td>Disk Desteği</td><td>MBR (2TB limit)</td><td>GPT (9.4ZB)</td></tr>
+        <tr><td>Güvenlik</td><td>Sınırlı</td><td>Secure Boot</td></tr>
+        <tr><td>Arayüz</td><td>Metin tabanlı</td><td>Grafik arayüz</td></tr>
+        <tr><td>Boot Süresi</td><td>Yavaş</td><td>Hızlı</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box warning fade-in">
+    <h4>⚠️ Güvenlik Notu</h4>
+    <p>UEFI Secure Boot, işletim sistemi yüklenmeden önce BIOS-seviyesi rootkit'lerin (bootkit) çalışmasını engeller. BIOS şifresi mutlaka aktif edilmelidir.</p>
+  </div>
+
+  <h3 class="section-title fade-in">📁 Dosya Sistemleri</h3>
+
+  <div class="card-grid three-col fade-in">
+    <div class="card">
+      <div class="card-icon bg-blue">🪟</div>
+      <h3>NTFS</h3>
+      <p class="card-desc">Windows'un varsayılan dosya sistemi. Dosya izinleri, şifreleme (EFS), sıkıştırma, denetim günlükleri ve Alternate Data Streams (ADS) destekler. ADS, malware gizlemek için kullanılabilir.</p>
+      <div class="tag-list"><span class="tag tag-blue">Windows</span><span class="tag tag-cyan">ADS</span><span class="tag tag-green">İzinler</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-orange">📦</div>
+      <h3>FAT32</h3>
+      <p class="card-desc">Eski ve basit dosya sistemi. 4GB dosya boyutu limiti vardır. USB sürücülerde ve eski sistemlerde yaygındır. Dosya izinleri ve şifreleme desteği yoktur — güvenlik açısından zayıftır.</p>
+      <div class="tag-list"><span class="tag tag-orange">USB</span><span class="tag tag-orange">Eski Sistemler</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-green">🐧</div>
+      <h3>EXT4</h3>
+      <p class="card-desc">Linux'un varsayılan dosya sistemi. Dosya izinleri (rwx), journaling, büyük dosya desteği sağlar. chmod ve chown komutlarıyla dosya güvenliği yönetilir. İnode yapısı adli bilişim analizinde önemlidir.</p>
+      <div class="tag-list"><span class="tag tag-green">Linux</span><span class="tag tag-green">Journaling</span></div>
+    </div>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="01-temel-kavramlar.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Temel Kavramlar</span></div></a>
+    <a href="03-isletim-sistemleri.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">İşletim Sistemleri</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

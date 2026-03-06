@@ -1,250 +1,97 @@
-/* ============================================
-   CYBERSECURITY ROADMAP - INTERACTIVITY
-   ============================================ */
-
 document.addEventListener('DOMContentLoaded', () => {
-  // ---------- Elements ----------
   const header = document.querySelector('.header');
-  const sidebar = document.querySelector('.sidebar');
   const menuToggle = document.querySelector('.menu-toggle');
-  const overlay = document.querySelector('.sidebar-overlay');
+  const mobileNav = document.querySelector('.mobile-nav');
   const scrollTopBtn = document.querySelector('.scroll-top');
-  const navLinks = document.querySelectorAll('.sidebar-nav a');
-  const sections = document.querySelectorAll('.content-section');
-  const progressFill = document.querySelector('.progress-bar-fill');
-  const progressText = document.querySelector('.progress-text');
-  const accordionHeaders = document.querySelectorAll('.accordion-header');
 
-  // ---------- Mobile Menu ----------
-  if (menuToggle) {
+  // Mobile menu
+  if (menuToggle && mobileNav) {
     menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      overlay.classList.toggle('active');
-      document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+      mobileNav.classList.toggle('open');
     });
-  }
-
-  if (overlay) {
-    overlay.addEventListener('click', () => {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  }
-
-  // Close sidebar on nav click (mobile)
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= 1024) {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
+    document.addEventListener('click', (e) => {
+      if (!menuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
+        mobileNav.classList.remove('open');
       }
     });
-  });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
+  }
 
-  // ---------- Scroll Events ----------
+  // Header scroll
   let ticking = false;
-
-  function onScroll() {
+  window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
-        updateHeader();
-        updateActiveNav();
-        updateProgress();
-        updateScrollTopBtn();
+        if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+        if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
         ticking = false;
       });
       ticking = true;
     }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // Header shadow on scroll
-  function updateHeader() {
-    if (window.scrollY > 20) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  }
-
-  // Active nav link tracking
-  function updateActiveNav() {
-    const scrollPos = window.scrollY + 150;
-
-    let currentSection = '';
-    sections.forEach(section => {
-      if (section.offsetTop <= scrollPos) {
-        currentSection = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + currentSection) {
-        link.classList.add('active');
-      }
-    });
-  }
-
-  // Progress bar
-  function updateProgress() {
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = docHeight > 0 ? Math.round((window.scrollY / docHeight) * 100) : 0;
-    if (progressFill) progressFill.style.width = scrollPercent + '%';
-    if (progressText) progressText.textContent = scrollPercent + '%';
-  }
-
-  // Scroll to top button visibility
-  function updateScrollTopBtn() {
-    if (window.scrollY > 500) {
-      scrollTopBtn.classList.add('visible');
-    } else {
-      scrollTopBtn.classList.remove('visible');
-    }
-  }
+  }, { passive: true });
 
   // Scroll to top
   if (scrollTopBtn) {
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  // ---------- Intersection Observer for Sections ----------
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -50px 0px'
-  });
+  // Fade in observer
+  const fadeEls = document.querySelectorAll('.fade-in');
+  if (fadeEls.length) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(el => obs.observe(el));
+  }
 
-  sections.forEach(section => {
-    sectionObserver.observe(section);
-  });
-
-  // ---------- Accordion ----------
-  accordionHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.parentElement;
+  // Accordion
+  document.querySelectorAll('.accordion-header').forEach(h => {
+    h.addEventListener('click', () => {
+      const item = h.parentElement;
       const body = item.querySelector('.accordion-body');
       const isOpen = item.classList.contains('open');
-
-      // Close all others in the same accordion
-      const accordion = item.parentElement;
-      accordion.querySelectorAll('.accordion-item').forEach(other => {
-        if (other !== item) {
-          other.classList.remove('open');
-          const otherBody = other.querySelector('.accordion-body');
-          if (otherBody) otherBody.style.maxHeight = null;
-        }
+      item.parentElement.querySelectorAll('.accordion-item').forEach(o => {
+        if (o !== item) { o.classList.remove('open'); const b = o.querySelector('.accordion-body'); if (b) b.style.maxHeight = null; }
       });
-
-      if (isOpen) {
-        item.classList.remove('open');
-        body.style.maxHeight = null;
-      } else {
-        item.classList.add('open');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
+      if (isOpen) { item.classList.remove('open'); body.style.maxHeight = null; }
+      else { item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
     });
   });
 
-  // ---------- Typing Effect ----------
+  // Typing effect (landing page only)
   const typingEl = document.querySelector('.typing-text');
   if (typingEl) {
-    const phrases = [
-      'Siber Güvenlik Dünyası',
-      'Ethical Hacking',
-      'Penetration Testing',
-      'Bug Bounty Hunting',
-      'Digital Forensics',
-      'Malware Analysis'
-    ];
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let speed = 80;
-
-    function typeEffect() {
-      const current = phrases[phraseIndex];
-
-      if (isDeleting) {
-        typingEl.textContent = current.substring(0, charIndex - 1);
-        charIndex--;
-        speed = 40;
-      } else {
-        typingEl.textContent = current.substring(0, charIndex + 1);
-        charIndex++;
-        speed = 80;
-      }
-
-      if (!isDeleting && charIndex === current.length) {
-        speed = 2000;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        speed = 400;
-      }
-
-      setTimeout(typeEffect, speed);
-    }
-
-    typeEffect();
+    const phrases = ['Siber Güvenlik Dünyası', 'Ethical Hacking', 'Penetration Testing', 'Bug Bounty Hunting', 'Digital Forensics', 'Malware Analysis'];
+    let pi = 0, ci = 0, del = false, spd = 80;
+    (function type() {
+      const cur = phrases[pi];
+      if (del) { typingEl.textContent = cur.substring(0, --ci); spd = 40; }
+      else { typingEl.textContent = cur.substring(0, ++ci); spd = 80; }
+      if (!del && ci === cur.length) { spd = 2000; del = true; }
+      else if (del && ci === 0) { del = false; pi = (pi + 1) % phrases.length; spd = 400; }
+      setTimeout(type, spd);
+    })();
   }
 
-  // ---------- Counter Animation ----------
-  const counters = document.querySelectorAll('.counter');
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.dataset.counted) {
-        entry.target.dataset.counted = 'true';
-        animateCounter(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(counter => counterObserver.observe(counter));
-
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.target);
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    let current = 0;
-
-    function update() {
-      current += increment;
-      if (current >= target) {
-        el.textContent = target + (el.dataset.suffix || '');
-        return;
-      }
-      el.textContent = Math.floor(current) + (el.dataset.suffix || '');
-      requestAnimationFrame(update);
-    }
-
-    update();
-  }
-
-  // ---------- Smooth scroll for nav links ----------
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href');
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+  // Counter animation
+  document.querySelectorAll('.counter').forEach(el => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !e.target.dataset.counted) {
+          e.target.dataset.counted = '1';
+          const t = parseInt(e.target.dataset.target), s = e.target.dataset.suffix || '';
+          let c = 0; const inc = t / 125;
+          (function u() { c += inc; if (c >= t) { e.target.textContent = t + s; return; } e.target.textContent = Math.floor(c) + s; requestAnimationFrame(u); })();
+        }
+      });
+    }, { threshold: 0.5 });
+    obs.observe(el);
   });
 
-  // ---------- Initial states ----------
-  updateHeader();
-  updateProgress();
+  // Section cards click
+  document.querySelectorAll('.section-card[data-href]').forEach(card => {
+    card.addEventListener('click', () => { window.location.href = card.dataset.href; });
+  });
 });

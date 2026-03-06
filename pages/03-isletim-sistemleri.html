@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İşletim Sistemleri | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="01-temel-kavramlar.html">Temel Kavramlar</a><a href="03-isletim-sistemleri.html" class="active">İşletim Sistemleri</a><a href="04-networking.html">Networking</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>İşletim Sistemleri</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-green">🖥️</div>
+      <h1>3 — İşletim Sistemleri</h1>
+    </div>
+    <p class="page-desc">Windows, Linux ve Kali Linux işletim sistemleri hakkında güvenlik profesyonellerinin bilmesi gereken temel bilgiler.</p>
+  </div>
+
+  <h3 class="section-title fade-in">🪟 Windows İşletim Sistemi</h3>
+  <p class="section-intro fade-in">Windows, en yaygın kullanılan masaüstü işletim sistemidir. Registry, servisler, görev yöneticisi ve olay günlükleri güvenlik analizinde kritik bileşenlerdir.</p>
+
+  <div class="card-grid two-col fade-in">
+    <div class="card">
+      <div class="card-icon bg-blue">📝</div>
+      <h3>Registry (Kayıt Defteri)</h3>
+      <p class="card-desc">Windows'un merkezi yapılandırma veritabanı. Sistem ayarları, kullanıcı tercihleri, yazılım konfigürasyonları burada saklanır. Malware analizi ve adli bilişimde kritik bir kaynaktır. <code>regedit</code> ile erişilir.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-cyan">📊</div>
+      <h3>Task Manager</h3>
+      <p class="card-desc">Çalışan işlemleri, CPU/RAM kullanımını, ağ aktivitesini ve başlangıç programlarını izler. Şüpheli işlemlerin tespitinde ilk başvurulacak araçtır. Bilinmeyen yüksek CPU kullanan süreçlere dikkat edin.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-purple">⚙️</div>
+      <h3>Services (Servisler)</h3>
+      <p class="card-desc">Arka planda çalışan sistem bileşenleri. <code>services.msc</code> ile yönetilir. Malware kendini servis olarak kaydetleyebilir. Tanınmayan servisleri kontrol edin.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon bg-green">📋</div>
+      <h3>Event Viewer</h3>
+      <p class="card-desc">Windows olay günlüklerini görüntüler. Güvenlik olayları, başarısız giriş denemeleri, sistem hataları burada kayıt altına alınır. SOC analistlerinin en çok incelediği kaynaktır.</p>
+    </div>
+  </div>
+
+  <h3 class="section-title fade-in">🐧 Linux İşletim Sistemi</h3>
+  <p class="section-intro fade-in">Linux, sunucularda ve güvenlik araçlarında yaygın olarak kullanılır. Komut satırı hakimiyeti siber güvenlikte zorunludur.</p>
+
+  <h4 class="fade-in">📌 Temel Linux Komutları</h4>
+  <div class="code-block fade-in">
+    <div class="code-label">Terminal</div>
+    <pre><code># Dosya ve dizin işlemleri
+ls -la          # Detaylı dosya listeleme (gizli dosyalar dahil)
+cd /path        # Dizin değiştirme
+pwd             # Mevcut dizini gösterme
+mkdir klasor    # Yeni dizin oluşturma
+rm -rf dosya    # Dosya/dizin silme (dikkatli kullanın!)
+cp kaynak hedef # Dosya kopyalama
+mv eski yeni    # Dosya taşıma/yeniden adlandırma
+
+# Metin ve arama
+grep -r "pattern" /path  # Metin arama (recursive)
+cat dosya.txt            # Dosya içeriğini görüntüleme
+less dosya.txt           # Sayfa sayfa okuma
+
+# İzin yönetimi
+chmod 755 dosya   # İzin değiştirme (rwxr-xr-x)
+chown user:group dosya  # Sahiplik değiştirme
+
+# Sistem bilgisi
+whoami     # Aktif kullanıcı
+uname -a   # Sistem bilgisi
+ps aux     # Çalışan süreçler
+netstat -tulpn  # Açık portlar</code></pre>
+  </div>
+
+  <div class="info-box tip fade-in">
+    <h4>💡 İzin Sistemi (chmod)</h4>
+    <p><strong>r=4, w=2, x=1</strong> → <code>chmod 755</code> = Sahip: rwx(7), Grup: r-x(5), Diğer: r-x(5). <code>chmod 644</code> = Sahip: rw-(6), Grup: r--(4), Diğer: r--(4).</p>
+  </div>
+
+  <h3 class="section-title fade-in">🐉 Kali Linux</h3>
+
+  <div class="card fade-in">
+    <div class="card-icon bg-cyan">🐉</div>
+    <h3>Kali Linux — Penetration Testing Dağıtımı</h3>
+    <p class="card-desc">Debian tabanlı, güvenlik testleri için özel olarak tasarlanmış Linux dağıtımıdır. 600'den fazla güvenlik aracı önceden yüklü gelir. Nmap, Metasploit, Burp Suite, Wireshark, Aircrack-ng, John the Ripper ve daha fazlası dahildir.</p>
+    <div class="tag-list">
+      <span class="tag tag-cyan">Debian</span><span class="tag tag-green">600+ Araç</span><span class="tag tag-purple">Offensive Security</span><span class="tag tag-orange">Rolling Release</span>
+    </div>
+  </div>
+
+  <div class="styled-list fade-in">
+    <h4>Kali Linux'ta Öne Çıkan Araç Kategorileri:</h4>
+    <ul>
+      <li><strong>Information Gathering:</strong> Nmap, Recon-ng, Maltego</li>
+      <li><strong>Vulnerability Analysis:</strong> Nessus, OpenVAS, Nikto</li>
+      <li><strong>Web Application Testing:</strong> Burp Suite, SQLmap, OWASP ZAP</li>
+      <li><strong>Password Attacks:</strong> John the Ripper, Hashcat, Hydra</li>
+      <li><strong>Wireless Attacks:</strong> Aircrack-ng, Wifite, Kismet</li>
+      <li><strong>Exploitation:</strong> Metasploit Framework, Social Engineering Toolkit</li>
+      <li><strong>Forensics:</strong> Autopsy, Volatility, Foremost</li>
+    </ul>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="02-bilgisayar-bilgisi.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Bilgisayar Bilgisi</span></div></a>
+    <a href="04-networking.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">Networking</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

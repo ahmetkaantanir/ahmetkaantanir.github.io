@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Güvenliği | Siber Güvenlik Rehberi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
+
+<header class="header">
+  <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="06-web-teknolojileri.html">Web</a><a href="07-web-guvenligi.html" class="active">Web Güvenliği</a><a href="08-penetration-testing.html">Pentest</a></nav>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
+</header>
+
+<nav class="mobile-nav">
+  <a href="../index.html">🏠 Ana Sayfa</a>
+  <a href="01-temel-kavramlar.html">🛡️ Temel Kavramlar</a>
+  <a href="02-bilgisayar-bilgisi.html">💻 Bilgisayar Bilgisi</a>
+  <a href="03-isletim-sistemleri.html">🖥️ İşletim Sistemleri</a>
+  <a href="04-networking.html">🌐 Networking</a>
+  <a href="05-programlama.html">👨‍💻 Programlama</a>
+  <a href="06-web-teknolojileri.html">🌍 Web Teknolojileri</a>
+  <a href="07-web-guvenligi.html">🕷️ Web Güvenliği</a>
+  <a href="08-penetration-testing.html">🎯 Penetration Testing</a>
+  <a href="09-adli-bilisim.html">🔬 Adli Bilişim</a>
+  <a href="10-malware-analizi.html">🦠 Malware Analizi</a>
+  <a href="11-sosyal-muhendislik.html">🎭 Sosyal Mühendislik</a>
+  <a href="12-kriptografi.html">🔑 Kriptografi</a>
+  <a href="13-bulut-guvenligi.html">☁️ Bulut Güvenliği</a>
+  <a href="14-mobil-guvenlik.html">📱 Mobil Güvenlik</a>
+  <a href="15-kablosuz-ag.html">📶 Kablosuz Ağ</a>
+  <a href="16-ctf-pratik.html">🏁 CTF &amp; Pratik</a>
+  <a href="17-kariyer.html">💼 Kariyer</a>
+  <a href="18-sertifikalar.html">📜 Sertifikalar</a>
+  <a href="19-arac-kutuphanesi.html">🧰 Araç Kütüphanesi</a>
+  <a href="20-kaynaklar.html">📚 Kaynaklar</a>
+</nav>
+
+<main class="page-content">
+<div class="container">
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Ana Sayfa</a> <span>/</span> <span>Web Güvenliği</span></div>
+    <div class="page-title-row">
+      <div class="page-icon bg-red">🕷️</div>
+      <h1>7 — Web Uygulama Güvenliği</h1>
+    </div>
+    <p class="page-desc">SQL Injection, XSS, CSRF, IDOR ve OWASP Top 10 — web uygulamalarındaki en kritik güvenlik açıkları.</p>
+  </div>
+
+  <div class="info-box warning fade-in">
+    <h4>⚠️ Yasal Uyarı</h4>
+    <p>Bu bilgiler yalnızca eğitim amaçlıdır. İzinsiz sistemlere saldırmak yasadışıdır. Yalnızca kendi lab ortamlarınızda veya izinli pentest kapsamında uygulayın.</p>
+  </div>
+
+  <h3 class="section-title fade-in">💉 SQL Injection</h3>
+  <div class="card fade-in">
+    <p class="card-desc">Kullanıcı girdisi ile SQL sorgularını manipüle etme saldırısıdır. Veritabanı verilerine yetkisiz erişim, veri sızıntısı, hatta sunucu kontrolü ele geçirilebilir.</p>
+    <div class="code-block"><div class="code-label">SQL Injection Örneği</div><pre><code># Normal giriş
+SELECT * FROM users WHERE username='admin' AND password='1234'
+
+# SQL Injection ile bypass
+SELECT * FROM users WHERE username='admin'--' AND password='herhangi'
+# -- işareti sonrasını yorum yapar, şifre kontrolü atlanır
+
+# UNION tabanlı saldırı
+' UNION SELECT username, password FROM users--</code></pre></div>
+    <div class="info-box tip"><h4>🛡️ Korunma</h4><p>Prepared statements (parameterized queries) kullanın. ORM araçlarını tercih edin. Input validation ve WAF (Web Application Firewall) uygulayın.</p></div>
+  </div>
+
+  <h3 class="section-title fade-in">📜 XSS (Cross-Site Scripting)</h3>
+  <div class="card fade-in">
+    <p class="card-desc">Web sayfalarına kötü amaçlı JavaScript kodu enjekte etme saldırısıdır. Kullanıcıların cookie'lerini çalabilir, oturum ele geçirebilir ve sayfa içeriğini değiştirebilir.</p>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><h4>Reflected XSS</h4><span class="accordion-arrow">▼</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Zararlı script URL parametresinde taşınır ve sayfa yanıtında yansıtılır. Kurban, özel hazırlanmış linke tıkladığında çalışır. Örnek: <code>search?q=&lt;script&gt;alert('XSS')&lt;/script&gt;</code></p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><h4>Stored XSS</h4><span class="accordion-arrow">▼</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Zararlı script veritabanına kaydedilir ve sayfayı ziyaret eden herkesi etkiler. Forum yorumları, profil açıklamaları gibi alanlarda görülür. En tehlikeli XSS türüdür.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><h4>DOM-based XSS</h4><span class="accordion-arrow">▼</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Saldırı sunucu yanıtında değil, istemci tarafı JavaScript'te gerçekleşir. <code>document.location</code>, <code>document.URL</code>, <code>innerHTML</code> gibi kaynaklar üzerinden tetiklenir.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-title fade-in">🔄 CSRF (Cross-Site Request Forgery)</h3>
+  <div class="card fade-in">
+    <p class="card-desc">Kullanıcının oturumunu kullanarak, kullanıcının bilgisi dışında istek göndermektir. Kurban bir siteye giriş yapmışken, saldırganın hazırladığı sayfayı ziyaret ettiğinde oturum bilgileri ile istek gönderilir.</p>
+    <div class="info-box tip"><h4>🛡️ Korunma</h4><p>CSRF token kullanın, SameSite cookie özelliğini aktifleştirin, Referer/Origin header kontrolü yapın.</p></div>
+  </div>
+
+  <h3 class="section-title fade-in">🔓 IDOR (Insecure Direct Object Reference)</h3>
+  <div class="card fade-in">
+    <p class="card-desc">URL veya parametre üzerindeki nesne referanslarını değiştirerek başka kullanıcıların verilerine erişme güvenlik açığıdır.</p>
+    <div class="code-block"><div class="code-label">IDOR Örneği</div><pre><code># Kendi profiliniz
+GET /api/users/123/profile
+
+# Başka kullanıcının profiline erişim (IDOR!)
+GET /api/users/124/profile
+GET /api/users/125/profile</code></pre></div>
+  </div>
+
+  <h3 class="section-title fade-in">📋 OWASP Top 10 (2021)</h3>
+  <div class="styled-list fade-in">
+    <ul>
+      <li><strong>A01 — Broken Access Control:</strong> Yetkisiz kaynaklara erişim</li>
+      <li><strong>A02 — Cryptographic Failures:</strong> Şifreleme hataları ve zayıf algoritmalar</li>
+      <li><strong>A03 — Injection:</strong> SQL, NoSQL, OS, LDAP injection</li>
+      <li><strong>A04 — Insecure Design:</strong> Güvenli olmayan tasarım kalıpları</li>
+      <li><strong>A05 — Security Misconfiguration:</strong> Yanlış güvenlik yapılandırması</li>
+      <li><strong>A06 — Vulnerable Components:</strong> Bilinen açıklara sahip bileşenler</li>
+      <li><strong>A07 — Auth Failures:</strong> Kimlik doğrulama ve oturum yönetim hataları</li>
+      <li><strong>A08 — Software Integrity:</strong> Yazılım ve veri bütünlüğü hataları</li>
+      <li><strong>A09 — Logging Failures:</strong> Güvenlik loglaması ve izleme eksiklikleri</li>
+      <li><strong>A10 — SSRF:</strong> Server-Side Request Forgery</li>
+    </ul>
+  </div>
+
+  <div class="page-nav fade-in">
+    <a href="06-web-teknolojileri.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Web Teknolojileri</span></div></a>
+    <a href="08-penetration-testing.html" class="next"><span class="nav-arrow">→</span><div><span class="nav-label">Sonraki</span><span class="nav-title">Penetration Testing</span></div></a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer"><p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p></footer>
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>
