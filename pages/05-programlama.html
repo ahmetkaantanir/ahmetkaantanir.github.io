@@ -10,13 +10,30 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
 
 <header class="header">
   <a href="../index.html" class="header-logo"><div class="logo-icon">🛡️</div><div><h1>CyberSec Rehberi</h1><span class="subtitle">Siber Güvenlik Yol Haritası</span></div></a>
-  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="01-temel-kavramlar.html">Temel Kavramlar</a><a href="04-networking.html">Networking</a><a href="05-programlama.html" class="active">Programlama</a></nav>
+  <nav class="header-nav"><a href="../index.html">Ana Sayfa</a><a href="01-temel-kavramlar.html">Temel Kavramlar</a><a href="04-networking.html">Networking</a><a href="05-programlama.html" class="active">Programlama</a></nav>  <button class="search-toggle" aria-label="Ara"><span class="search-icon">🔍</span> Ara <kbd>Ctrl+K</kbd></button>
+
   <button class="menu-toggle" aria-label="Menü">☰</button>
 </header>
+
+<!-- Search Overlay -->
+<div class="search-overlay">
+  <div class="search-container">
+    <div class="search-header">
+      <span class="search-icon-lg">🔍</span>
+      <input type="text" class="search-input" placeholder="Konu, araç veya kavram ara..." autocomplete="off" maxlength="100">
+      <button class="search-close">ESC</button>
+    </div>
+    <div class="search-body">
+      <span class="search-count"></span>
+      <div class="search-results"><div class="search-empty">Aramak istediğiniz konuyu yazın...</div></div>
+    </div>
+  </div>
+</div>
 
 <nav class="mobile-nav">
   <a href="../index.html">🏠 Ana Sayfa</a>
@@ -52,6 +69,7 @@
       <h1>5 — Programlama Dilleri</h1>
     </div>
     <p class="page-desc">Python, C, JavaScript ve Bash — siber güvenlikte en çok kullanılan programlama dilleri ve kullanım alanları.</p>
+    <button class="bookmark-btn" data-page="05" title="Yer İşareti">🔖</button>
   </div>
 
   <div class="info-box tip fade-in">
@@ -150,7 +168,21 @@ grep "Failed password" $LOG_FILE | \
 
 echo "============================================="
 echo "[*] Analiz tamamlandı."</code></pre>
+  </div>  <div class="comment-section fade-in" data-page="05">
+    <div class="comment-section-header"><h3>💬 Yorumlar <span class="comment-badge"><span class="comment-count">0</span></span></h3></div>
+    <form class="comment-form">
+      <div class="comment-form-row">
+        <input type="text" class="comment-name" placeholder="Adınız..." maxlength="50" required>
+        <div class="star-rating">
+          <span class="star" data-value="1">☆</span><span class="star" data-value="2">☆</span><span class="star" data-value="3">☆</span><span class="star" data-value="4">☆</span><span class="star" data-value="5">☆</span>
+        </div>
+      </div>
+      <textarea class="comment-text" placeholder="Yorumunuzu yazın..." maxlength="1000" required></textarea>
+      <button type="submit" class="comment-submit">Yorum Gönder</button>
+    </form>
+    <div class="comment-list"></div>
   </div>
+
 
   <div class="page-nav fade-in">
     <a href="04-networking.html" class="prev"><span class="nav-arrow">←</span><div><span class="nav-label">Önceki</span><span class="nav-title">Networking</span></div></a>

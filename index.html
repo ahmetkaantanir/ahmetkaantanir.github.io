@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="cyber-bg"><div class="grid-lines"></div><div class="glow-orb"></div><div class="glow-orb"></div><div class="glow-orb"></div></div>
 
 <header class="header">
@@ -22,8 +23,24 @@
     <a href="index.html" class="active">Ana Sayfa</a>
     <a href="pages/01-temel-kavramlar.html">Başla</a>
   </nav>
+  <button class="search-toggle" aria-label="Ara"><span class="search-icon">🔍</span> Ara <kbd>Ctrl+K</kbd></button>
   <button class="menu-toggle" aria-label="Menü">☰</button>
 </header>
+
+<!-- Search Overlay -->
+<div class="search-overlay">
+  <div class="search-container">
+    <div class="search-header">
+      <span class="search-icon-lg">🔍</span>
+      <input type="text" class="search-input" placeholder="Konu, araç veya kavram ara..." autocomplete="off" maxlength="100">
+      <button class="search-close">ESC</button>
+    </div>
+    <div class="search-body">
+      <span class="search-count"></span>
+      <div class="search-results"><div class="search-empty">Aramak istediğiniz konuyu yazın...</div></div>
+    </div>
+  </div>
+</div>
 
 <nav class="mobile-nav">
   <a href="index.html">🏠 Ana Sayfa</a>
@@ -64,121 +81,121 @@
   </section>
 
   <div class="section-grid">
-    <div class="section-card accent-cyan fade-in" data-href="pages/01-temel-kavramlar.html">
+    <div class="section-card accent-cyan fade-in" data-href="pages/01-temel-kavramlar.html" data-page="01">
       <div class="card-top"><div class="card-number">01</div><h3>Temel Kavramlar</h3></div>
       <p>Siber güvenlik, bilgi güvenliği, CIA Triad ve hacker türleri. Temeli sağlam atın.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-cyan">CIA Triad</span><span class="tag tag-purple">Hacker Türleri</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-green fade-in" data-href="pages/02-bilgisayar-bilgisi.html">
+    <div class="section-card accent-green fade-in" data-href="pages/02-bilgisayar-bilgisi.html" data-page="02">
       <div class="card-top"><div class="card-number">02</div><h3>Temel Bilgisayar Bilgisi</h3></div>
       <p>CPU, RAM, HDD, SSD, BIOS, UEFI ve dosya sistemleri. Donanım temellerini öğrenin.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-green">Donanım</span><span class="tag tag-blue">Dosya Sistemleri</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-purple fade-in" data-href="pages/03-isletim-sistemleri.html">
+    <div class="section-card accent-purple fade-in" data-href="pages/03-isletim-sistemleri.html" data-page="03">
       <div class="card-top"><div class="card-number">03</div><h3>İşletim Sistemleri</h3></div>
       <p>Windows, Linux ve Kali Linux. Temel komutlar ve güvenlik araçları.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-purple">Linux</span><span class="tag tag-blue">Windows</span><span class="tag tag-red">Kali</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-orange fade-in" data-href="pages/04-networking.html">
+    <div class="section-card accent-orange fade-in" data-href="pages/04-networking.html" data-page="04">
       <div class="card-top"><div class="card-number">04</div><h3>Networking</h3></div>
       <p>IP, DNS, DHCP, TCP/UDP, protokoller ve ağ analiz araçları.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-orange">Protokoller</span><span class="tag tag-cyan">Wireshark</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-blue fade-in" data-href="pages/05-programlama.html">
+    <div class="section-card accent-blue fade-in" data-href="pages/05-programlama.html" data-page="05">
       <div class="card-top"><div class="card-number">05</div><h3>Programlama</h3></div>
       <p>Python, C, JavaScript, Bash. Exploit yazma ve otomasyon.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-green">Python</span><span class="tag tag-orange">Bash</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-pink fade-in" data-href="pages/06-web-teknolojileri.html">
+    <div class="section-card accent-pink fade-in" data-href="pages/06-web-teknolojileri.html" data-page="06">
       <div class="card-top"><div class="card-number">06</div><h3>Web Teknolojileri</h3></div>
       <p>HTML, CSS, JavaScript, HTTP request yapısı. Web'in temelleri.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-pink">HTML/CSS</span><span class="tag tag-orange">HTTP</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-red fade-in" data-href="pages/07-web-guvenligi.html">
+    <div class="section-card accent-red fade-in" data-href="pages/07-web-guvenligi.html" data-page="07">
       <div class="card-top"><div class="card-number">07</div><h3>Web Güvenliği</h3></div>
       <p>SQL Injection, XSS, CSRF, IDOR, File Upload. OWASP Top 10.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-red">SQLi</span><span class="tag tag-orange">XSS</span><span class="tag tag-purple">OWASP</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-cyan fade-in" data-href="pages/08-penetration-testing.html">
+    <div class="section-card accent-cyan fade-in" data-href="pages/08-penetration-testing.html" data-page="08">
       <div class="card-top"><div class="card-number">08</div><h3>Penetration Testing</h3></div>
       <p>Keşif, tarama, exploitation, yetki yükseltme, raporlama. Nmap, Metasploit, Burp Suite.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-cyan">Nmap</span><span class="tag tag-red">Metasploit</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-purple fade-in" data-href="pages/09-adli-bilisim.html">
+    <div class="section-card accent-purple fade-in" data-href="pages/09-adli-bilisim.html" data-page="09">
       <div class="card-top"><div class="card-number">09</div><h3>Adli Bilişim</h3></div>
       <p>Adli kopya, disk analizi, log inceleme, veri kurtarma. Autopsy, FTK Imager.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-purple">Forensics</span><span class="tag tag-blue">Autopsy</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-red fade-in" data-href="pages/10-malware-analizi.html">
+    <div class="section-card accent-red fade-in" data-href="pages/10-malware-analizi.html" data-page="10">
       <div class="card-top"><div class="card-number">10</div><h3>Malware Analizi</h3></div>
       <p>Trojan, Virus, Worm, Ransomware, Spyware. Ghidra, IDA Pro.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-red">Malware</span><span class="tag tag-purple">Reverse</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-orange fade-in" data-href="pages/11-sosyal-muhendislik.html">
+    <div class="section-card accent-orange fade-in" data-href="pages/11-sosyal-muhendislik.html" data-page="11">
       <div class="card-top"><div class="card-number">11</div><h3>Sosyal Mühendislik</h3></div>
       <p>Phishing, Spear Phishing, Pretexting, Baiting. Psikolojik saldırılar.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-orange">Phishing</span><span class="tag tag-pink">Baiting</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-green fade-in" data-href="pages/12-kriptografi.html">
+    <div class="section-card accent-green fade-in" data-href="pages/12-kriptografi.html" data-page="12">
       <div class="card-top"><div class="card-number">12</div><h3>Kriptografi</h3></div>
       <p>Encryption, hashing, AES, RSA, SHA. Simetrik ve asimetrik şifreleme.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-green">AES</span><span class="tag tag-purple">RSA</span><span class="tag tag-blue">SHA</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-blue fade-in" data-href="pages/13-bulut-guvenligi.html">
+    <div class="section-card accent-blue fade-in" data-href="pages/13-bulut-guvenligi.html" data-page="13">
       <div class="card-top"><div class="card-number">13</div><h3>Bulut Güvenliği</h3></div>
       <p>AWS, Azure, Google Cloud. Paylaşılan sorumluluk modeli.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-orange">AWS</span><span class="tag tag-blue">Azure</span><span class="tag tag-red">GCP</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-pink fade-in" data-href="pages/14-mobil-guvenlik.html">
+    <div class="section-card accent-pink fade-in" data-href="pages/14-mobil-guvenlik.html" data-page="14">
       <div class="card-top"><div class="card-number">14</div><h3>Mobil Güvenlik</h3></div>
       <p>Android ve iOS güvenliği. APK/IPA analizi, Frida, reverse engineering.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-green">Android</span><span class="tag tag-blue">iOS</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-cyan fade-in" data-href="pages/15-kablosuz-ag.html">
+    <div class="section-card accent-cyan fade-in" data-href="pages/15-kablosuz-ag.html" data-page="15">
       <div class="card-top"><div class="card-number">15</div><h3>Kablosuz Ağ Güvenliği</h3></div>
       <p>WPA/WPA2/WPA3 protokolleri ve Aircrack-ng ile WiFi güvenlik testleri.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-cyan">WPA</span><span class="tag tag-red">Aircrack-ng</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-green fade-in" data-href="pages/16-ctf-pratik.html">
+    <div class="section-card accent-green fade-in" data-href="pages/16-ctf-pratik.html" data-page="16">
       <div class="card-top"><div class="card-number">16</div><h3>CTF &amp; Pratik</h3></div>
       <p>Hack The Box, TryHackMe, OWASP WebGoat. Gerçek öğrenme burada olur.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-green">HTB</span><span class="tag tag-red">THM</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-purple fade-in" data-href="pages/17-kariyer.html">
+    <div class="section-card accent-purple fade-in" data-href="pages/17-kariyer.html" data-page="17">
       <div class="card-top"><div class="card-number">17</div><h3>Siber Güvenlik Kariyerleri</h3></div>
       <p>Pentester, Security Analyst, SOC Analyst, Malware Analyst, Forensics Expert.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-purple">Kariyer</span><span class="tag tag-cyan">Meslekler</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-orange fade-in" data-href="pages/18-sertifikalar.html">
+    <div class="section-card accent-orange fade-in" data-href="pages/18-sertifikalar.html" data-page="18">
       <div class="card-top"><div class="card-number">18</div><h3>Sertifikalar</h3></div>
       <p>Security+, CEH, OSCP, CISSP. Kariyerinizi güçlendirin.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-orange">CEH</span><span class="tag tag-red">OSCP</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-cyan fade-in" data-href="pages/19-arac-kutuphanesi.html">
+    <div class="section-card accent-cyan fade-in" data-href="pages/19-arac-kutuphanesi.html" data-page="19">
       <div class="card-top"><div class="card-number">19</div><h3>Araç Kütüphanesi</h3></div>
       <p>Network, Exploitation, Web, Parola Kırma, OSINT araçları koleksiyonu.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-cyan">Nmap</span><span class="tag tag-orange">Burp Suite</span></div><div class="card-arrow">→</div></div>
     </div>
 
-    <div class="section-card accent-green fade-in" data-href="pages/20-kaynaklar.html">
+    <div class="section-card accent-green fade-in" data-href="pages/20-kaynaklar.html" data-page="20">
       <div class="card-top"><div class="card-number">20</div><h3>Kaynaklar</h3></div>
       <p>Öğrenme platformları, kitaplar, YouTube kanalları, topluluklar.</p>
       <div class="card-footer"><div class="card-tags"><span class="tag tag-green">Platformlar</span><span class="tag tag-blue">Kitaplar</span></div><div class="card-arrow">→</div></div>
