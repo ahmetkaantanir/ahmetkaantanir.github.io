@@ -1,128 +1,149 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <defs>
-    <linearGradient id="body" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#8b5cf6"/>
-    </linearGradient>
-    <linearGradient id="belly" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#22d3ee"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
-    </linearGradient>
-    <linearGradient id="fire1" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f59e0b"/>
-      <stop offset="50%" stop-color="#ef4444"/>
-      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="fire2" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#fbbf24"/>
-      <stop offset="60%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="2" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <!-- Neon cyan glow -->
+    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur3"/>
+      <feMerge>
+        <feMergeNode in="blur3"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
-    <filter id="fireGlow">
+    <!-- Intense glow for aura -->
+    <filter id="aura" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="18" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.024  0 0 0 0 0.714  0 0 0 0 0.831  0 0 0 0.6 0" result="colored"/>
+      <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Eye glow -->
+    <filter id="eyeG" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Fire glow -->
+    <filter id="fireG" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
+    <radialGradient id="auraBg" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#06b6d4" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bodyG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c1220"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
   </defs>
 
-  <!-- FIRE BREATH — layered flames -->
-  <path d="M100,44 Q112,32 108,18 Q116,28 114,14 Q120,24 116,10" fill="none" stroke="url(#fire1)" stroke-width="5" stroke-linecap="round" filter="url(#fireGlow)" opacity="0.9"/>
-  <path d="M102,48 Q114,38 112,26 Q118,34 116,22" fill="none" stroke="url(#fire2)" stroke-width="3.5" stroke-linecap="round" filter="url(#fireGlow)" opacity="0.85"/>
-  <path d="M98,42 Q106,34 104,24 Q110,30 108,20" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-  <!-- fire sparks -->
-  <circle cx="112" cy="12" r="2" fill="#f59e0b" opacity="0.7" filter="url(#fireGlow)"/>
-  <circle cx="118" cy="18" r="1.5" fill="#fbbf24" opacity="0.5"/>
-  <circle cx="106" cy="16" r="1.2" fill="#ef4444" opacity="0.6"/>
+  <!-- Background glow aura circle -->
+  <circle cx="128" cy="118" r="100" fill="url(#auraBg)"/>
+  <circle cx="128" cy="118" r="70" fill="none" stroke="#06b6d4" stroke-width="1.5" opacity="0.08"/>
 
-  <!-- TAIL -->
-  <path d="M16,108 C8,100 4,88 10,78 C14,72 20,68 26,66" fill="none" stroke="url(#body)" stroke-width="8" stroke-linecap="round"/>
-  <!-- tail spike -->
-  <polygon points="8,112 16,104 12,96 4,102" fill="url(#body)"/>
+  <!-- === DRAGON BODY — S-curve serpentine coil === -->
 
-  <!-- BODY — big round shape like Linux Tux style -->
-  <ellipse cx="54" cy="82" rx="32" ry="34" fill="url(#body)"/>
-  <!-- belly patch — lighter -->
-  <ellipse cx="56" cy="88" rx="18" ry="22" fill="url(#belly)" opacity="0.15"/>
+  <!-- Lower coil / tail end -->
+  <path d="M90,230 C60,220 45,200 50,180 C55,162 75,155 95,160 C115,165 125,178 120,195 C115,210 100,218 90,230Z" 
+        fill="url(#bodyG)" stroke="#06b6d4" stroke-width="2.5" filter="url(#neon)"/>
 
-  <!-- NECK -->
-  <path d="M52,50 C46,56 40,64 42,72 C44,64 50,56 58,50Z" fill="url(#body)"/>
-  <path d="M58,48 C62,54 64,62 62,72 C60,62 56,54 52,50Z" fill="url(#body)"/>
+  <!-- Tail tip with spike -->
+  <path d="M90,230 C85,238 72,244 64,240 C68,236 74,232 78,226" 
+        fill="none" stroke="#06b6d4" stroke-width="2.5" filter="url(#neon)" stroke-linecap="round"/>
+  <polygon points="60,242 52,250 66,244" fill="#06b6d4" opacity="0.8" filter="url(#neon)"/>
 
-  <!-- HEAD — prominent dragon head -->
-  <path d="M34,52 C28,44 30,32 40,26 C48,22 60,22 70,28 C80,34 86,44 84,52 C82,58 76,62 68,62 C58,62 46,60 38,56 C34,54 34,52 34,52Z" fill="url(#body)"/>
+  <!-- Middle body coil -->
+  <path d="M120,195 C130,175 155,160 165,145 C175,130 170,112 155,105 C140,98 120,105 110,118 C100,131 105,148 95,160" 
+        fill="url(#bodyG)" stroke="#06b6d4" stroke-width="2.5" filter="url(#neon)"/>
 
-  <!-- Snout/muzzle — elongated -->
-  <path d="M76,38 C84,34 94,36 98,44 C96,50 90,52 82,50 C76,48 74,44 76,38Z" fill="url(#body)"/>
+  <!-- Upper body to neck -->
+  <path d="M155,105 C165,90 168,72 160,58 C152,46 138,42 128,48" 
+        fill="none" stroke="#06b6d4" stroke-width="3" filter="url(#neon)" stroke-linecap="round"/>
 
-  <!-- BELLY SCALES — visible lighter patches -->
-  <path d="M42,76 C46,74 52,74 56,76" fill="none" stroke="#22d3ee" stroke-width="1.5" opacity="0.2" stroke-linecap="round"/>
-  <path d="M40,82 C46,80 54,80 58,82" fill="none" stroke="#22d3ee" stroke-width="1.5" opacity="0.18" stroke-linecap="round"/>
-  <path d="M42,88 C47,86 53,86 58,88" fill="none" stroke="#22d3ee" stroke-width="1.5" opacity="0.15" stroke-linecap="round"/>
-  <path d="M44,94 C48,92 52,92 56,94" fill="none" stroke="#22d3ee" stroke-width="1.5" opacity="0.12" stroke-linecap="round"/>
+  <!-- Belly texture lines on coils -->
+  <path d="M70,185 C80,180 90,180 100,185" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.15" stroke-linecap="round"/>
+  <path d="M65,192 C78,187 92,187 102,192" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.12" stroke-linecap="round"/>
+  <path d="M68,199 C80,194 92,194 100,199" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.1" stroke-linecap="round"/>
+  <path d="M130,155 C138,150 148,150 155,155" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.12" stroke-linecap="round"/>
+  <path d="M135,145 C142,140 152,140 158,145" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.1" stroke-linecap="round"/>
 
-  <!-- BACK SPINES — 5 big spikes along back -->
-  <polygon points="38,54 28,36 44,48" fill="#8b5cf6"/>
-  <polygon points="42,48 30,26 50,42" fill="#8b5cf6"/>
-  <polygon points="48,42 38,18 54,36" fill="#7c3aed"/>
-  <polygon points="52,38 46,14 58,32" fill="#7c3aed"/>
-  <polygon points="56,34 52,10 62,28" fill="#6d28d9"/>
+  <!-- Scale pattern -->
+  <circle cx="82" cy="175" r="3" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.12"/>
+  <circle cx="95" cy="170" r="3" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.1"/>
+  <circle cx="105" cy="178" r="2.5" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.1"/>
+  <circle cx="140" cy="130" r="3" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.1"/>
+  <circle cx="155" cy="120" r="2.5" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.1"/>
 
-  <!-- HORNS — two big horns on head top -->
-  <polygon points="46,28 36,6 52,24" fill="#a78bfa"/>
-  <polygon points="58,24 56,2 64,20" fill="#a78bfa"/>
-  <!-- horn highlights -->
-  <line x1="40" y1="16" x2="48" y2="26" stroke="#c4b5fd" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-  <line x1="56" y1="8" x2="60" y2="22" stroke="#c4b5fd" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+  <!-- === HEAD === -->
+  <path d="M128,48 C118,42 105,38 96,44 C86,50 82,62 88,74 C92,82 102,88 112,86 C120,84 128,76 132,66 C136,56 134,48 128,48Z" 
+        fill="url(#bodyG)" stroke="#06b6d4" stroke-width="2.5" filter="url(#neon)"/>
 
-  <!-- EYE — large, glowing, with slit pupil -->
-  <ellipse cx="68" cy="40" rx="9" ry="8" fill="#0a0e17"/>
-  <ellipse cx="68" cy="40" rx="7" ry="6.5" fill="#06b6d4" filter="url(#glow)"/>
-  <ellipse cx="69" cy="40" rx="2" ry="6" fill="#0a0e17"/>
-  <!-- eye shine -->
-  <circle cx="65" cy="37" r="2.5" fill="#fff" opacity="0.95"/>
-  <circle cx="71" cy="43" r="1" fill="#fff" opacity="0.4"/>
+  <!-- Snout/jaw — open mouth -->
+  <path d="M88,74 C80,78 72,72 70,64 C68,58 72,52 78,50" 
+        fill="url(#bodyG)" stroke="#06b6d4" stroke-width="2.5" filter="url(#neon)" stroke-linecap="round"/>
+
+  <!-- Upper jaw -->
+  <path d="M96,44 C88,42 78,44 72,50 C68,54 68,60 70,64" 
+        fill="none" stroke="#06b6d4" stroke-width="2.5" filter="url(#neon)" stroke-linecap="round"/>
+
+  <!-- TEETH — upper jaw -->
+  <line x1="78" y1="52" x2="76" y2="58" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" filter="url(#neon)"/>
+  <line x1="82" y1="50" x2="80" y2="57" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" filter="url(#neon)"/>
+  <line x1="87" y1="48" x2="84" y2="55" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round" filter="url(#neon)"/>
+  <line x1="74" y1="55" x2="73" y2="60" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" filter="url(#neon)"/>
+
+  <!-- TEETH — lower jaw -->
+  <line x1="76" y1="66" x2="75" y2="60" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round" filter="url(#neon)"/>
+  <line x1="80" y1="70" x2="79" y2="64" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round" filter="url(#neon)"/>
+  <line x1="84" y1="72" x2="82" y2="66" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" filter="url(#neon)"/>
+
+  <!-- Nostril -->
+  <ellipse cx="73" cy="50" rx="2" ry="1.5" fill="#06b6d4" opacity="0.5"/>
+
+  <!-- === EYE — large glowing cyan === -->
+  <ellipse cx="106" cy="56" rx="8" ry="7" fill="#0a0e17"/>
+  <ellipse cx="106" cy="56" rx="6.5" ry="5.5" fill="#06b6d4" filter="url(#eyeG)"/>
+  <ellipse cx="107" cy="56" rx="2" ry="5" fill="#0a0e17"/>
+  <circle cx="103" cy="53" r="2.2" fill="#fff" opacity="0.95"/>
+  <circle cx="109" cy="59" r="1" fill="#fff" opacity="0.4"/>
 
   <!-- Brow ridge -->
-  <path d="M58,34 C62,30 72,30 80,36" fill="none" stroke="#0a0e17" stroke-width="3" opacity="0.3" stroke-linecap="round"/>
+  <path d="M96,48 C100,44 110,44 118,50" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.5" stroke-linecap="round" filter="url(#neon)"/>
 
-  <!-- NOSTRILS -->
-  <ellipse cx="92" cy="40" rx="2.5" ry="2" fill="#0a0e17" opacity="0.6"/>
-  <ellipse cx="92" cy="46" rx="2" ry="1.5" fill="#0a0e17" opacity="0.4"/>
-  <!-- nostril smoke wisps -->
-  <path d="M94,38 Q98,36 96,32" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.2" stroke-linecap="round"/>
+  <!-- === HORNS === -->
+  <path d="M110,42 L118,18 L120,40" fill="url(#bodyG)" stroke="#06b6d4" stroke-width="2" filter="url(#neon)" stroke-linejoin="round"/>
+  <path d="M122,44 L136,22 L130,42" fill="url(#bodyG)" stroke="#06b6d4" stroke-width="2" filter="url(#neon)" stroke-linejoin="round"/>
+  <!-- horn accent lines -->
+  <line x1="114" y1="30" x2="116" y2="40" stroke="#22d3ee" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+  <line x1="130" y1="32" x2="128" y2="42" stroke="#22d3ee" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
 
-  <!-- MOUTH LINE -->
-  <path d="M78,52 C84,54 92,52 98,46" fill="none" stroke="#0a0e17" stroke-width="2" opacity="0.35" stroke-linecap="round"/>
+  <!-- === BACK SPINES along neck and body === -->
+  <polygon points="130,52 140,36 136,54" fill="url(#bodyG)" stroke="#06b6d4" stroke-width="1.5" filter="url(#neon)"/>
+  <polygon points="138,60 150,44 144,62" fill="url(#bodyG)" stroke="#06b6d4" stroke-width="1.5" filter="url(#neon)"/>
+  <polygon points="150,72 164,56 156,74" fill="url(#bodyG)" stroke="#06b6d4" stroke-width="1.5" filter="url(#neon)"/>
+  <polygon points="160,86 174,70 164,90" fill="url(#bodyG)" stroke="#06b6d4" stroke-width="1.5" filter="url(#neon)"/>
+  <polygon points="164,100 178,86 168,104" fill="url(#bodyG)" stroke="#06b6d4" stroke-width="1.2" filter="url(#neon)"/>
 
-  <!-- JAW underline -->
-  <path d="M38,56 C48,64 62,66 76,60 C82,56 88,52 94,48" fill="none" stroke="url(#body)" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
+  <!-- === SMALL CLAWS visible on front === -->
+  <path d="M105,90 C98,96 92,104 88,108" fill="none" stroke="#06b6d4" stroke-width="2" filter="url(#neon)" stroke-linecap="round"/>
+  <line x1="88" y1="108" x2="84" y2="112" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" filter="url(#neon)"/>
+  <line x1="88" y1="108" x2="90" y2="114" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" filter="url(#neon)"/>
+  <line x1="88" y1="108" x2="86" y2="115" stroke="#22d3ee" stroke-width="1.2" stroke-linecap="round" filter="url(#neon)"/>
 
-  <!-- ARMS/CLAWS — small front arms like Tux -->
-  <path d="M36,78 C30,82 26,88 28,92 C30,88 34,84 38,82Z" fill="url(#body)" opacity="0.9"/>
-  <path d="M72,78 C78,82 82,88 80,92 C78,88 74,84 70,82Z" fill="url(#body)" opacity="0.9"/>
-  <!-- claw tips -->
-  <circle cx="27" cy="93" r="2" fill="#a78bfa" opacity="0.7"/>
-  <circle cx="81" cy="93" r="2" fill="#a78bfa" opacity="0.7"/>
+  <!-- === FIRE / ENERGY from mouth === -->
+  <path d="M70,58 C58,52 48,42 44,30 C50,38 56,36 52,24 C58,34 64,32 60,20 C66,30 70,28 68,18" 
+        fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round" filter="url(#fireG)" opacity="0.9"/>
+  <path d="M72,60 C62,54 54,46 50,36 C56,42 60,40 56,30 C62,38 66,36 64,26" 
+        fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" filter="url(#fireG)" opacity="0.8"/>
+  <path d="M74,56 C66,50 60,44 56,34 C60,40 64,38 62,30" 
+        fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" filter="url(#fireG)" opacity="0.5"/>
 
-  <!-- FEET — stubby feet at bottom -->
-  <ellipse cx="40" cy="114" rx="12" ry="6" fill="url(#body)" opacity="0.9"/>
-  <ellipse cx="68" cy="114" rx="12" ry="6" fill="url(#body)" opacity="0.9"/>
-  <!-- toe claws -->
-  <circle cx="30" cy="114" r="2" fill="#a78bfa" opacity="0.6"/>
-  <circle cx="36" cy="116" r="1.8" fill="#a78bfa" opacity="0.6"/>
-  <circle cx="78" cy="114" r="2" fill="#a78bfa" opacity="0.6"/>
-  <circle cx="72" cy="116" r="1.8" fill="#a78bfa" opacity="0.6"/>
-
-  <!-- WING hint — folded wing behind body -->
-  <path d="M24,62 C14,50 12,36 18,28 C22,34 24,44 26,56Z" fill="#8b5cf6" opacity="0.3"/>
-  <path d="M22,66 C10,56 6,42 10,32 C16,40 20,52 24,62Z" fill="#6d28d9" opacity="0.2"/>
-
-  <!-- SCALE TEXTURE on head -->
-  <circle cx="56" cy="44" r="2.5" fill="#22d3ee" opacity="0.1"/>
-  <circle cx="62" cy="50" r="2.5" fill="#22d3ee" opacity="0.08"/>
-  <circle cx="50" cy="50" r="2" fill="#a78bfa" opacity="0.08"/>
-  <circle cx="72" cy="50" r="2" fill="#22d3ee" opacity="0.08"/>
+  <!-- Fire sparks -->
+  <circle cx="46" cy="28" r="2.5" fill="#f59e0b" opacity="0.7" filter="url(#fireG)"/>
+  <circle cx="54" cy="22" r="2" fill="#fbbf24" opacity="0.6" filter="url(#fireG)"/>
+  <circle cx="62" cy="16" r="1.8" fill="#ef4444" opacity="0.5" filter="url(#fireG)"/>
+  <circle cx="68" cy="14" r="1.5" fill="#f59e0b" opacity="0.4"/>
+  <circle cx="42" cy="34" r="1.5" fill="#fbbf24" opacity="0.5"/>
 </svg>
