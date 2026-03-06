@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoImg = document.querySelector('.logo-icon img');
   if (logoImg) {
     const imgBase = isSubPage ? '../img/' : 'img/';
-    const logos = [imgBase+'icon-shield.svg', imgBase+'icon-terminal.svg', imgBase+'icon-eye.svg'];
+    const logos = [imgBase+'icon-shield.svg', imgBase+'icon-skull.svg', imgBase+'icon-fingerprint.svg'];
     let logoIdx = 0;
     setInterval(() => {
       logoIdx = (logoIdx + 1) % logos.length;

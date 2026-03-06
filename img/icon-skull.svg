@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="gl">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="gl2">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Skull outline -->
+  <path d="M64,14 C38,14 20,34 20,58 C20,72 26,84 36,90 L36,106 C36,110 40,114 44,114 L84,114 C88,114 92,110 92,106 L92,90 C102,84 108,72 108,58 C108,34 90,14 64,14Z" fill="#0a0e17" stroke="url(#sg)" stroke-width="3" filter="url(#gl)"/>
+  <!-- Skull inner glow line -->
+  <path d="M64,22 C42,22 28,38 28,58 C28,70 32,80 40,86" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.15"/>
+  <path d="M64,22 C86,22 100,38 100,58 C100,70 96,80 88,86" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.15"/>
+  <!-- Left eye socket -->
+  <path d="M42,50 L52,42 L62,50 L52,62 Z" fill="#0a0e17" stroke="url(#sg)" stroke-width="2.5" filter="url(#gl)"/>
+  <path d="M48,50 L52,46 L56,50 L52,56 Z" fill="#06b6d4" filter="url(#gl2)" opacity="0.9"/>
+  <!-- Right eye socket -->
+  <path d="M66,50 L76,42 L86,50 L76,62 Z" fill="#0a0e17" stroke="url(#sg)" stroke-width="2.5" filter="url(#gl)"/>
+  <path d="M72,50 L76,46 L80,50 L76,56 Z" fill="#8b5cf6" filter="url(#gl2)" opacity="0.9"/>
+  <!-- Nose -->
+  <polygon points="60,68 64,62 68,68" fill="none" stroke="url(#sg)" stroke-width="2" filter="url(#gl)"/>
+  <!-- Teeth jaw -->
+  <line x1="36" y1="96" x2="92" y2="96" stroke="url(#sg)" stroke-width="2" filter="url(#gl)"/>
+  <line x1="44" y1="90" x2="44" y2="106" stroke="url(#sg)" stroke-width="1.5" opacity="0.6"/>
+  <line x1="54" y1="90" x2="54" y2="106" stroke="url(#sg)" stroke-width="1.5" opacity="0.6"/>
+  <line x1="64" y1="90" x2="64" y2="106" stroke="url(#sg)" stroke-width="1.5" opacity="0.6"/>
+  <line x1="74" y1="90" x2="74" y2="106" stroke="url(#sg)" stroke-width="1.5" opacity="0.6"/>
+  <line x1="84" y1="90" x2="84" y2="106" stroke="url(#sg)" stroke-width="1.5" opacity="0.6"/>
+  <!-- Circuit lines on skull -->
+  <path d="M28,58 L16,58 L16,48 L10,48" fill="none" stroke="#06b6d4" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+  <path d="M100,58 L112,58 L112,48 L118,48" fill="none" stroke="#8b5cf6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+  <path d="M64,14 L64,6 L74,6" fill="none" stroke="#06b6d4" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+  <circle cx="10" cy="48" r="2" fill="#06b6d4" opacity="0.5" filter="url(#gl)"/>
+  <circle cx="118" cy="48" r="2" fill="#8b5cf6" opacity="0.5" filter="url(#gl)"/>
+  <circle cx="74" cy="6" r="2" fill="#06b6d4" opacity="0.5" filter="url(#gl)"/>
+  <!-- Crossbones hint -->
+  <path d="M24,118 L46,100" fill="none" stroke="url(#sg)" stroke-width="2" opacity="0.25" stroke-linecap="round"/>
+  <path d="M104,118 L82,100" fill="none" stroke="url(#sg)" stroke-width="2" opacity="0.25" stroke-linecap="round"/>
+</svg>
