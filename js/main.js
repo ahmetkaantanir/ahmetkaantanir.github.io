@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ═══════════════════════════════════════
-     COMMENT SYSTEM (localStorage cookies)
+     NOTES SYSTEM (localStorage)
      ═══════════════════════════════════════ */
   const COMMENT_PREFIX = 'cybersec_comments_';
   const commentSection = document.querySelector('.comment-section');
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const comments = getComments();
       commentCounter.textContent = comments.length;
       if (!comments.length) {
-        commentList.innerHTML = '<div class="no-comments"><div class="no-comments-icon">💬</div><p>Henüz yorum yok</p><span>İlk yorumu sen yap!</span></div>';
+        commentList.innerHTML = '<div class="no-comments"><div class="no-comments-icon">�</div><p>Henüz not yok</p><span>İlk notu sen ekle!</span></div>';
         return;
       }
       commentList.innerHTML = comments.map((c, i) => {
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
           comms.splice(+btn.dataset.index, 1);
           saveComments(comms);
           renderComments();
-          showToast('🗑️ Yorum silindi');
+          showToast('🗑️ Not silindi');
         });
       });
     }
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedRating = 0;
       if (ratingBox) ratingBox.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
       renderComments();
-      showToast('✅ Yorumunuz eklendi!');
+      showToast('✅ Notunuz eklendi!');
     });
 
     renderComments();
