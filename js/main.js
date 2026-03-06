@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ═══════════ SEARCH DATA ═══════════ */
   const searchData = [
-    { id:'01', title:'Temel Kavramlar', desc:'Siber güvenlik, bilgi güvenliği, CIA Triad ve hacker türleri.', keywords:'cia triad white hat black hat grey hat güvenlik siber temel kavram gizlilik bütünlük erişilebilirlik', url:'01-temel-kavramlar.html', icon:'🛡️', color:'var(--accent-cyan)' },
+    { id:'01', title:'Temel Kavramlar', desc:'Siber güvenlik, bilgi güvenliği, CIA Triad ve hacker türleri.', keywords:'cia triad white hat black hat grey hat güvenlik siber temel kavram gizlilik bütünlük erişilebilirlik', url:'01-temel-kavramlar.html', icon:'�', color:'var(--accent-cyan)' },
     { id:'02', title:'Temel Bilgisayar Bilgisi', desc:'CPU, RAM, HDD, SSD, BIOS, UEFI ve dosya sistemleri.', keywords:'cpu ram hdd ssd bios uefi ntfs fat32 ext4 donanım bilgisayar hardware', url:'02-bilgisayar-bilgisi.html', icon:'💻', color:'var(--accent-green)' },
     { id:'03', title:'İşletim Sistemleri', desc:'Windows, Linux ve Kali Linux. Temel komutlar ve güvenlik araçları.', keywords:'windows linux kali ubuntu terminal komut registry işletim sistemi powershell bash chmod', url:'03-isletim-sistemleri.html', icon:'🖥️', color:'var(--accent-purple)' },
     { id:'04', title:'Networking', desc:'IP, DNS, DHCP, TCP/UDP, protokoller ve ağ analiz araçları.', keywords:'ip dns dhcp tcp udp subnetting wireshark ağ network protokol router switch mac address osi model', url:'04-networking.html', icon:'🌐', color:'var(--accent-orange)' },
