@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kapsamlı Siber Güvenlik Eğitim Rehberi - Temel kavramlardan ileri seviyeye kadar tüm konular.">
+  <title>Siber Güvenlik Rehberi | Kapsamlı Eğitim Yol Haritası</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Background Effects -->
+<div class="cyber-bg">
+  <div class="grid-lines"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb"></div>
+</div>
+
+<!-- Sidebar Overlay (mobile) -->
+<div class="sidebar-overlay"></div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header">
+  <a href="#" class="header-logo">
+    <div class="logo-icon">🛡️</div>
+    <div>
+      <h1>CyberSec Rehberi</h1>
+      <span class="subtitle">Siber Güvenlik Yol Haritası</span>
+    </div>
+  </a>
+  <div class="header-right">
+    <div class="progress-container">
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <span class="progress-text">0%</span>
+    </div>
+    <button class="menu-toggle" aria-label="Menü">☰</button>
+  </div>
+</header>
+
+<!-- ===================== SIDEBAR ===================== -->
+<nav class="sidebar">
+  <ul class="sidebar-nav">
+    <li><a href="#giris"><span class="nav-number">1</span> Temel Kavramlar</a></li>
+    <li><a href="#bilgisayar"><span class="nav-number">2</span> Bilgisayar Bilgisi</a></li>
+    <li><a href="#isletim"><span class="nav-number">3</span> İşletim Sistemleri</a></li>
+    <li><a href="#networking"><span class="nav-number">4</span> Networking</a></li>
+    <li><a href="#programlama"><span class="nav-number">5</span> Programlama</a></li>
+    <li><a href="#web-tech"><span class="nav-number">6</span> Web Teknolojileri</a></li>
+    <li><a href="#web-sec"><span class="nav-number">7</span> Web Güvenliği</a></li>
+    <li><a href="#pentest"><span class="nav-number">8</span> Penetration Testing</a></li>
+    <li><a href="#forensics"><span class="nav-number">9</span> Adli Bilişim</a></li>
+    <li><a href="#malware"><span class="nav-number">10</span> Malware Analizi</a></li>
+    <li><a href="#social"><span class="nav-number">11</span> Sosyal Mühendislik</a></li>
+    <li><a href="#crypto"><span class="nav-number">12</span> Kriptografi</a></li>
+    <li><a href="#cloud"><span class="nav-number">13</span> Bulut Güvenliği</a></li>
+    <li><a href="#mobile"><span class="nav-number">14</span> Mobil Güvenlik</a></li>
+    <li><a href="#wireless"><span class="nav-number">15</span> Kablosuz Ağ Güvenliği</a></li>
+    <li><a href="#ctf"><span class="nav-number">16</span> CTF &amp; Pratik</a></li>
+    <li><a href="#kariyer"><span class="nav-number">17</span> Kariyer</a></li>
+    <li><a href="#sertifika"><span class="nav-number">18</span> Sertifikalar</a></li>
+    <li><a href="#araclar"><span class="nav-number">19</span> Araç Kütüphanesi</a></li>
+    <li><a href="#kaynaklar"><span class="nav-number">20</span> Kaynaklar</a></li>
+  </ul>
+</nav>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<main class="main-content">
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-badge">🔒 Kapsamlı Eğitim Rehberi</div>
+    <h2><span class="typing-text"></span><span class="typing-cursor"></span></h2>
+    <p>Sıfırdan ileri seviyeye kadar siber güvenlik dünyasının tüm konularını kapsayan interaktif eğitim yol haritası. 20 ana bölüm, yüzlerce konu.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-number counter" data-target="20" data-suffix="+">0</div>
+        <div class="stat-label">Ana Bölüm</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-number counter" data-target="150" data-suffix="+">0</div>
+        <div class="stat-label">Alt Konu</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-number counter" data-target="50" data-suffix="+">0</div>
+        <div class="stat-label">Araç &amp; Platform</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 1: TEMEL KAVRAMLAR -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="giris" class="content-section section-accent-cyan">
+    <div class="section-header">
+      <div class="section-icon">🛡️</div>
+      <div>
+        <h2>1 — Temel Kavramlar</h2>
+        <p class="section-desc">Siber güvenliğe giriş ve temel terminoloji</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Bu bölüm, siber güvenlik dünyasına adım atarken bilmeniz gereken temel kavramları kapsar. Güvenlik prensiplerinden hacker türlerine kadar her şeyi burada öğreneceksiniz.</p>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div class="card-icon bg-cyan">🔐</div>
+        <h3>Siber Güvenlik Nedir?</h3>
+        <p class="card-desc">Siber güvenlik, bilgisayar sistemlerini, ağları, programları ve verileri dijital saldırılardan, yetkisiz erişimden ve hasardan korumayı amaçlayan uygulamalar ve teknolojiler bütünüdür. Günümüzde her sektörde kritik öneme sahiptir.</p>
+        <div class="tag-list">
+          <span class="tag tag-cyan">Koruma</span>
+          <span class="tag tag-purple">Savunma</span>
+          <span class="tag tag-green">Önleme</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon bg-purple">📋</div>
+        <h3>Bilgi Güvenliği Nedir?</h3>
+        <p class="card-desc">Bilgi güvenliği (Information Security), verilerin gizliliğini, bütünlüğünü ve erişilebilirliğini sağlamak için uygulanan politikalar, prosedürler ve teknik önlemler bütünüdür. Dijital ve fiziksel ortamdaki tüm bilgi varlıklarını kapsar.</p>
+        <div class="tag-list">
+          <span class="tag tag-purple">Politika</span>
+          <span class="tag tag-blue">Prosedür</span>
+          <span class="tag tag-orange">Standart</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CIA Triad -->
+    <div class="info-box tip" style="margin: 2rem 0;">
+      <h4>💡 CIA Triad — Bilgi Güvenliğinin Üç Temel Prensibi</h4>
+      <p>CIA Triad, bilgi güvenliğinin üzerine inşa edildiği üç temel sütundur. Her güvenlik önlemi bu üç prensipten en az birini korumayı hedefler.</p>
+    </div>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-green">🔒</div>
+        <h3>Confidentiality</h3>
+        <p class="card-desc"><strong>Gizlilik</strong> — Bilgiye yalnızca yetkili kişilerin erişebilmesini sağlar. Şifreleme, erişim kontrolleri ve kimlik doğrulama yöntemleri bu prensip kapsamındadır.</p>
+        <div class="tag-list">
+          <span class="tag tag-green">Şifreleme</span>
+          <span class="tag tag-green">Erişim Kontrolü</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">✅</div>
+        <h3>Integrity</h3>
+        <p class="card-desc"><strong>Bütünlük</strong> — Verilerin yetkisiz değişikliklerden korunmasını sağlar. Hash fonksiyonları, dijital imzalar ve sürüm kontrolü ile bütünlük garanti altına alınır.</p>
+        <div class="tag-list">
+          <span class="tag tag-blue">Hash</span>
+          <span class="tag tag-blue">Dijital İmza</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-orange">🌐</div>
+        <h3>Availability</h3>
+        <p class="card-desc"><strong>Erişilebilirlik</strong> — Bilgi ve sistemlerin ihtiyaç duyulduğunda erişilebilir olmasını sağlar. Yedekleme, yük dengeleme ve felaket kurtarma planları bu prensip kapsamındadır.</p>
+        <div class="tag-list">
+          <span class="tag tag-orange">Yedekleme</span>
+          <span class="tag tag-orange">Uptime</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hacker Türleri -->
+    <h3 style="margin: 2.5rem 0 1.5rem; font-size: 1.3rem; color: var(--accent-cyan);">🎭 Hacker Türleri</h3>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <h4>🤍 White Hat (Beyaz Şapka)</h4>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Etik hackerlar olarak bilinen White Hat hackerlar, sistemleri yasal yollarla test ederek güvenlik açıklarını bulur ve raporlar. Şirketlerle sözleşme kapsamında çalışırlar. Bug bounty programlarına katılır, penetrasyon testleri gerçekleştirirler. Amacı sistemi güçlendirmektir.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <h4>🖤 Black Hat (Siyah Şapka)</h4>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Kötü niyetli hackerlar, sistemlere izinsiz erişerek veri çalmak, zarar vermek veya maddi kazanç sağlamak amacıyla hareket ederler. Yasa dışı faaliyetlerde bulunurlar. Zararlı yazılım geliştirme, veri hırsızlığı, fidye saldırıları gibi aktiviteler gerçekleştirirler.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <h4>🩶 Grey Hat (Gri Şapka)</h4>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Gri şapka hackerlar, white ve black hat arasında bir yerde konumlanır. İzinsiz sisteme girebilir ancak zarar verme amacı taşımazlar. Genellikle buldukları açığı sistem sahibine bildirirler, ancak izinsiz giriş yapmış olmaları yasal olarak sorun oluşturabilir.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <h4>👶 Script Kiddie</h4>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Başkalarının yazdığı araçları ve scriptleri kullanarak saldırı yapan, derin teknik bilgiye sahip olmayan kişilerdir. Genellikle hazır exploit ve araçları kullanırlar. Motivasyonları genellikle merak veya gösteriş yapmaktır.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <h4>✊ Hacktivist</h4>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Politik veya sosyal bir mesaj vermek amacıyla hacking yapan kişi veya gruplar. DDoS saldırıları, web sitesi değiştirme (defacement) ve veri sızdırma gibi yöntemler kullanırlar. Anonymous en bilinen hacktivist gruplardan biridir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 2: TEMEL BİLGİSAYAR BİLGİSİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="bilgisayar" class="content-section section-accent-green">
+    <div class="section-header">
+      <div class="section-icon">💻</div>
+      <div>
+        <h2>2 — Temel Bilgisayar Bilgisi</h2>
+        <p class="section-desc">Siber güvenlik için bilgisayar donanım ve yazılım temelleri</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Siber güvenlikte başarılı olmak için bilgisayar sistemlerinin nasıl çalıştığını temel düzeyde anlamak şarttır. Donanım bileşenlerinden dosya sistemlerine kadar bilgi sahibi olmalısınız.</p>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--accent-green);">⚙️ Donanım Bileşenleri</h3>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-green">🧠</div>
+        <h3>CPU (İşlemci)</h3>
+        <p class="card-desc">Bilgisayarın beyni. Tüm hesaplamaları ve komut işlemlerini gerçekleştirir. Hız (GHz), çekirdek sayısı ve mimari (x86, x64, ARM) temel özellikleridir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-cyan">📊</div>
+        <h3>RAM (Bellek)</h3>
+        <p class="card-desc">Geçici çalışma belleği. Çalışan programlar ve veriler burada tutulur. Güç kesildiğinde içerik silinir. RAM forensics siber güvenlikte önemli bir konudur.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">💾</div>
+        <h3>Hard Disk (HDD)</h3>
+        <p class="card-desc">Mekanik yapıda kalıcı depolama birimi. Dönen diskler üzerinde veri saklar. Disk forensics ve veri kurtarma işlemlerinde kritik öneme sahiptir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">⚡</div>
+        <h3>SSD</h3>
+        <p class="card-desc">Katı hal sürücüsü. HDD'den çok daha hızlıdır. Flash bellek teknolojisi kullanır. TRIM komutu nedeniyle veri kurtarma HDD'ye göre daha zordur.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-orange">🔧</div>
+        <h3>BIOS</h3>
+        <p class="card-desc">Basic Input/Output System. Bilgisayar açılışında ilk çalışan yazılımdır. Donanım başlatma, POST işlemi ve boot sırası ayarlarını yönetir. BIOS rootkit'leri ciddi tehditlerdendir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-pink">🚀</div>
+        <h3>UEFI</h3>
+        <p class="card-desc">BIOS'un modern halefi. Secure Boot özelliği ile güvenli önyükleme sağlar. GPT disk desteği ve daha büyük disk kapasiteleri ile gelişmiş yetenekler sunar.</p>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-green);">📁 Dosya Sistemleri</h3>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-blue">📂</div>
+        <h3>NTFS</h3>
+        <p class="card-desc">Windows'un varsayılan dosya sistemi. Dosya izinleri, şifreleme (EFS), sıkıştırma, disk kotaları ve dosya akışları (ADS - Alternate Data Streams) destekler. Forensics için ADS önemlidir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-orange">📂</div>
+        <h3>FAT32</h3>
+        <p class="card-desc">Eski ancak evrensel dosya sistemi. USB sürücülerde yaygın kullanılır. 4GB dosya boyutu sınırı vardır. Güvenlik özellikleri sınırlıdır, dosya izinleri desteklemez.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-green">📂</div>
+        <h3>EXT4</h3>
+        <p class="card-desc">Linux'un varsayılan dosya sistemi. Journaling, büyük dosya desteği ve dosya izinleri (chmod/chown) sunar. Linux forensics için inode yapısını anlamak önemlidir.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 3: İŞLETİM SİSTEMLERİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="isletim" class="content-section section-accent-purple">
+    <div class="section-header">
+      <div class="section-icon">🖥️</div>
+      <div>
+        <h2>3 — İşletim Sistemleri</h2>
+        <p class="section-desc">Bir güvenlik uzmanı birden fazla işletim sistemi bilmelidir</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Siber güvenlik uzmanları farklı işletim sistemlerinde rahatça çalışabilmelidir. Windows, Linux ve özellikle Kali Linux temel araçlarınız olacaktır.</p>
+
+    <!-- Windows -->
+    <div class="card" style="margin-bottom: 2rem;">
+      <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
+        <div class="card-icon bg-blue" style="margin-bottom: 0;">🪟</div>
+        <div>
+          <h3>Microsoft Windows</h3>
+          <p class="card-desc" style="margin: 0;">En yaygın masaüstü işletim sistemi. Kurumsal ortamlarda çok kullanılır.</p>
+        </div>
+      </div>
+      <p class="card-desc" style="margin-bottom: 1rem;">Windows'ta güvenlik analizi için aşağıdaki bileşenleri iyi bilmek gerekir:</p>
+      <div class="tag-list">
+        <span class="tag tag-blue">📝 Registry</span>
+        <span class="tag tag-cyan">📊 Task Manager</span>
+        <span class="tag tag-purple">⚙️ Services</span>
+        <span class="tag tag-orange">📋 Event Viewer</span>
+        <span class="tag tag-green">🔒 Windows Firewall</span>
+        <span class="tag tag-red">🛡️ Windows Defender</span>
+      </div>
+    </div>
+
+    <!-- Linux -->
+    <div class="card" style="margin-bottom: 2rem;">
+      <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
+        <div class="card-icon bg-green" style="margin-bottom: 0;">🐧</div>
+        <div>
+          <h3>Linux</h3>
+          <p class="card-desc" style="margin: 0;">Sunucuların büyük çoğunluğunda ve güvenlik araçlarında kullanılan açık kaynak işletim sistemi.</p>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">Linux Temel Komutlar</span>
+          <div class="code-dots"><span></span><span></span><span></span></div>
+        </div>
+        <code><span class="cmd">ls</span>      <span class="comment"># Dizin içeriğini listele</span>
+<span class="cmd">cd</span>      <span class="comment"># Dizin değiştir</span>
+<span class="cmd">pwd</span>     <span class="comment"># Mevcut dizini göster</span>
+<span class="cmd">mkdir</span>   <span class="comment"># Yeni dizin oluştur</span>
+<span class="cmd">rm</span>      <span class="comment"># Dosya/dizin sil</span>
+<span class="cmd">cp</span>      <span class="comment"># Dosya kopyala</span>
+<span class="cmd">mv</span>      <span class="comment"># Dosya taşı/yeniden adlandır</span>
+<span class="cmd">grep</span>    <span class="comment"># Metin arama</span>
+<span class="cmd">chmod</span>   <span class="comment"># Dosya izinlerini değiştir</span>
+<span class="cmd">chown</span>   <span class="comment"># Dosya sahipliğini değiştir</span></code>
+      </div>
+    </div>
+
+    <!-- Kali Linux -->
+    <div class="card">
+      <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
+        <div class="card-icon bg-red" style="margin-bottom: 0;">🐉</div>
+        <div>
+          <h3>Kali Linux</h3>
+          <p class="card-desc" style="margin: 0;">Siber güvenlik için özel olarak tasarlanmış Linux dağıtımı.</p>
+        </div>
+      </div>
+      <p class="card-desc">Offensive Security tarafından geliştirilen Kali Linux, 600'den fazla güvenlik aracı ile gelir. Penetrasyon testi, adli bilişim ve güvenlik araştırması için standart platform olarak kabul edilir. Metasploit, Nmap, Burp Suite, Wireshark gibi araçlar önceden yüklü gelir.</p>
+      <div class="tag-list">
+        <span class="tag tag-red">Pentest Araçları</span>
+        <span class="tag tag-purple">Forensics</span>
+        <span class="tag tag-cyan">Wireless</span>
+        <span class="tag tag-green">Exploitation</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 4: NETWORKING -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="networking" class="content-section section-accent-orange">
+    <div class="section-header">
+      <div class="section-icon">🌐</div>
+      <div>
+        <h2>4 — Networking (Ağ Bilgisi)</h2>
+        <p class="section-desc">Siber güvenliğin en kritik konularından biri</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Ağ bilgisi siber güvenliğin temel taşıdır. Saldırıların büyük çoğunluğu ağ üzerinden gerçekleşir; bu nedenle ağ yapısını, protokolleri ve analiz tekniklerini çok iyi bilmelisiniz.</p>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--accent-orange);">📡 Temel Ağ Kavramları</h3>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-orange">🏷️</div>
+        <h3>IP Adresi</h3>
+        <p class="card-desc">Ağdaki cihazların benzersiz kimliği. IPv4 (32 bit, ör: 192.168.1.1) ve IPv6 (128 bit) olmak üzere iki versiyonu vardır. Public ve private IP ayrımı önemlidir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-cyan">🔢</div>
+        <h3>Subnet</h3>
+        <p class="card-desc">Alt ağ maskesi, IP adresinin ağ ve host bölümlerini ayırır. CIDR notasyonu (ör: /24) ile ifade edilir. Ağ segmentasyonu güvenlik için kritiktir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-green">📖</div>
+        <h3>DNS</h3>
+        <p class="card-desc">Domain Name System — alan adlarını IP adreslerine çeviren sistem. DNS poisoning, DNS spoofing ve DNS tunneling önemli saldırı vektörleridir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">📋</div>
+        <h3>DHCP</h3>
+        <p class="card-desc">Dynamic Host Configuration Protocol — cihazlara otomatik IP adresi atayan protokol. DHCP starvation ve rogue DHCP saldırıları bilinmelidir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-pink">🏠</div>
+        <h3>MAC Address</h3>
+        <p class="card-desc">Donanım adresi. Her ağ kartının benzersiz fiziksel adresidir. MAC spoofing ile taklit edilebilir. ARP tabloları MAC adresleri ile çalışır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">🔀</div>
+        <h3>Router &amp; Switch</h3>
+        <p class="card-desc">Router farklı ağları birbirine bağlar (Layer 3), Switch aynı ağdaki cihazları bağlar (Layer 2). VLAN, ACL ve port security kavramları önemlidir.</p>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-orange);">📬 Ağ Protokolleri</h3>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Protokol</th>
+          <th>Port</th>
+          <th>Açıklama</th>
+          <th>Güvenlik Notu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>HTTP</strong></td>
+          <td>80</td>
+          <td>Web trafiği (şifresiz)</td>
+          <td>⚠️ Veriler açık metin olarak iletilir</td>
+        </tr>
+        <tr>
+          <td><strong>HTTPS</strong></td>
+          <td>443</td>
+          <td>Güvenli web trafiği (SSL/TLS)</td>
+          <td>✅ Şifreli iletişim</td>
+        </tr>
+        <tr>
+          <td><strong>FTP</strong></td>
+          <td>21</td>
+          <td>Dosya transfer protokolü</td>
+          <td>⚠️ Şifresiz, SFTP tercih edilmeli</td>
+        </tr>
+        <tr>
+          <td><strong>SSH</strong></td>
+          <td>22</td>
+          <td>Güvenli uzak erişim</td>
+          <td>✅ Şifreli terminal erişimi</td>
+        </tr>
+        <tr>
+          <td><strong>TCP</strong></td>
+          <td>—</td>
+          <td>Bağlantı tabanlı iletişim</td>
+          <td>3-way handshake, SYN flood saldırısı</td>
+        </tr>
+        <tr>
+          <td><strong>UDP</strong></td>
+          <td>—</td>
+          <td>Bağlantısız iletişim</td>
+          <td>DDoS amplification saldırıları</td>
+        </tr>
+        <tr>
+          <td><strong>ICMP</strong></td>
+          <td>—</td>
+          <td>Ping, traceroute</td>
+          <td>ICMP tunneling, ping of death</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-orange);">🔍 Ağ Analiz Araçları</h3>
+
+    <div class="card-grid two-col">
+      <div class="tool-card">
+        <div class="tool-icon bg-cyan">🦈</div>
+        <div>
+          <h4>Wireshark</h4>
+          <p>Dünyanın en popüler ağ protokol analizörü. Ağ trafiğini gerçek zamanlı yakalar ve paket bazında detaylı analiz yapmanızı sağlar. GUI tabanlı, filtre sistemi çok güçlüdür.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-green">📡</div>
+        <div>
+          <h4>tcpdump</h4>
+          <p>Komut satırı tabanlı paket yakalama aracı. Sunucularda ve headless sistemlerde ağ trafiği analizi için kullanılır. Wireshark ile birlikte kullanılabilir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 5: PROGRAMLAMA -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="programlama" class="content-section section-accent-blue">
+    <div class="section-header">
+      <div class="section-icon">👨‍💻</div>
+      <div>
+        <h2>5 — Programlama</h2>
+        <p class="section-desc">Bir güvenlik uzmanı kod anlayabilmeli ve yazabilmeli</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Kod okuyabilmek ve yazabilmek, exploit geliştirme, otomasyon scriptleri oluşturma ve güvenlik açıklarını anlama konusunda büyük avantaj sağlar.</p>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div class="card-icon bg-green">🐍</div>
+        <h3>Python</h3>
+        <p class="card-desc">Siber güvenlikte en çok kullanılan dildir. Kolay öğrenilir, geniş kütüphane desteği vardır.</p>
+        <div class="info-box tip" style="margin-top: 1rem;">
+          <h4>🐍 Python Neden Önemli?</h4>
+          <p>• Exploit yazma ve PoC geliştirme<br>• Otomasyon scriptleri<br>• Güvenlik araçları geliştirme<br>• Network scripting<br>• Web scraping ve OSINT</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">⚙️</div>
+        <h3>C</h3>
+        <p class="card-desc">Düşük seviyeli programlama dili. Buffer overflow, memory corruption gibi güvenlik açıklarını anlamak için C bilgisi şarttır. İşletim sistemi ve kernel seviyesinde çalışma gerektirir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-orange">🌐</div>
+        <h3>JavaScript</h3>
+        <p class="card-desc">Web güvenliği için kritik bir dildir. XSS saldırıları, DOM manipulation, client-side güvenlik açıkları ve browser exploitation için JavaScript bilgisi gereklidir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">🖥️</div>
+        <h3>Bash</h3>
+        <p class="card-desc">Linux komut satırı scriptleme dili. Otomasyon, sistem yönetimi ve güvenlik scriptleri yazmak için kullanılır. Pentest sırasında hızlı script ihtiyacı için idealdir.</p>
+      </div>
+    </div>
+
+    <div class="code-block" style="margin-top: 2rem;">
+      <div class="code-header">
+        <span class="code-lang">Python — Basit Port Scanner Örneği</span>
+        <div class="code-dots"><span></span><span></span><span></span></div>
+      </div>
+      <code><span class="comment">#!/usr/bin/env python3</span>
+<span class="cmd">import</span> socket
+
+<span class="cmd">def</span> <span class="flag">scan_port</span>(host, port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(<span class="string">1</span>)
+    result = sock.connect_ex((host, port))
+    sock.close()
+    <span class="cmd">return</span> result == <span class="string">0</span>
+
+host = <span class="string">"192.168.1.1"</span>
+<span class="cmd">for</span> port <span class="cmd">in</span> range(<span class="string">1</span>, <span class="string">1025</span>):
+    <span class="cmd">if</span> scan_port(host, port):
+        <span class="cmd">print</span>(f<span class="string">"Port {port} açık!"</span>)</code>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 6: WEB TEKNOLOJİLERİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="web-tech" class="content-section section-accent-pink">
+    <div class="section-header">
+      <div class="section-icon">🌍</div>
+      <div>
+        <h2>6 — Web Teknolojileri</h2>
+        <p class="section-desc">Web güvenliği için web mantığını bilmek şart</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Web uygulamaları günümüzün en büyük saldırı yüzeyini oluşturur. Web teknolojilerini anlamadan web güvenliği konusunda uzmanlaşmak mümkün değildir.</p>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-red">📄</div>
+        <h3>HTML</h3>
+        <p class="card-desc">Web sayfalarının iskelet yapısını oluşturur. Form yapıları, input tipleri ve DOM yapısını anlamak XSS ve injection saldırılarını kavramak için gereklidir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">🎨</div>
+        <h3>CSS</h3>
+        <p class="card-desc">Görsel stil dili. CSS injection, clickjacking ve UI redressing gibi saldırılar CSS bilgisi gerektirir. Keylogger bile CSS ile mümkün olabilir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-orange">⚡</div>
+        <h3>JavaScript</h3>
+        <p class="card-desc">Web'in programlama dili. XSS saldırılarının ana hedefi. DOM manipulation, cookie erişimi, AJAX istekleri ve client-side mantık burada işler.</p>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-pink);">📨 HTTP Request Yapısı</h3>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div class="card-icon bg-green">📤</div>
+        <h3>GET Request</h3>
+        <p class="card-desc">Sunucudan veri almak için kullanılır. Parametreler URL'de görünür. Tarayıcı geçmişinde ve log dosyalarında kalır. Hassas veriler asla GET ile gönderilmemelidir.</p>
+        <div class="code-block" style="margin-top: 1rem;">
+          <code><span class="cmd">GET</span> <span class="string">/search?q=cyber</span> <span class="flag">HTTP/1.1</span>
+<span class="comment">Host: example.com</span>
+<span class="comment">User-Agent: Mozilla/5.0</span></code>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">📥</div>
+        <h3>POST Request</h3>
+        <p class="card-desc">Sunucuya veri göndermek için kullanılır. Parametreler body kısmında gider. Login formları, dosya yükleme ve API çağrıları genellikle POST kullanır.</p>
+        <div class="code-block" style="margin-top: 1rem;">
+          <code><span class="cmd">POST</span> <span class="string">/login</span> <span class="flag">HTTP/1.1</span>
+<span class="comment">Host: example.com</span>
+<span class="comment">Content-Type: application/x-www-form-urlencoded</span>
+
+<span class="string">username=admin&password=***</span></code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 7: WEB GÜVENLİĞİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="web-sec" class="content-section section-accent-red">
+    <div class="section-header">
+      <div class="section-icon">🕷️</div>
+      <div>
+        <h2>7 — Web Güvenliği</h2>
+        <p class="section-desc">En geniş ve en kritik güvenlik alanlarından biri</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Web uygulamaları siber saldırıların en büyük hedeflerinden biridir. SQL Injection'dan XSS'e, CSRF'den file upload zafiyetlerine kadar birçok saldırı vektörü bulunur. OWASP Top 10 bu alanda temel rehberiniz olacaktır.</p>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--accent-red);">🔥 En Yaygın Web Güvenlik Açıkları</h3>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div class="card-icon bg-red">💉</div>
+        <h3>SQL Injection</h3>
+        <p class="card-desc">Kullanıcı girdisi aracılığıyla veritabanı sorgularına kötü amaçlı SQL kodu enjekte etme saldırısıdır. Veri sızdırma, kimlik doğrulamayı atlatma ve veritabanı manipülasyonu yapılabilir.</p>
+        <div class="code-block" style="margin-top: 1rem;">
+          <code><span class="comment">-- Klasik SQL Injection Örneği</span>
+<span class="string">' OR '1'='1' --</span>
+<span class="string">' UNION SELECT username,password FROM users --</span></code>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon bg-orange">📜</div>
+        <h3>XSS (Cross-Site Scripting)</h3>
+        <p class="card-desc">Web sayfasına kötü amaçlı JavaScript kodu enjekte etme saldırısıdır. Stored XSS, Reflected XSS ve DOM-based XSS olmak üzere üç türü vardır. Cookie çalma, session hijacking yapılabilir.</p>
+        <div class="code-block" style="margin-top: 1rem;">
+          <code><span class="comment">&lt;!-- XSS Payload Örneği --&gt;</span>
+<span class="string">&lt;script&gt;alert('XSS')&lt;/script&gt;</span>
+<span class="string">&lt;img src=x onerror=alert('XSS')&gt;</span></code>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon bg-purple">🔄</div>
+        <h3>CSRF (Cross-Site Request Forgery)</h3>
+        <p class="card-desc">Kullanıcının tarayıcısını kullanarak, kullanıcının haberi olmadan yetkili işlemler gerçekleştirme saldırısıdır. Anti-CSRF token'ları ile korunulur. Parola değiştirme, para transferi gibi işlemler hedef alınır.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon bg-cyan">🔑</div>
+        <h3>IDOR (Insecure Direct Object Reference)</h3>
+        <p class="card-desc">Yetkilendirme kontrolü eksikliğinden kaynaklanan açık. Kullanıcılar URL'deki ID değerlerini değiştirerek başkalarının verilerine erişebilir. Broken Access Control kategorisine girer.</p>
+      </div>
+
+      <div class="card" style="grid-column: span 2;">
+        <div class="card-icon bg-pink">📁</div>
+        <h3>File Upload Vulnerability</h3>
+        <p class="card-desc">Dosya yükleme mekanizmasındaki güvenlik eksiklikleri. Kötü amaçlı dosya (web shell, reverse shell) yüklenerek sunucuda kod çalıştırılabilir. Dosya uzantısı, MIME type ve içerik kontrolü yapılmalıdır. Double extension (shell.php.jpg), null byte (%00) ve content-type bypass teknikleri yaygındır.</p>
+      </div>
+    </div>
+
+    <div class="info-box important" style="margin-top: 2rem;">
+      <h4>🏆 OWASP Top 10</h4>
+      <p>OWASP (Open Web Application Security Project), web uygulama güvenliği konusunda dünya çapında kabul görmüş bir standart kuruluşudur. <strong>OWASP Top 10</strong>, en kritik web güvenlik risklerinin listesini yayınlar ve tüm geliştiriciler ile güvenlik uzmanları için temel referans kaynağıdır. Broken Access Control, Cryptographic Failures, Injection, Insecure Design, Security Misconfiguration ve daha fazlasını kapsar.</p>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 8: PENETRATION TESTING -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="pentest" class="content-section section-accent-cyan">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div>
+        <h2>8 — Penetration Testing</h2>
+        <p class="section-desc">Sistemlerin güvenliğini kontrollü şekilde test etmek</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Penetrasyon testi (Pentest), bir sistemin güvenlik açıklarını tespit etmek amacıyla gerçekleştirilen kontrollü ve yasal bir saldırı simülasyonudur. Belirli aşamalardan oluşur ve profesyonel bir süreçtir.</p>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--accent-cyan);">📋 Pentest Aşamaları</h3>
+
+    <div class="timeline">
+      <div class="timeline-item" data-step="1">
+        <h4>Reconnaissance (Keşif)</h4>
+        <p>Hedef hakkında bilgi toplama aşaması. Pasif keşif (OSINT, WHOIS, DNS sorguları) ve aktif keşif (port tarama, servis tespiti) olarak ikiye ayrılır.</p>
+      </div>
+      <div class="timeline-item" data-step="2">
+        <h4>Scanning (Tarama)</h4>
+        <p>Hedef sistemlerdeki açık portları, çalışan servisleri ve potansiyel güvenlik açıklarını tespit etme. Nmap, Nessus gibi araçlar kullanılır.</p>
+      </div>
+      <div class="timeline-item" data-step="3">
+        <h4>Enumeration (Numaralandırma)</h4>
+        <p>Tespit edilen servislarden detaylı bilgi toplama. Kullanıcı listeleri, paylaşımlar, versiyon bilgileri ve yapılandırma detayları çıkarılır.</p>
+      </div>
+      <div class="timeline-item" data-step="4">
+        <h4>Exploitation (Sömürü)</h4>
+        <p>Bulunan güvenlik açıklarını kullanarak sisteme erişim sağlama. Exploit kodları, Metasploit modülleri ve özel scriptler kullanılır.</p>
+      </div>
+      <div class="timeline-item" data-step="5">
+        <h4>Privilege Escalation (Yetki Yükseltme)</h4>
+        <p>Elde edilen erişimi daha yüksek yetkilere çıkarma. Kernel exploitleri, SUID dosyaları, yanlış yapılandırmalar kullanılır.</p>
+      </div>
+      <div class="timeline-item" data-step="6">
+        <h4>Maintaining Access (Erişim Sürdürme)</h4>
+        <p>Sisteme sürekli erişim sağlamak için backdoor, persistence mekanizmaları ve post-exploitation teknikleri uygulanır.</p>
+      </div>
+      <div class="timeline-item" data-step="7">
+        <h4>Reporting (Raporlama)</h4>
+        <p>Tüm bulguların, açıkların ve önerilerin profesyonel bir rapor halinde sunulması. Teknik ve yönetici özeti içermelidir.</p>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-cyan);">🧰 Pentest Araçları</h3>
+
+    <div class="card-grid two-col">
+      <div class="tool-card">
+        <div class="tool-icon bg-cyan">📡</div>
+        <div>
+          <h4>Nmap</h4>
+          <p>Network Mapper — ağ keşfi ve güvenlik taraması için en güçlü açık kaynak araç. Port tarama, servis tespiti, işletim sistemi tespiti ve NSE scriptleri ile geniş yetenek seti sunar.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-red">💀</div>
+        <div>
+          <h4>Metasploit</h4>
+          <p>Dünyanın en yaygın penetrasyon testi framework'ü. Exploit veritabanı, payload üretimi, post-exploitation modülleri ve oturum yönetimi sunar. Meterpreter shell çok güçlüdür.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-orange">🔥</div>
+        <div>
+          <h4>Burp Suite</h4>
+          <p>Web uygulama güvenlik testi için en popüler araç. Proxy, scanner, intruder, repeater ve decoder modülleri ile kapsamlı web testi yapılır.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-green">🔎</div>
+        <div>
+          <h4>Nikto</h4>
+          <p>Açık kaynak web sunucu tarayıcısı. 6700'den fazla tehlikeli dosya/program, eski sunucu sürümleri ve yapılandırma hataları için tarama yapar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block" style="margin-top: 2rem;">
+      <div class="code-header">
+        <span class="code-lang">Nmap Temel Komutlar</span>
+        <div class="code-dots"><span></span><span></span><span></span></div>
+      </div>
+      <code><span class="cmd">nmap</span> <span class="flag">-sV</span> <span class="string">192.168.1.1</span>        <span class="comment"># Servis versiyon tespiti</span>
+<span class="cmd">nmap</span> <span class="flag">-sS</span> <span class="string">192.168.1.0/24</span>    <span class="comment"># SYN taraması (stealth)</span>
+<span class="cmd">nmap</span> <span class="flag">-O</span> <span class="string">192.168.1.1</span>         <span class="comment"># İşletim sistemi tespiti</span>
+<span class="cmd">nmap</span> <span class="flag">-A</span> <span class="string">192.168.1.1</span>         <span class="comment"># Agresif tarama (tüm bilgiler)</span>
+<span class="cmd">nmap</span> <span class="flag">--script vuln</span> <span class="string">192.168.1.1</span>  <span class="comment"># Zafiyet scriptleri</span></code>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 9: ADLİ BİLİŞİM -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="forensics" class="content-section section-accent-purple">
+    <div class="section-header">
+      <div class="section-icon">🔬</div>
+      <div>
+        <h2>9 — Adli Bilişim (Digital Forensics)</h2>
+        <p class="section-desc">Saldırı sonrası analiz ve delil toplama</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Dijital adli bilişim, siber olayların ardından dijital kanıtların toplanması, korunması, analiz edilmesi ve raporlanması sürecidir. Yasal süreçlerde delil olarak kullanılabilecek nitelikte çalışma yapılır.</p>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div class="card-icon bg-purple">💿</div>
+        <h3>Adli Kopya (Forensic Image)</h3>
+        <p class="card-desc">Orijinal delilin bit-by-bit kopyasıdır. dd, FTK Imager veya dc3dd ile oluşturulur. Hash değeri ile bütünlük doğrulanır. Orijinal delile asla doğrudan müdahale edilmez.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-cyan">💽</div>
+        <h3>Disk Analizi</h3>
+        <p class="card-desc">Dosya sistemi analizi, silinmiş dosya kurtarma, zaman çizelgesi oluşturma ve dosya imza analizi. Partition tabloları, MBR/GPT yapıları ve slack space incelenir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-green">📋</div>
+        <h3>Log İnceleme</h3>
+        <p class="card-desc">Sistem logları, uygulama logları, güvenlik logları ve ağ loglarının analizi. Saldırganın izlerini takip etmek ve olay zaman çizelgesi oluşturmak için kritiktir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-orange">🔄</div>
+        <h3>Veri Kurtarma</h3>
+        <p class="card-desc">Silinmiş, formatlanmış veya hasarlı depolama ortamlarından veri geri kazanımı. File carving teknikleri, dosya imzalarına göre kayıp dosyaları tespit eder.</p>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-purple);">🧰 Forensics Araçları</h3>
+
+    <div class="card-grid two-col">
+      <div class="tool-card">
+        <div class="tool-icon bg-purple">🔍</div>
+        <div>
+          <h4>Autopsy</h4>
+          <p>Açık kaynak dijital adli bilişim platformu. Disk imajlarını analiz eder, dosya kurtarma, zaman çizelgesi analizi, web geçmişi ve keyword araması yapabilir. GUI tabanlı ve kullanımı kolaydır.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-blue">📀</div>
+        <div>
+          <h4>FTK Imager</h4>
+          <p>AccessData tarafından geliştirilen ücretsiz disk imajlama aracı. Adli kopya oluşturma, hash doğrulama, dosya önizleme ve bellek dökümü alma yetenekleri sunar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 10: MALWARE ANALİZİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="malware" class="content-section section-accent-red">
+    <div class="section-header">
+      <div class="section-icon">🦠</div>
+      <div>
+        <h2>10 — Malware Analizi</h2>
+        <p class="section-desc">Zararlı yazılımları incelemek ve anlamak</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Malware analizi, zararlı yazılımların davranışlarını, yeteneklerini ve yayılma mekanizmalarını anlamak için yapılan sistematik incelemedir. Statik analiz (kod inceleme) ve dinamik analiz (çalıştırma ortamında gözlem) olarak iki temel yaklaşımı vardır.</p>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--accent-red);">☠️ Malware Türleri</h3>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-red">🐴</div>
+        <h3>Trojan</h3>
+        <p class="card-desc">Masum bir program gibi görünüp arka planda kötü amaçlı işlemler yapan zararlı yazılım. Remote Access Trojan (RAT) en tehlikeli türlerindendir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-orange">🦠</div>
+        <h3>Virus</h3>
+        <p class="card-desc">Kendini başka dosyalara ekleyen ve yayılan zararlı kod. Çalıştırılması için kullanıcı etkileşimi gerektirir. Boot sector, file infector ve macro virusler yaygındır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-pink">🐛</div>
+        <h3>Worm</h3>
+        <p class="card-desc">Ağ üzerinden otomatik olarak yayılan zararlı yazılım. Kullanıcı etkileşimi gerektirmez. WannaCry ve Conficker ünlü worm örnekleridir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">🔐</div>
+        <h3>Ransomware</h3>
+        <p class="card-desc">Dosyaları şifreleyerek fidye talep eden zararlı yazılım. Hastaneler, şirketler ve devlet kurumları başlıca hedeflerdir. WannaCry, NotPetya ve REvil ünlü örneklerdir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-cyan">👁️</div>
+        <h3>Spyware</h3>
+        <p class="card-desc">Kullanıcının aktivitelerini gizlice izleyen ve bilgi toplayan yazılım. Keylogger, screen capture ve browser hijacker türleri vardır.</p>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-red);">🔧 Analiz Araçları</h3>
+
+    <div class="card-grid two-col">
+      <div class="tool-card">
+        <div class="tool-icon bg-red">🐲</div>
+        <div>
+          <h4>Ghidra</h4>
+          <p>NSA tarafından geliştirilen ücretsiz reverse engineering aracı. Disassembler, decompiler ve scripting destekler. Birden fazla işlemci mimarisini destekler.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-purple">💎</div>
+        <div>
+          <h4>IDA Pro</h4>
+          <p>Endüstri standardı disassembler ve debugger. Profesyonel malware analistleri tarafından yaygın olarak kullanılır. Hex-Rays decompiler ile yüksek seviyeli kod çıktısı alınabilir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 11: SOSYAL MÜHENDİSLİK -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="social" class="content-section section-accent-orange">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div>
+        <h2>11 — Sosyal Mühendislik</h2>
+        <p class="section-desc">Teknik değil, psikolojik saldırılar</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Sosyal mühendislik, insan psikolojisini manipüle ederek gizli bilgilere erişmeyi, güvenlik önlemlerini atlatmayı veya zararlı eylemler gerçekleştirmeyi hedefleyen saldırı tekniklerinin genel adıdır. En güçlü güvenlik sistemi bile insan faktörü karşısında zayıf kalabilir.</p>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div class="card-icon bg-orange">🎣</div>
+        <h3>Phishing</h3>
+        <p class="card-desc">Sahte e-postalar, web siteleri veya mesajlar aracılığıyla kullanıcıları kandırarak hassas bilgilerini çalmayı hedefleyen en yaygın sosyal mühendislik saldırısıdır. Bankacılık, sosyal medya ve kurumsal e-postalar taklit edilir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-red">🎯</div>
+        <h3>Spear Phishing</h3>
+        <p class="card-desc">Belirli bir kişi veya kuruluşu hedef alan kişiselleştirilmiş phishing saldırısı. Hedef hakkında kapsamlı araştırma yapılır ve çok ikna edici mesajlar hazırlanır. APT gruplarının sık kullandığı tekniktir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">🎪</div>
+        <h3>Pretexting</h3>
+        <p class="card-desc">Uydurma bir senaryo (pretext) oluşturarak hedeften bilgi almaya çalışma. Saldırgan kendini IT destek, banka çalışanı veya yetkili biri olarak tanıtır. Güven oluşturma üzerine kuruludur.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-cyan">🪤</div>
+        <h3>Baiting</h3>
+        <p class="card-desc">Hedefin merakını veya açgözlülüğünü kullanarak tuzak kurma. Zararlı USB bellek bırakma, sahte yazılım indirme linkleri veya ödül vaadi gibi yöntemler kullanılır.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 12: KRİPTOGRAFİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="crypto" class="content-section section-accent-green">
+    <div class="section-header">
+      <div class="section-icon">🔑</div>
+      <div>
+        <h2>12 — Kriptografi</h2>
+        <p class="section-desc">Veri güvenliğinin matematik temelli kalkanı</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Kriptografi, bilgiyi yetkisiz erişimden korumak için matematiksel algoritmalar kullanan bilim dalıdır. Şifreleme, hash fonksiyonları ve dijital imzalar kriptografinin temel yapı taşlarıdır.</p>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div class="card-icon bg-green">🔐</div>
+        <h3>Encryption (Şifreleme)</h3>
+        <p class="card-desc">Veriyi okunamaz hale getirme işlemi. Anahtar ile şifrelenir ve yalnızca doğru anahtar ile çözülebilir. Veri gizliliğini sağlamanın temel yöntemidir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">🔖</div>
+        <h3>Hashing</h3>
+        <p class="card-desc">Veriden sabit uzunlukta benzersiz bir özet (hash) oluşturma. Tek yönlüdür — hash'ten orijinal veriye dönülemez. Parola saklama ve veri bütünlüğü doğrulama için kullanılır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-cyan">🔑</div>
+        <h3>Symmetric Encryption</h3>
+        <p class="card-desc">Simetrik şifreleme — aynı anahtar hem şifreleme hem de çözme için kullanılır. Hızlıdır ancak anahtar paylaşımı sorunludur. AES en yaygın simetrik algoritmadır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">🔑🔑</div>
+        <h3>Asymmetric Encryption</h3>
+        <p class="card-desc">Asimetrik şifreleme — iki farklı anahtar kullanılır: public key (açık anahtar) ve private key (gizli anahtar). RSA en bilinen asimetrik algoritmadır. SSL/TLS, dijital imzalar bu yöntemi kullanır.</p>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-green);">📐 Temel Algoritmalar</h3>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-cyan">🛡️</div>
+        <h3>AES</h3>
+        <p class="card-desc"><strong>Advanced Encryption Standard</strong> — 128, 192 veya 256 bit anahtar kullanan simetrik blok şifresi. Dünya genelinde en yaygın şifreleme standardıdır. Çok hızlı ve güvenlidir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">🔒</div>
+        <h3>RSA</h3>
+        <p class="card-desc"><strong>Rivest-Shamir-Adleman</strong> — en yaygın asimetrik şifreleme algoritması. Büyük asal sayıların çarpanlara ayrılmasının zorluğuna dayanır. SSL/TLS ve dijital imzalarda kullanılır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-green">📝</div>
+        <h3>SHA</h3>
+        <p class="card-desc"><strong>Secure Hash Algorithm</strong> — kriptografik hash fonksiyonu ailesi. SHA-256, SHA-384, SHA-512 sürümleri vardır. Parola hashleme, dijital imza ve blockchain'de kullanılır.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 13: BULUT GÜVENLİĞİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="cloud" class="content-section section-accent-blue">
+    <div class="section-header">
+      <div class="section-icon">☁️</div>
+      <div>
+        <h2>13 — Bulut Güvenliği</h2>
+        <p class="section-desc">Giderek büyüyen ve kritik önem taşıyan alan</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Bulut bilişim hızla yaygınlaşırken, bulut güvenliği de en önemli konulardan biri haline geldi. Paylaşılan sorumluluk modeli, erişim kontrolü, veri şifreleme ve yapılandırma güvenliği temel konulardır.</p>
+
+    <div class="card-grid three-col">
+      <div class="platform-card">
+        <div class="platform-icon">🟠</div>
+        <h4>Amazon Web Services</h4>
+        <p>En büyük bulut platformu. IAM, S3 güvenliği, VPC, CloudTrail, GuardDuty gibi güvenlik servisleri sunar. S3 bucket misconfiguration yaygın bir güvenlik sorunudur.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-icon">🔵</div>
+        <h4>Microsoft Azure</h4>
+        <p>Microsoft'un bulut platformu. Azure AD, Azure Sentinel, Key Vault ve Azure Security Center başlıca güvenlik servisleridir. Hybrid cloud çözümleri güçlüdür.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-icon">🔴</div>
+        <h4>Google Cloud</h4>
+        <p>Google'ın bulut platformu. Cloud IAM, Security Command Center, Cloud Armor ve VPC Service Controls güvenlik servislerdir. BigQuery güvenliği önemlidir.</p>
+      </div>
+    </div>
+
+    <div class="info-box warning" style="margin-top: 2rem;">
+      <h4>⚠️ Paylaşılan Sorumluluk Modeli</h4>
+      <p>Bulut güvenliğinde en önemli kavram "Shared Responsibility Model"dir. Bulut sağlayıcı altyapının güvenliğinden, müşteri ise verilerinin ve yapılandırmalarının güvenliğinden sorumludur. Yanlış yapılandırma (misconfiguration) bulut ortamındaki en yaygın güvenlik sorunudur.</p>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 14: MOBİL GÜVENLİK -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="mobile" class="content-section section-accent-pink">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div>
+        <h2>14 — Mobil Güvenlik</h2>
+        <p class="section-desc">Android ve iOS uygulama güvenliği analizi</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Mobil cihazlar hayatımızın merkezine yerleşti ve kritik verileri barındırıyor. Mobil uygulama güvenliği, hem uygulama analizi hem de platform güvenliğini kapsar.</p>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div class="card-icon bg-green">🤖</div>
+        <h3>Android Güvenliği</h3>
+        <p class="card-desc">Açık kaynak mobil işletim sistemi. APK analizi, reverse engineering (jadx, apktool), root detection bypass, SSL pinning bypass, intent hijacking ve content provider güvenliği gibi konular kritiktir. Frida framework çok kullanılır.</p>
+        <div class="tag-list">
+          <span class="tag tag-green">APK Analizi</span>
+          <span class="tag tag-purple">Frida</span>
+          <span class="tag tag-cyan">Jadx</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">🍎</div>
+        <h3>iOS Güvenliği</h3>
+        <p class="card-desc">Apple'ın mobil işletim sistemi. IPA analizi, jailbreak, Keychain güvenliği, URL scheme hijacking ve binary analiz konuları önemlidir. Sandbox yapısı güvenlik açısından güçlüdür ancak atlatılabilir.</p>
+        <div class="tag-list">
+          <span class="tag tag-blue">IPA Analizi</span>
+          <span class="tag tag-orange">Jailbreak</span>
+          <span class="tag tag-red">Keychain</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 15: KABLOSUZ AĞ GÜVENLİĞİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="wireless" class="content-section section-accent-cyan">
+    <div class="section-header">
+      <div class="section-icon">📶</div>
+      <div>
+        <h2>15 — Kablosuz Ağ Güvenliği</h2>
+        <p class="section-desc">WiFi saldırıları ve savunma teknikleri</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Kablosuz ağlar, fiziksel erişim gerektirmeden saldırılabilmeleri nedeniyle önemli bir saldırı yüzeyi oluşturur. WiFi güvenlik protokollerini ve saldırı tekniklerini bilmek gerekir.</p>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--accent-cyan);">🔒 WiFi Güvenlik Protokolleri</h3>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-orange">📡</div>
+        <h3>WPA</h3>
+        <p class="card-desc">Wi-Fi Protected Access. WEP'in yerine gelmiştir. TKIP şifreleme kullanır. Bugün güvensiz kabul edilir ve kullanılmamalıdır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-cyan">📡</div>
+        <h3>WPA2</h3>
+        <p class="card-desc">En yaygın kullanılan WiFi güvenlik protokolü. AES-CCMP şifreleme kullanır. KRACK saldırısı ile zafiyeti ortaya çıkmıştır ancak hâlâ yaygın kullanılır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-green">📡</div>
+        <h3>WPA3</h3>
+        <p class="card-desc">En yeni ve en güvenli WiFi protokolü. SAE (Simultaneous Authentication of Equals) handshake ile daha güçlü kimlik doğrulama sağlar. Forward secrecy sunar.</p>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-cyan);">🧰 Kablosuz Ağ Araçları</h3>
+
+    <div class="tool-card">
+      <div class="tool-icon bg-red">✈️</div>
+      <div>
+        <h4>Aircrack-ng</h4>
+        <p>WiFi ağ güvenliği değerlendirme araç paketi. Paket yakalama (airodump-ng), deauthentication saldırısı (aireplay-ng), WPA/WPA2 parola kırma (aircrack-ng) ve sahte erişim noktası oluşturma yetenekleri sunar.</p>
+      </div>
+    </div>
+
+    <div class="code-block" style="margin-top: 1.5rem;">
+      <div class="code-header">
+        <span class="code-lang">Aircrack-ng Temel Komutlar</span>
+        <div class="code-dots"><span></span><span></span><span></span></div>
+      </div>
+      <code><span class="cmd">airmon-ng start</span> <span class="string">wlan0</span>          <span class="comment"># Monitor modu başlat</span>
+<span class="cmd">airodump-ng</span> <span class="string">wlan0mon</span>             <span class="comment"># Çevredeki ağları tara</span>
+<span class="cmd">airodump-ng</span> <span class="flag">-c 6 --bssid</span> <span class="string">XX:XX</span> <span class="flag">-w</span> capture <span class="string">wlan0mon</span>
+<span class="cmd">aireplay-ng</span> <span class="flag">-0 5 -a</span> <span class="string">XX:XX</span> <span class="string">wlan0mon</span>  <span class="comment"># Deauth saldırısı</span>
+<span class="cmd">aircrack-ng</span> <span class="flag">-w</span> wordlist.txt <span class="string">capture.cap</span>  <span class="comment"># Parola kırma</span></code>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 16: CTF VE PRATİK -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="ctf" class="content-section section-accent-green">
+    <div class="section-header">
+      <div class="section-icon">🏁</div>
+      <div>
+        <h2>16 — CTF ve Pratik</h2>
+        <p class="section-desc">Gerçek öğrenme burada olur</p>
+      </div>
+    </div>
+
+    <p class="section-intro">CTF (Capture The Flag) yarışmaları, siber güvenlik becerilerinizi gerçek senaryolarda test etmenin en etkili yoludur. Teori önemlidir ancak pratik yapmadan uzman olunamaz. Bu platformlarda yüzlerce lab ve challenge sizi bekliyor.</p>
+
+    <div class="card-grid three-col">
+      <div class="platform-card">
+        <div class="platform-icon">💚</div>
+        <h4>Hack The Box</h4>
+        <p>Profesyonel pentest laboratuvarı. Gerçekçi makineler, CTF challengelar ve pro lab ortamları sunar. Retired ve active machine'ler ile sürekli yeni içerik eklenir.</p>
+        <div class="tag-list" style="justify-content: center; margin-top: 1rem;">
+          <span class="tag tag-green">Makineler</span>
+          <span class="tag tag-cyan">CTF</span>
+          <span class="tag tag-purple">Pro Labs</span>
+        </div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-icon">🔴</div>
+        <h4>TryHackMe</h4>
+        <p>Başlangıç dostu siber güvenlik platformu. Adım adım rehberli odalar (rooms), learning paths ve interaktif laboratuvarlar sunar. Sıfırdan başlayanlar için idealdir.</p>
+        <div class="tag-list" style="justify-content: center; margin-top: 1rem;">
+          <span class="tag tag-red">Rooms</span>
+          <span class="tag tag-orange">Learning Paths</span>
+          <span class="tag tag-blue">Beginner Friendly</span>
+        </div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-icon">🔷</div>
+        <h4>OWASP WebGoat</h4>
+        <p>OWASP'ın eğitim amaçlı kasıtlı zafiyetli web uygulaması. Web güvenliği açıklarını güvenli bir ortamda öğrenip pratik yapmanızı sağlar.</p>
+        <div class="tag-list" style="justify-content: center; margin-top: 1rem;">
+          <span class="tag tag-blue">Web Security</span>
+          <span class="tag tag-green">Eğitim</span>
+          <span class="tag tag-orange">Hands-on</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box tip" style="margin-top: 2rem;">
+      <h4>💡 CTF İpucu</h4>
+      <p>CTF'lerde başarılı olmak için: writeup okuyun, farklı kategorilerde (web, pwn, crypto, forensics, reverse) çalışın, düzenli pratik yapın ve topluluk forumlarına katılın. Her çözülen challenge'ı not alın ve tekniklerinizi sürekli geliştirin.</p>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 17: KARİYER -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="kariyer" class="content-section section-accent-purple">
+    <div class="section-header">
+      <div class="section-icon">💼</div>
+      <div>
+        <h2>17 — Siber Güvenlik Kariyerleri</h2>
+        <p class="section-desc">Siber güvenlik dünyasındaki meslek dalları</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Siber güvenlik alanı, farklı beceri setleri ve ilgi alanları için çeşitli kariyer yolları sunar. Offensive (saldırı) veya defensive (savunma) tarafta uzmanlaşabilirsiniz.</p>
+
+    <div class="card-grid three-col">
+      <div class="card">
+        <div class="card-icon bg-red">🎯</div>
+        <h3>Penetration Tester</h3>
+        <p class="card-desc">Sistemlerin güvenliğini test eden uzman. Offensive güvenlik tarafında çalışır. OSCP sertifikası standart gereksinimdir. Web, network, mobile ve cloud pentest yapabilir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">🔍</div>
+        <h3>Security Analyst</h3>
+        <p class="card-desc">Güvenlik olaylarını izleyen, analiz eden ve yanıtlayan uzman. SIEM araçları, IDS/IPS yönetimi ve olay müdahalesi yapar. Security+ ve CySA+ sertifikaları yaygındır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-cyan">🖥️</div>
+        <h3>SOC Analyst</h3>
+        <p class="card-desc">Security Operations Center'da çalışan güvenlik analisti. 7/24 izleme, alarm değerlendirme, olay müdahalesi ve tehdit avı yapar. Tier 1, 2, 3 seviyelerinde çalışır.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-orange">🦠</div>
+        <h3>Malware Analyst</h3>
+        <p class="card-desc">Zararlı yazılımları analiz eden uzman. Reverse engineering, sandbox analizi ve threat intelligence üretimi yapar. Assembly ve C bilgisi gereklidir.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-purple">🔬</div>
+        <h3>Digital Forensics Expert</h3>
+        <p class="card-desc">Dijital delil toplama ve analiz uzmanı. Adli bilişim süreçlerini yürütür, raporlar hazırlar ve yasal süreçlere teknik destek sağlar. EnCE, GCFE sertifikaları yaygındır.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 18: SERTİFİKALAR -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="sertifika" class="content-section section-accent-orange">
+    <div class="section-header">
+      <div class="section-icon">📜</div>
+      <div>
+        <h2>18 — Sertifikalar</h2>
+        <p class="section-desc">Kariyerinizi güçlendiren önemli sertifikalar</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Siber güvenlik sertifikaları, bilgi ve becerilerinizi resmi olarak kanıtlar. İş başvurularında büyük avantaj sağlar ve bazı pozisyonlar için zorunlu olabilir.</p>
+
+    <div class="card-grid two-col">
+      <div class="cert-card">
+        <span class="cert-level beginner">Giriş Seviye</span>
+        <h4>CompTIA Security+</h4>
+        <p>Siber güvenlik kariyerine ilk adım. Temel güvenlik kavramları, ağ güvenliği, uyumluluk ve tehdit yönetimini kapsar. ABD Savunma Bakanlığı tarafından tanınır.</p>
+      </div>
+      <div class="cert-card">
+        <span class="cert-level intermediate">Orta Seviye</span>
+        <h4>CEH (Certified Ethical Hacker)</h4>
+        <p>EC-Council tarafından verilen etik hacking sertifikası. Saldırı teknikleri, araçları ve metodolojilerini kapsar. Teorik bilgi ağırlıklıdır.</p>
+      </div>
+      <div class="cert-card">
+        <span class="cert-level advanced">İleri Seviye</span>
+        <h4>OSCP (Offensive Security Certified Professional)</h4>
+        <p>En prestijli pentest sertifikası. 24 saatlik pratik sınavda gerçek makineleri hackleyerek geçilir. "Try Harder" mottosuyla bilinir. Endüstri standardıdır.</p>
+      </div>
+      <div class="cert-card">
+        <span class="cert-level advanced">İleri Seviye</span>
+        <h4>CISSP (Certified Information Systems Security Professional)</h4>
+        <p>(ISC)² tarafından verilen üst düzey güvenlik yönetimi sertifikası. 8 domain kapsar. 5 yıl deneyim gerektirir. CISO ve Security Manager pozisyonları için standart.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 19: ARAÇ KÜTÜPHANESİ -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="araclar" class="content-section section-accent-cyan">
+    <div class="section-header">
+      <div class="section-icon">🧰</div>
+      <div>
+        <h2>19 — Siber Güvenlik Araç Kütüphanesi</h2>
+        <p class="section-desc">Kapsamlı güvenlik araçları koleksiyonu</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Siber güvenlik uzmanlarının cephaneliğindeki en önemli araçlar kategorilere ayrılmış şekilde burada listelenmiştir. Her aracın ne işe yaradığını ve ne zaman kullanılacağını bilmek önemlidir.</p>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--accent-cyan);">📡 Network Araçları</h3>
+    <div class="card-grid two-col">
+      <div class="tool-card">
+        <div class="tool-icon bg-cyan">🦈</div>
+        <div>
+          <h4>Wireshark</h4>
+          <p>Ağ protokol analizörü. Gerçek zamanlı paket yakalama ve detaylı analiz. Filtreleme sistemi çok güçlü. pcap dosyalarını okur/yazar.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-green">📡</div>
+        <div>
+          <h4>Nmap</h4>
+          <p>Ağ keşif ve güvenlik tarama aracı. Port tarama, servis tespiti, OS tespiti, NSE scriptleri. Zenmap GUI mevcut.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-red);">💀 Exploitation Araçları</h3>
+    <div class="card-grid">
+      <div class="tool-card">
+        <div class="tool-icon bg-red">⚔️</div>
+        <div>
+          <h4>Metasploit Framework</h4>
+          <p>Dünyanın en büyük exploit framework'ü. Exploit geliştirme, payload üretimi (msfvenom), post-exploitation modülleri, session yönetimi ve Meterpreter shell. Açık kaynak ve ticari versiyonları mevcuttur.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-orange);">🌐 Web Güvenlik Araçları</h3>
+    <div class="card-grid">
+      <div class="tool-card">
+        <div class="tool-icon bg-orange">🔥</div>
+        <div>
+          <h4>Burp Suite</h4>
+          <p>Web uygulama güvenlik testi için endüstri standardı. Proxy (HTTP trafiği yakalama), Scanner (otomatik zafiyet tarama), Intruder (brute force ve fuzzing), Repeater (istek tekrarlama), Decoder (kodlama/çözme) modülleri. Community (ücretsiz) ve Professional (ücretli) versiyonları var.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-purple);">🔓 Parola Kırma Araçları</h3>
+    <div class="card-grid two-col">
+      <div class="tool-card">
+        <div class="tool-icon bg-purple">🔨</div>
+        <div>
+          <h4>John the Ripper</h4>
+          <p>Çok platformlu parola kırma aracı. Dictionary attack, brute force ve rainbow table saldırıları. Birçok hash formatını destekler.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-pink">⚡</div>
+        <div>
+          <h4>Hashcat</h4>
+          <p>GPU hızlandırmalı parola kırma aracı. Dünyanın en hızlı parola kırıcısı. 300'den fazla hash türünü destekler. Rule-based ve mask attack yetenekleri.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-green);">🔍 Keşif ve OSINT Araçları</h3>
+    <div class="card-grid two-col">
+      <div class="tool-card">
+        <div class="tool-icon bg-green">🌿</div>
+        <div>
+          <h4>Maltego</h4>
+          <p>OSINT ve grafik tabanlı link analiz aracı. Kişiler, şirketler, domainler ve IP adresleri arasındaki ilişkileri görselleştirir.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon bg-blue">🔎</div>
+        <div>
+          <h4>theHarvester</h4>
+          <p>E-posta adresleri, subdomain'ler, IP'ler ve URL'ler toplayan OSINT aracı. Google, Bing, LinkedIn ve Shodan gibi kaynaklardan veri toplar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
+
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <!-- BÖLÜM 20: KAYNAKLAR -->
+  <!-- ██████████████████████████████████████████████████████████ -->
+  <section id="kaynaklar" class="content-section section-accent-green">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div>
+        <h2>20 — Kaynaklar</h2>
+        <p class="section-desc">Öğrenme platformları ve referans kaynaklar</p>
+      </div>
+    </div>
+
+    <p class="section-intro">Siber güvenlik öğrenme yolculuğunuzda size eşlik edecek en iyi platformlar ve kaynaklar. Sürekli öğrenmek ve güncel kalmak bu alandaki en önemli kuraldır.</p>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--accent-green);">🎓 Öğrenme Platformları</h3>
+
+    <div class="card-grid two-col">
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
+          <div class="card-icon bg-green" style="margin-bottom: 0;">💚</div>
+          <h3>Hack The Box</h3>
+        </div>
+        <p class="card-desc">En popüler siber güvenlik challenge platformu. Gerçekçi lab ortamları, retired/active makineler, CTF yarışmaları ve Hack The Box Academy eğitim modülleri sunar. Beginner'dan pro seviyeye kadar herkes için içerik vardır.</p>
+        <div class="tag-list">
+          <span class="tag tag-green">Ücretsiz & Ücretli</span>
+          <span class="tag tag-cyan">Lablar</span>
+          <span class="tag tag-purple">Academy</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
+          <div class="card-icon bg-red" style="margin-bottom: 0;">🔴</div>
+          <h3>TryHackMe</h3>
+        </div>
+        <p class="card-desc">Başlangıç dostu interaktif siber güvenlik platformu. Adım adım rehberli odalar (rooms), structured learning paths, pre-security'den red teaming'e kadar kapsamlı eğitim yolları. Browser tabanlı lab ortamı ile kurulum gerektirmez.</p>
+        <div class="tag-list">
+          <span class="tag tag-red">Ücretsiz & Ücretli</span>
+          <span class="tag tag-orange">Beginner Friendly</span>
+          <span class="tag tag-blue">Learning Paths</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin: 2.5rem 0 1.5rem; color: var(--accent-green);">📖 Ek Kaynaklar</h3>
+
+    <ul class="styled-list">
+      <li>
+        <span class="list-icon">🔷</span>
+        <div><strong>OWASP</strong> — Web uygulama güvenliği için dünya çapında referans. Top 10, cheat sheetler ve güvenlik rehberleri.</div>
+      </li>
+      <li>
+        <span class="list-icon">📺</span>
+        <div><strong>YouTube Kanalları</strong> — IppSec, John Hammond, NetworkChuck, The Cyber Mentor gibi içerik üreticileri.</div>
+      </li>
+      <li>
+        <span class="list-icon">📖</span>
+        <div><strong>Kitaplar</strong> — The Web Application Hacker's Handbook, Hacking: The Art of Exploitation, Metasploit: The Penetration Tester's Guide.</div>
+      </li>
+      <li>
+        <span class="list-icon">🏴</span>
+        <div><strong>CTFtime</strong> — Dünya genelindeki CTF yarışmalarını takip edebileceğiniz platform. Takım oluşturma ve sıralama sistemi.</div>
+      </li>
+      <li>
+        <span class="list-icon">📝</span>
+        <div><strong>Blog &amp; Writeup'lar</strong> — Medium, 0xdf, HackTricks ve InfoSecWriteups gibi kaynaklar sürekli güncel bilgi sunar.</div>
+      </li>
+      <li>
+        <span class="list-icon">💬</span>
+        <div><strong>Topluluklar</strong> — Reddit r/netsec, r/hacking, Discord sunucuları ve Twitter InfoSec topluluğu.</div>
+      </li>
+    </ul>
+
+    <div class="info-box tip" style="margin-top: 2rem;">
+      <h4>🚀 Son Söz</h4>
+      <p>Siber güvenlik sürekli gelişen bir alandır. Öğrenmeyi asla bırakmayın, her gün en az bir saat pratik yapın, toplulukla etkileşimde olun ve her zaman etik değerlere bağlı kalın. Bu yol haritası size rehberlik edecek — geri kalanı sizin azminize bağlı. <strong>Happy Hacking!</strong> 🎯</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <p>🛡️ Siber Güvenlik Rehberi — Kapsamlı Eğitim Yol Haritası</p>
+  <p style="margin-top: 0.5rem;">Bu rehber eğitim amaçlıdır. Tüm bilgileri etik ve yasal çerçevede kullanın.</p>
+</footer>
+
+<!-- Scroll to top -->
+<button class="scroll-top" aria-label="Başa dön">↑</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>
