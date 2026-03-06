@@ -414,4 +414,22 @@ document.addEventListener('DOMContentLoaded', () => {
     visits._total = (visits._total || 0) + 1;
     localStorage.setItem('cybersec_visits', JSON.stringify(visits));
   } catch {}
+
+  /* ═══════════ LOGO ROTATION ═══════════ */
+  const logoImg = document.querySelector('.logo-icon img');
+  if (logoImg) {
+    const imgBase = isSubPage ? '../img/' : 'img/';
+    const logos = [imgBase+'icon-shield.svg', imgBase+'icon-terminal.svg', imgBase+'icon-eye.svg'];
+    let logoIdx = 0;
+    setInterval(() => {
+      logoIdx = (logoIdx + 1) % logos.length;
+      logoImg.style.opacity = '0';
+      logoImg.style.transform = 'scale(0.7) rotate(-10deg)';
+      setTimeout(() => {
+        logoImg.src = logos[logoIdx];
+        logoImg.style.opacity = '1';
+        logoImg.style.transform = 'scale(1) rotate(0deg)';
+      }, 300);
+    }, 3000);
+  }
 });

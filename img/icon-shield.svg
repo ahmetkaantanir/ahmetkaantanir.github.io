@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="gl">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Shield shape -->
+  <path d="M64,10 L112,30 C112,30 114,72 100,96 C86,118 64,124 64,124 C64,124 42,118 28,96 C14,72 16,30 16,30 Z" fill="#0a0e17" stroke="url(#sg)" stroke-width="4" filter="url(#gl)"/>
+  <!-- Inner shield line -->
+  <path d="M64,22 L102,38 C102,38 104,72 92,92 C80,110 64,116 64,116 C64,116 48,110 36,92 C24,72 26,38 26,38 Z" fill="none" stroke="#06b6d4" stroke-width="1.5" opacity="0.3"/>
+  <!-- Lock body -->
+  <rect x="48" y="62" width="32" height="28" rx="4" fill="none" stroke="url(#sg)" stroke-width="3.5" filter="url(#gl)"/>
+  <!-- Lock shackle -->
+  <path d="M52,62 L52,50 C52,40 76,40 76,50 L76,62" fill="none" stroke="url(#sg)" stroke-width="3.5" stroke-linecap="round" filter="url(#gl)"/>
+  <!-- Keyhole -->
+  <circle cx="64" cy="74" r="5" fill="#06b6d4" filter="url(#gl)"/>
+  <rect x="62" y="76" width="4" height="8" rx="1" fill="#06b6d4" filter="url(#gl)"/>
+  <!-- Shield glow accents -->
+  <path d="M64,10 L112,30" stroke="#06b6d4" stroke-width="1" opacity="0.15"/>
+  <path d="M64,10 L16,30" stroke="#8b5cf6" stroke-width="1" opacity="0.15"/>
+</svg>
