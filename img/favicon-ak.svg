@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="80" fill="#000"/>
+  <!-- A left leg -->
+  <path d="M 66,415 L 196,85 L 246,85 L 116,415 Z" fill="#fff"/>
+  <!-- A right leg + K stem -->
+  <path d="M 220,85 L 270,85 L 320,240 L 270,240 Z" fill="#fff"/>
+  <!-- K upper arm -->
+  <path d="M 290,85 L 340,85 L 290,220 L 255,220 Z" fill="#fff"/>
+  <!-- K lower arm -->
+  <path d="M 268,275 L 305,275 L 446,415 L 395,415 Z" fill="#fff"/>
+  <!-- A swoosh crossbar -->
+  <path d="M 128,330 Q 210,260 295,295 L 280,335 Q 210,305 145,360 Z" fill="#fff"/>
+</svg>

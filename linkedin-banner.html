@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 627px;
+    overflow: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0a0e1a;
+    position: relative;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(0,212,255,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(139,92,246,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, rgba(16,185,129,0.10) 0%, transparent 50%);
+  }
+
+  /* Grid pattern */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Decorative elements */
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(0,212,255,0.15);
+  }
+  .circle-1 { width: 300px; height: 300px; top: -80px; right: -60px; }
+  .circle-2 { width: 200px; height: 200px; bottom: -40px; left: -30px; border-color: rgba(139,92,246,0.15); }
+  .circle-3 { width: 150px; height: 150px; top: 60%; right: 15%; border-color: rgba(16,185,129,0.1); }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 50px 80px;
+    text-align: center;
+  }
+
+  .shield {
+    font-size: 56px;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 20px rgba(0,212,255,0.4));
+  }
+
+  h1 {
+    font-size: 52px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    font-size: 22px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    margin-bottom: 36px;
+    letter-spacing: 0.5px;
+  }
+
+  .stats {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 40px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00d4ff, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 900px;
+  }
+
+  .tag {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border: 1px solid;
+  }
+
+  .t1 { color: #00d4ff; border-color: rgba(0,212,255,0.25); background: rgba(0,212,255,0.08); }
+  .t2 { color: #8b5cf6; border-color: rgba(139,92,246,0.25); background: rgba(139,92,246,0.08); }
+  .t3 { color: #10b981; border-color: rgba(16,185,129,0.25); background: rgba(16,185,129,0.08); }
+  .t4 { color: #f59e0b; border-color: rgba(245,158,11,0.25); background: rgba(245,158,11,0.08); }
+  .t5 { color: #ef4444; border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.08); }
+  .t6 { color: #ec4899; border-color: rgba(236,72,153,0.25); background: rgba(236,72,153,0.08); }
+
+  .url {
+    position: absolute;
+    bottom: 28px;
+    right: 40px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .author {
+    position: absolute;
+    bottom: 28px;
+    left: 40px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 500;
+  }
+
+  /* Accent line top */
+  .accent-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00d4ff, #8b5cf6, #10b981, #f59e0b);
+  }
+</style>
+</head>
+<body>
+  <div class="accent-line"></div>
+  <div class="bg"></div>
+  <div class="grid"></div>
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="circle circle-3"></div>
+
+  <div class="content">
+    <div class="shield">🛡️</div>
+    <h1>Siber Güvenlik <span>Rehberi</span></h1>
+    <div class="subtitle">Sıfırdan İleri Seviyeye — Kapsamlı Eğitim Yol Haritası</div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Bölüm</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">150+</div>
+        <div class="stat-label">Alt Konu</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Araç</div>
+      </div>
+    </div>
+
+    <div class="tags">
+      <span class="tag t1">Networking</span>
+      <span class="tag t5">Web Güvenliği</span>
+      <span class="tag t2">Penetration Testing</span>
+      <span class="tag t3">Kriptografi</span>
+      <span class="tag t4">Malware Analizi</span>
+      <span class="tag t6">Adli Bilişim</span>
+      <span class="tag t1">Bulut Güvenliği</span>
+      <span class="tag t4">CTF & Pratik</span>
+    </div>
+  </div>
+
+  <div class="author">Ahmet Kaan Tanır</div>
+  <div class="url">ahmetkaan.me</div>
+</body>
+</html>
